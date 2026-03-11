@@ -143,19 +143,18 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "", fullWid
   );
 };
 
-// --- Optimiert für GitHub Pages & Scroll-Links ---
+// --- Optimiert für Vercel & Live Umgebungen (Klick-Blockaden behoben) ---
 const MagneticButton = ({ children, className, onClick, disabled, href, target }) => {
   const content = (
     <>
-      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
-      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
+      {/* pointer-events-none garantiert, dass der Klick 100% auf das a-Tag durchgeht */}
+      <span className="relative z-10 flex items-center justify-center gap-4 pointer-events-none">{children}</span>
+      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none" />}
     </>
   );
 
   // Wenn ein href übergeben wurde, erstelle ein sicheres Link-Element
   if (href && !disabled) {
-    // Wir zwingen den Button standardmäßig in einen neuen Tab ("_blank"),
-    // damit externe Checkouts wie Payhip nicht blockiert werden.
     const linkTarget = target || "_blank";
     
     return (
@@ -177,7 +176,7 @@ const MagneticButton = ({ children, className, onClick, disabled, href, target }
   return (
     <motion.button 
       onClick={(e) => {
-        e.preventDefault(); // Verhindert Neuladen der Seite
+        e.preventDefault(); 
         if (onClick) onClick(e);
       }}
       disabled={disabled}
