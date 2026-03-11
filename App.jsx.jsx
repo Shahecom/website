@@ -143,7 +143,7 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "", fullWid
   );
 };
 
-// Optimiert für externe Links (mit target Support)
+// --- Optimiert für GitHub Pages & Scroll-Links ---
 const MagneticButton = ({ children, className, onClick, disabled, href, target }) => {
   const content = (
     <>
@@ -152,30 +152,39 @@ const MagneticButton = ({ children, className, onClick, disabled, href, target }
     </>
   );
 
+  // Wenn ein href übergeben wurde, erstelle ein sicheres Link-Element
   if (href && !disabled) {
+    // Wir zwingen den Button standardmäßig in einen neuen Tab ("_blank"),
+    // damit externe Checkouts wie Payhip nicht blockiert werden.
+    const linkTarget = target || "_blank";
+    
     return (
       <motion.a
         href={href}
-        target={target || "_self"}
-        rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        target={linkTarget}
+        rel={linkTarget === "_blank" ? "noopener noreferrer" : undefined}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.4, ease: premiumEase }}
-        className={`relative overflow-hidden group inline-flex items-center justify-center ${className}`}
+        className={`relative overflow-hidden group inline-flex items-center justify-center cursor-pointer ${className}`}
       >
         {content}
       </motion.a>
     );
   }
 
+  // Wenn KEIN href vorhanden ist, mache es zu einem normalen Button
   return (
     <motion.button 
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault(); // Verhindert Neuladen der Seite
+        if (onClick) onClick(e);
+      }}
       disabled={disabled}
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
       transition={{ duration: 0.4, ease: premiumEase }}
-      className={`relative overflow-hidden group ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`relative overflow-hidden group inline-flex items-center justify-center cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {content}
     </motion.button>
@@ -369,6 +378,14 @@ const Navigation = () => {
   const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.7]);
   const blur = useTransform(scrollY, [0, 100], [0, 20]);
 
+  // Funktion zum sanften Scrollen zur Call-to-Action
+  const scrollToPricing = () => {
+    const pricingElement = document.getElementById('pricing');
+    if (pricingElement) {
+      pricingElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.nav 
       style={{ backgroundColor: `rgba(0,0,0,${bgOpacity})`, backdropFilter: `blur(${blur}px)` }}
@@ -379,8 +396,7 @@ const Navigation = () => {
         <span className="text-white/30 text-[8px] tracking-[0.4em] uppercase mt-2">Muslim</span>
       </div>
      <MagneticButton
-      href={CHECKOUT_URL}
-      target="_blank"
+      onClick={scrollToPricing} // <--- Hier klicken = Scrollen
       className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
     >
       Zum E-Book
@@ -388,6 +404,7 @@ const Navigation = () => {
     </motion.nav>
   );
 };
+
 const Hero = () => {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 250]);
@@ -716,6 +733,7 @@ const PreviewSection = () => {
 const PricingSection = () => {
   return (
     <section id="pricing" className="py-52 px-6 relative z-10 border-t border-white/5 bg-[#010101] flex flex-col items-center overflow-hidden">
+      {/* Hier habe ich die ID hinzugefügt, damit das Scrollen dorthin funktioniert */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] md:w-[70vw] md:h-[70vw] max-w-[1000px] max-h-[1000px] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03),_transparent_60%)] pointer-events-none" />
 
       <FadeIn className="text-center w-full max-w-[1200px] relative z-10">
