@@ -83,7 +83,7 @@ const FAQS = [
 
 // --- Hilfsfunktion für den Checkout ---
 const handleCheckoutNavigation = () => {
-  if (CHECKOUT_URL !== "HIER_SPÄTER_EINFÜGEN") {
+  if (CHECKOUT_URL) {
     window.location.href = CHECKOUT_URL;
   }
 };
