@@ -143,42 +143,44 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "", fullWid
   );
 };
 
-// --- Optimiert für Vercel & Live Umgebungen (Klick-Blockaden behoben) ---
+// --- TODSICHERE VARIANTE FÜR EXTERNE LINKS ---
 const MagneticButton = ({ children, className, onClick, disabled, href, target }) => {
   const content = (
     <>
-      {/* pointer-events-none garantiert, dass der Klick 100% auf das a-Tag durchgeht */}
-      <span className="relative z-10 flex items-center justify-center gap-4 pointer-events-none">{children}</span>
-      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none" />}
+      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
+      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
     </>
   );
 
-  // Wenn ein href übergeben wurde, erstelle ein sicheres Link-Element
+  // Wenn ein Link (href) vorhanden ist:
   if (href && !disabled) {
     const linkTarget = target || "_blank";
     
     return (
-      <motion.a
-        href={href}
-        target={linkTarget}
-        rel={linkTarget === "_blank" ? "noopener noreferrer" : undefined}
+      <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.4, ease: premiumEase }}
         className={`relative overflow-hidden group inline-flex items-center justify-center cursor-pointer ${className}`}
       >
+        {/* DER TRICK: Ein nativer, absolut positionierter HTML-Link über allem. 
+            So fängt der Browser den Klick ganz normal ab, ohne React-Verzögerung. */}
+        <a 
+          href={href} 
+          target={linkTarget} 
+          rel="noopener noreferrer"
+          className="absolute inset-0 w-full h-full z-50"
+          aria-label="Checkout"
+        />
         {content}
-      </motion.a>
+      </motion.div>
     );
   }
 
-  // Wenn KEIN href vorhanden ist, mache es zu einem normalen Button
+  // Für normale Buttons (wie den "Zum E-Book" Scroll-Button)
   return (
     <motion.button 
-      onClick={(e) => {
-        e.preventDefault(); 
-        if (onClick) onClick(e);
-      }}
+      onClick={onClick}
       disabled={disabled}
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
@@ -396,7 +398,7 @@ const Navigation = () => {
       </div>
      <MagneticButton
       onClick={scrollToPricing} // <--- Hier klicken = Scrollen
-      className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
+      className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm z-50"
     >
       Zum E-Book
     </MagneticButton>
