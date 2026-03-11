@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 
 // --- KONFIGURATION FÜR PRODUKTION ---
-// Trage hier deinen Link zu Digistore24, Stripe, Gumroad oder Co. ein
-const CHECKOUT_URL = "HIER_SPÄTER_EINFÜGEN"; 
+// Dein Payhip Checkout URL
+const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
@@ -81,13 +81,6 @@ const FAQS = [
   }
 ];
 
-// --- Hilfsfunktion für den Checkout ---
-const handleCheckoutNavigation = () => {
-  if (CHECKOUT_URL !== "HIER_SPÄTER_EINFÜGEN") {
-    window.location.href = CHECKOUT_URL;
-  }
-};
-
 // --- Sub-Components ---
 
 const NoiseOverlay = () => (
@@ -150,7 +143,41 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "", fullWid
   );
 };
 
-const MagneticButton = ({ children, className, onClick, disabled }) => {
+// --- TODSICHERE VARIANTE FÜR EXTERNE LINKS ---
+const MagneticButton = ({ children, className, onClick, disabled, href, target }) => {
+  const content = (
+    <>
+      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
+      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
+    </>
+  );
+
+  // Wenn ein Link (href) vorhanden ist:
+  if (href && !disabled) {
+    const linkTarget = target || "_blank";
+    
+    return (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.4, ease: premiumEase }}
+        className={`relative overflow-hidden group inline-flex items-center justify-center cursor-pointer ${className}`}
+      >
+        {/* DER TRICK: Ein nativer, absolut positionierter HTML-Link über allem. 
+            So fängt der Browser den Klick ganz normal ab, ohne React-Verzögerung. */}
+        <a 
+          href={href} 
+          target={linkTarget} 
+          rel="noopener noreferrer"
+          className="absolute inset-0 w-full h-full z-50"
+          aria-label="Checkout"
+        />
+        {content}
+      </motion.div>
+    );
+  }
+
+  // Für normale Buttons (wie den "Zum E-Book" Scroll-Button)
   return (
     <motion.button 
       onClick={onClick}
@@ -158,10 +185,9 @@ const MagneticButton = ({ children, className, onClick, disabled }) => {
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
       transition={{ duration: 0.4, ease: premiumEase }}
-      className={`relative overflow-hidden group ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`relative overflow-hidden group inline-flex items-center justify-center cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
-      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
-      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
+      {content}
     </motion.button>
   );
 };
@@ -353,6 +379,14 @@ const Navigation = () => {
   const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.7]);
   const blur = useTransform(scrollY, [0, 100], [0, 20]);
 
+  // Funktion zum sanften Scrollen zur Call-to-Action
+  const scrollToPricing = () => {
+    const pricingElement = document.getElementById('pricing');
+    if (pricingElement) {
+      pricingElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.nav 
       style={{ backgroundColor: `rgba(0,0,0,${bgOpacity})`, backdropFilter: `blur(${blur}px)` }}
@@ -362,9 +396,12 @@ const Navigation = () => {
         <span className="text-white font-serif text-lg tracking-[0.2em] uppercase leading-none">Der Standhafte</span>
         <span className="text-white/30 text-[8px] tracking-[0.4em] uppercase mt-2">Muslim</span>
       </div>
-      <MagneticButton onClick={() => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })} className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm">
-        Zum E-Book
-      </MagneticButton>
+     <MagneticButton
+      onClick={scrollToPricing} // <--- Hier klicken = Scrollen
+      className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm z-50"
+    >
+      Zum E-Book
+    </MagneticButton>
     </motion.nav>
   );
 };
@@ -531,7 +568,8 @@ const ProductPreviewCompact = () => {
                   <div className="text-white/20 text-sm sm:text-base line-through decoration-white/10 decoration-1 tracking-wider mt-1 sm:mt-2 whitespace-nowrap">19,99€</div>
                 </div>
                 <MagneticButton 
-                  onClick={handleCheckoutNavigation}
+                  href={CHECKOUT_URL}
+                  target="_blank"
                   className="w-full md:w-auto bg-white text-black px-8 py-4 font-black uppercase tracking-[0.2em] text-[10px] rounded-sm transition-all shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] whitespace-nowrap"
                 >
                   JETZT FÜR 12,99€ SICHERN
@@ -696,6 +734,7 @@ const PreviewSection = () => {
 const PricingSection = () => {
   return (
     <section id="pricing" className="py-52 px-6 relative z-10 border-t border-white/5 bg-[#010101] flex flex-col items-center overflow-hidden">
+      {/* Hier habe ich die ID hinzugefügt, damit das Scrollen dorthin funktioniert */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] md:w-[70vw] md:h-[70vw] max-w-[1000px] max-h-[1000px] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03),_transparent_60%)] pointer-events-none" />
 
       <FadeIn className="text-center w-full max-w-[1200px] relative z-10">
@@ -717,7 +756,7 @@ const PricingSection = () => {
                 <EBookMockup />
               </div>
 
-              {/* Wrapper für Text & Preis - Verhindert Textquetschung auf Medium-Desktops */}
+              {/* Wrapper für Text & Preis */}
               <div className="flex-1 flex flex-col xl:flex-row justify-between items-start xl:items-center w-full gap-10 xl:gap-12">
                 
                 {/* Text Info */}
@@ -745,7 +784,8 @@ const PricingSection = () => {
                   
                   <div className="w-full">
                     <MagneticButton 
-                      onClick={handleCheckoutNavigation}
+                      href={CHECKOUT_URL}
+                      target="_blank"
                       className="w-full lg:w-[280px] bg-white text-black py-6 font-black uppercase tracking-[0.2em] text-[11px] rounded-sm transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)] whitespace-nowrap"
                     >
                       JETZT FÜR 12,99€ SICHERN
@@ -837,7 +877,7 @@ const FAQ = () => {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [legalModal, setLegalModal] = useState(null); // 'impressum' | 'datenschutz' | 'widerruf' | 'agb' | null
+  const [legalModal, setLegalModal] = useState(null); 
 
   useEffect(() => {
     document.title = "Der standhafte Muslim | 30 Tage Transformation E-Book";
