@@ -362,9 +362,12 @@ const Navigation = () => {
         <span className="text-white font-serif text-lg tracking-[0.2em] uppercase leading-none">Der Standhafte</span>
         <span className="text-white/30 text-[8px] tracking-[0.4em] uppercase mt-2">Muslim</span>
       </div>
-      <MagneticButton onClick={() => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })} className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm">
-        Zum E-Book
-      </MagneticButton>
+      <MagneticButton
+  onClick={() => window.location.href="https://payhip.com/b/sl9w2"}
+  className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
+>
+  Zum E-Book
+</MagneticButton>
     </motion.nav>
   );
 };
