@@ -7,7 +7,7 @@ import {
 
 // --- KONFIGURATION FÜR PRODUKTION ---
 // Trage hier deinen Link zu Digistore24, Stripe, Gumroad oder Co. ein
-const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
+const CHECKOUT_URL = "https://payhip.com/b/sl9w2";
 
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
@@ -363,15 +363,14 @@ const Navigation = () => {
         <span className="text-white/30 text-[8px] tracking-[0.4em] uppercase mt-2">Muslim</span>
       </div>
       <MagneticButton
-  onClick={() => window.location.href="https://payhip.com/b/sl9w2"}
-  className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
->
-  Zum E-Book
-</MagneticButton>
+        onClick={handleCheckoutNavigation}
+        className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
+      >
+        Zum E-Book
+      </MagneticButton>
     </motion.nav>
   );
 };
-
 const Hero = () => {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 250]);
