@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 // --- KONFIGURATION FÜR PRODUKTION ---
-// Trage hier deinen Link zu Digistore24, Stripe, Gumroad oder Co. ein
+// Dein Payhip Checkout URL
 const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
 // --- Easing für den "Expensive Feel" ---
@@ -81,13 +81,6 @@ const FAQS = [
   }
 ];
 
-// --- Hilfsfunktion für den Checkout ---
-const handleCheckoutNavigation = () => {
-  if (CHECKOUT_URL) {
-    window.location.href = CHECKOUT_URL;
-  }
-};
-
 // --- Sub-Components ---
 
 const NoiseOverlay = () => (
@@ -150,7 +143,31 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "", fullWid
   );
 };
 
-const MagneticButton = ({ children, className, onClick, disabled }) => {
+// Optimiert für externe Links (mit target Support)
+const MagneticButton = ({ children, className, onClick, disabled, href, target }) => {
+  const content = (
+    <>
+      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
+      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
+    </>
+  );
+
+  if (href && !disabled) {
+    return (
+      <motion.a
+        href={href}
+        target={target || "_self"}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.4, ease: premiumEase }}
+        className={`relative overflow-hidden group inline-flex items-center justify-center ${className}`}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
   return (
     <motion.button 
       onClick={onClick}
@@ -160,8 +177,7 @@ const MagneticButton = ({ children, className, onClick, disabled }) => {
       transition={{ duration: 0.4, ease: premiumEase }}
       className={`relative overflow-hidden group ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
-      <span className="relative z-10 flex items-center justify-center gap-4">{children}</span>
-      {!disabled && <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />}
+      {content}
     </motion.button>
   );
 };
@@ -362,12 +378,13 @@ const Navigation = () => {
         <span className="text-white font-serif text-lg tracking-[0.2em] uppercase leading-none">Der Standhafte</span>
         <span className="text-white/30 text-[8px] tracking-[0.4em] uppercase mt-2">Muslim</span>
       </div>
-      <MagneticButton
-        onClick={handleCheckoutNavigation}
-        className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
-      >
-        Zum E-Book
-      </MagneticButton>
+     <MagneticButton
+      href={CHECKOUT_URL}
+      target="_blank"
+      className="bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm"
+    >
+      Zum E-Book
+    </MagneticButton>
     </motion.nav>
   );
 };
@@ -533,7 +550,8 @@ const ProductPreviewCompact = () => {
                   <div className="text-white/20 text-sm sm:text-base line-through decoration-white/10 decoration-1 tracking-wider mt-1 sm:mt-2 whitespace-nowrap">19,99€</div>
                 </div>
                 <MagneticButton 
-                  onClick={handleCheckoutNavigation}
+                  href={CHECKOUT_URL}
+                  target="_blank"
                   className="w-full md:w-auto bg-white text-black px-8 py-4 font-black uppercase tracking-[0.2em] text-[10px] rounded-sm transition-all shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] whitespace-nowrap"
                 >
                   JETZT FÜR 12,99€ SICHERN
@@ -719,7 +737,7 @@ const PricingSection = () => {
                 <EBookMockup />
               </div>
 
-              {/* Wrapper für Text & Preis - Verhindert Textquetschung auf Medium-Desktops */}
+              {/* Wrapper für Text & Preis */}
               <div className="flex-1 flex flex-col xl:flex-row justify-between items-start xl:items-center w-full gap-10 xl:gap-12">
                 
                 {/* Text Info */}
@@ -747,7 +765,8 @@ const PricingSection = () => {
                   
                   <div className="w-full">
                     <MagneticButton 
-                      onClick={handleCheckoutNavigation}
+                      href={CHECKOUT_URL}
+                      target="_blank"
                       className="w-full lg:w-[280px] bg-white text-black py-6 font-black uppercase tracking-[0.2em] text-[11px] rounded-sm transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)] whitespace-nowrap"
                     >
                       JETZT FÜR 12,99€ SICHERN
@@ -839,7 +858,7 @@ const FAQ = () => {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [legalModal, setLegalModal] = useState(null); // 'impressum' | 'datenschutz' | 'widerruf' | 'agb' | null
+  const [legalModal, setLegalModal] = useState(null); 
 
   useEffect(() => {
     document.title = "Der standhafte Muslim | 30 Tage Transformation E-Book";
