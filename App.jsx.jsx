@@ -7,7 +7,7 @@ import {
 
 // --- KONFIGURATION FÜR PRODUKTION ---
 // Trage hier deinen Link zu Digistore24, Stripe, Gumroad oder Co. ein
-const CHECKOUT_URL = "https://payhip.com/b/sl9w2";
+const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
