@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { 
-  Quote, BookOpen, Lock, Check, Zap, Shield, Clock, X, ChevronRight, AlertTriangle, ArrowRight
+  Quote, BookOpen, Lock, Zap, Clock, X, ChevronRight, AlertTriangle, ArrowRight, Star
 } from 'lucide-react';
 
 // --- KONFIGURATION FÜR PRODUKTION ---
@@ -68,7 +68,7 @@ const SolidButton = ({ href, children, className = "", light = false }) => (
     href={href} 
     target="_blank" 
     rel="noopener noreferrer"
-    className={`group relative inline-flex items-center justify-center px-8 py-5 overflow-hidden rounded-sm transition-all hover:scale-[1.02] active:scale-[0.98] duration-500 ease-out shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] ${light ? 'bg-black text-white border border-white/20' : 'bg-white text-black'} ${className}`}
+    className={`group relative inline-flex items-center justify-center px-8 py-5 overflow-hidden rounded-sm transition-all hover:scale-[1.02] active:scale-[0.98] duration-500 ease-out shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.3)] ${light ? 'bg-black text-white border border-white/20' : 'bg-white text-black'} ${className}`}
   >
     <div className={`absolute inset-0 ${light ? 'bg-white/10' : 'bg-neutral-200'} translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out`} />
     <span className="relative z-10 flex items-center gap-3 text-[11px] md:text-[13px] font-black uppercase tracking-[0.2em]">
@@ -77,7 +77,7 @@ const SolidButton = ({ href, children, className = "", light = false }) => (
   </a>
 );
 
-// Floating Sticky Checkout Bar (Appears after scrolling past hero)
+// Floating Sticky Checkout Bar
 const StickyCheckout = () => {
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
@@ -98,21 +98,24 @@ const StickyCheckout = () => {
           transition={{ duration: 0.6, ease: ultraSmooth }}
           className="fixed bottom-0 left-0 right-0 z-[100] p-4 md:p-6 pointer-events-none"
         >
-          <div className="max-w-4xl mx-auto bg-black/80 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-sm flex items-center justify-between shadow-[0_-20px_40px_rgba(0,0,0,0.8)] pointer-events-auto">
+          <div className="max-w-4xl mx-auto bg-black/90 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-sm flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
             <div className="hidden md:block pl-4">
               <p className="text-white text-sm font-serif uppercase tracking-widest mb-0.5">Der Standhafte Muslim</p>
-              <p className="text-white/40 text-[9px] uppercase tracking-[0.2em] font-medium">Sofortiger Digital-Zugang</p>
+              <div className="flex items-center gap-1 text-white/50">
+                {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-white/50" />)}
+                <span className="text-[9px] uppercase tracking-[0.2em] font-medium ml-2">Das Original System</span>
+              </div>
             </div>
-            <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-              <div className="flex flex-col items-end md:mr-4 pl-2 md:pl-0">
+            <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end pr-2 md:pr-0">
+              <div className="flex flex-col items-end pl-2 md:pl-0">
                 <span className="text-white font-serif text-xl leading-none">14,99€</span>
-                <span className="text-white/30 text-[10px] line-through decoration-white/30">25,00€</span>
+                <span className="text-white/40 text-[10px] line-through decoration-white/40">25,00€</span>
               </div>
               <a 
                 href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer"
-                className="bg-white text-black px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-neutral-200 transition-colors whitespace-nowrap"
+                className="bg-white text-black px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-neutral-200 transition-colors whitespace-nowrap shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
-                Jetzt Sichern
+                Sofort Starten
               </a>
             </div>
           </div>
@@ -122,21 +125,27 @@ const StickyCheckout = () => {
   );
 };
 
-// Ultra-Premium E-Book Mockup mit Studio-Beleuchtung
+// Ultra-Premium E-Book Mockup mit Studio-Beleuchtung & Glass-Shine
 const PremiumMockup = () => (
   <div className="relative w-64 h-80 md:w-80 md:h-[420px] shrink-0 group perspective-1000 z-20 flex justify-center items-center">
-    {/* Studio Backlight / Aura */}
     <motion.div 
-      animate={{ opacity: [0.4, 0.7, 0.4], scale: [0.9, 1.1, 0.9] }} 
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      animate={{ opacity: [0.3, 0.6, 0.3], scale: [0.9, 1.1, 0.9] }} 
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       className="absolute inset-0 bg-white/10 blur-[80px] rounded-full pointer-events-none"
     />
     
     <motion.div 
-      animate={{ y: [0, -15, 0] }} 
+      animate={{ y: [0, -12, 0] }} 
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="relative w-full h-full bg-gradient-to-br from-[#1a1a1a] via-[#050505] to-black border border-white/10 shadow-[40px_40px_80px_rgba(0,0,0,0.9),inset_1px_1px_0_rgba(255,255,255,0.05)] transform rotate-y-[-12deg] group-hover:rotate-y-[-5deg] group-hover:scale-[1.03] transition-all duration-1000 transform-style-3d flex flex-col justify-between p-8 md:p-10 rounded-r-md z-10"
+      className="relative w-full h-full bg-gradient-to-br from-[#1c1c1c] via-[#080808] to-black border border-white/10 shadow-[40px_40px_80px_rgba(0,0,0,0.9),inset_1px_1px_0_rgba(255,255,255,0.05)] transform rotate-y-[-12deg] group-hover:rotate-y-[-5deg] group-hover:scale-[1.03] transition-all duration-1000 transform-style-3d flex flex-col justify-between p-8 md:p-10 rounded-r-md z-10 overflow-hidden"
     >
+      {/* ANIMIERTER GLASS-SHINE EFFEKT */}
+      <motion.div 
+        animate={{ x: ["-150%", "250%"] }}
+        transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+        className="absolute inset-0 w-[50%] h-[200%] -top-[50%] bg-gradient-to-r from-transparent via-white/10 to-transparent rotate-45 pointer-events-none z-30"
+      />
+
       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.06] pointer-events-none" />
       <div className="absolute left-0 top-0 bottom-0 w-5 bg-gradient-to-r from-white/10 via-white/5 to-transparent rounded-l-md" />
       <div className="absolute left-5 top-0 bottom-0 w-[1px] bg-black/90" />
@@ -149,17 +158,28 @@ const PremiumMockup = () => (
       </div>
       
       <div className="relative z-10 flex justify-end">
-        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/[0.02] backdrop-blur-sm">
-          <BookOpen size={14} className="text-white/40" />
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/[0.02] backdrop-blur-sm shadow-inner">
+          <BookOpen size={14} className="text-white/50" />
         </div>
       </div>
     </motion.div>
     
-    {/* Floating Shadow */}
     <motion.div 
       animate={{ scale: [1, 0.8, 1], opacity: [0.8, 0.4, 0.8] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[80%] h-12 bg-black blur-xl transform rotate-y-[-12deg]" 
+      className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[80%] h-12 bg-black blur-xl transform rotate-y-[-12deg]" 
+    />
+  </div>
+);
+
+// HOCHWERTIGER HINTERGRUND-EFFEKT: "Struktur vs. Chaos"
+const HeroBackground = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)] opacity-40" />
+    <motion.div
+      animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.04),_transparent_60%)] blur-3xl"
     />
   </div>
 );
@@ -172,8 +192,8 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section className="relative h-screen min-h-[850px] flex flex-col justify-center items-center px-6 overflow-hidden bg-black">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100vw] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.03),_transparent_50%)] pointer-events-none blur-3xl" />
+    <section className="relative h-screen min-h-[900px] flex flex-col justify-center items-center px-6 overflow-hidden bg-black">
+      <HeroBackground />
       
       <motion.div style={{ y, opacity }} className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-10">
         
@@ -185,12 +205,13 @@ const Hero = () => {
         </FadeIn>
         
         <div className="flex flex-col items-center mb-10 w-full">
-          <motion.div initial={{ clipPath: "inset(100% 0 0 0)" }} animate={{ clipPath: "inset(0% 0 0 0)" }} transition={{ duration: 1.5, ease: ultraSmooth }}>
-            <h1 className="text-white font-serif text-[13vw] md:text-[9vw] lg:text-[120px] leading-[0.85] tracking-tighter uppercase mb-2 md:mb-0">
+          {/* Reparierter "ü"-Abstand: y-Translation statt clipPath, pt-4 hinzugefügt und line-height angepasst */}
+          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: ultraSmooth }}>
+            <h1 className="text-white font-serif text-[13vw] md:text-[9vw] lg:text-[120px] leading-tight md:leading-none tracking-tighter uppercase mb-2 md:mb-0 pt-4">
               Die Lüge Der
             </h1>
           </motion.div>
-          <motion.div initial={{ clipPath: "inset(100% 0 0 0)" }} animate={{ clipPath: "inset(0% 0 0 0)" }} transition={{ duration: 1.5, delay: 0.15, ease: ultraSmooth }}>
+          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.15, ease: ultraSmooth }}>
             <h1 className="text-white/30 font-serif italic text-[14vw] md:text-[10vw] lg:text-[130px] leading-[0.8] tracking-tighter uppercase mb-12 drop-shadow-2xl">
               Motivation
             </h1>
@@ -207,10 +228,14 @@ const Hero = () => {
           <SolidButton href={CHECKOUT_URL} className="w-full sm:w-auto">
             Sofortigen Zugang Sichern — 14,99€
           </SolidButton>
-          <div className="mt-8 flex items-center gap-6 text-white/30 text-[10px] uppercase tracking-[0.2em] font-medium">
-            <span className="flex items-center gap-2"><Lock size={12} /> Sicher über Payhip</span>
-            <span className="hidden sm:inline-block w-1 h-1 bg-white/20 rounded-full" />
-            <span className="hidden sm:inline-block">Digitales PDF</span>
+          
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex items-center gap-1.5 mb-1">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-white/80 text-white/80 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" />)}
+            </div>
+            <div className="flex items-center gap-4 text-white/40 text-[10px] uppercase tracking-[0.2em] font-medium">
+              <span className="flex items-center gap-2"><Lock size={12} /> Einmalige Zahlung. Kein Abo.</span>
+            </div>
           </div>
         </FadeIn>
 
@@ -227,23 +252,37 @@ const Hero = () => {
   );
 };
 
-// KINOREIFER TEUFELSKREIS: Atmosphärische Animation im Hintergrund
-const ViciousCircleAnimation = () => (
-  <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-40">
+// DER ABSTURZ (Teufelskreis-Animation)
+const EndlessFallAnimation = () => (
+  <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-30">
     <motion.div 
       animate={{ rotate: 360 }} 
-      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-      className="absolute w-[400px] h-[400px] md:w-[700px] md:h-[700px] border border-red-900/20 rounded-full border-dashed"
+      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+      className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full border-t border-r border-red-600/30 border-l border-b border-transparent"
     />
     <motion.div 
       animate={{ rotate: -360 }} 
-      transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-      className="absolute w-[500px] h-[500px] md:w-[900px] md:h-[900px] border border-red-800/10 rounded-full"
+      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      className="absolute w-[400px] h-[400px] md:w-[800px] md:h-[800px] rounded-full border-[0.5px] border-dashed border-white/20"
     />
+    
+    <motion.div
+      animate={{ 
+        y: [-40, 80, 120, 80, -40], 
+        rotate: [0, 45, 180, 270, 360],
+        opacity: [0.2, 1, 0.5, 0.8, 0.2]
+      }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute"
+    >
+      <div className="w-4 h-4 md:w-6 md:h-6 bg-white/80 rounded-full mb-1 mx-auto shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
+      <div className="w-1 h-12 md:h-16 bg-gradient-to-b from-white/80 to-transparent mx-auto" />
+    </motion.div>
+
     <motion.div 
-      animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute w-[300px] h-[300px] bg-red-900/20 blur-[120px] rounded-full"
+      animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute w-[200px] h-[200px] bg-red-900/30 blur-[100px] rounded-full"
     />
   </div>
 );
@@ -251,82 +290,128 @@ const ViciousCircleAnimation = () => (
 const Manifesto = () => {
   return (
     <section className="py-40 px-6 bg-[#020202] relative border-t border-white/5 overflow-hidden">
-      <ViciousCircleAnimation />
+      <EndlessFallAnimation />
       
       <div className="max-w-4xl mx-auto relative z-10">
         <FadeIn>
           <div className="flex items-center justify-center md:justify-start gap-4 mb-24">
-            <div className="w-16 h-[1px] bg-red-500/30" />
-            <span className="text-red-500/60 text-[10px] uppercase tracking-[0.4em] font-bold">Der Teufelskreis</span>
+            <div className="w-16 h-[1px] bg-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
+            <span className="text-red-500 text-[10px] uppercase tracking-[0.4em] font-bold">Der endlose Fall</span>
           </div>
         </FadeIn>
         
         <div className="space-y-24 md:space-y-32 text-center md:text-left">
+          
+          {/* PSYCHOLOGISCHES HIGHLIGHTING - Starke Kontraste */}
           <FadeIn>
-            <h2 className="text-white font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
-              Wir alle kennen den Kreislauf. Du siehst ein Video, fühlst dich schuldig und bist hochmotiviert. <br className="hidden md:block"/>
-              <span className="text-white/30">Du planst alles perfekt.</span>
+            <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight">
+              <span className="text-white/40">Wir alle kennen den Kreislauf.</span> <br className="hidden md:block"/>
+              <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">Du siehst ein Video, fühlst dich schuldig und bist hochmotiviert.</span> <br/>
+              <span className="text-white/20 text-2xl md:text-4xl italic mt-4 block">Du planst alles perfekt.</span>
             </h2>
           </FadeIn>
+          
           <FadeIn direction="up">
-            <h2 className="text-white/60 font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
-              Drei Tage später schlägt der Alltag zu. Du bist müde. Gestresst. <br className="hidden md:block"/>
-              <span className="text-white/30">Das Gebet wird zur Last. Die Routine bricht.</span>
+            <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight">
+              <span className="text-white/40">Drei Tage später schlägt der Alltag zu. Du bist müde. Gestresst.</span> <br className="hidden md:block"/>
+              <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">Das Gebet wird zur Last.<br className="hidden md:block"/>Du fällst in alte Muster zurück.</span>
             </h2>
           </FadeIn>
+          
           <FadeIn direction="up">
-            <div className="md:pl-12 md:border-l-2 md:border-red-900/30 py-4">
-              <h2 className="text-white/40 font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight italic">
-                Dein Problem ist nicht dein Glaube.<br/>
-                <span className="text-red-500/80 not-italic">Dein Problem ist die Illusion, dass Motivation ausreicht.</span>
+            <div className="md:pl-12 md:border-l-2 md:border-red-600/50 py-4 relative">
+              <div className="absolute left-0 top-0 w-[2px] h-full bg-red-500 shadow-[0_0_15px_rgba(239,68,68,1)] hidden md:block" />
+              <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight">
+                <span className="text-white/40 italic">Dein Problem ist nicht dein Glaube.</span><br/>
+                <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Dein Problem ist die verdammte Illusion, dass Motivation ausreicht.</span>
               </h2>
             </div>
           </FadeIn>
+
         </div>
       </div>
     </section>
   );
 };
 
-// PSYCHOLOGISCHER HOOK: Anti-Sell (Exklusivität)
+// PSYCHOLOGISCHER HOOK: Bento-Box Animationen für die Anti-Sell Sektion
 const AntiSell = () => {
   return (
     <section className="py-32 px-6 bg-[#040404] relative border-t border-white/5 overflow-hidden">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <div className="max-w-6xl mx-auto">
         
-        <FadeIn className="bg-[#080808] border border-white/10 p-10 md:p-16 rounded-sm relative group order-2 md:order-1">
-          <div className="absolute top-0 right-0 p-6 text-white/10 group-hover:text-white/20 transition-colors">
-            <AlertTriangle size={32} />
-          </div>
-          <h3 className="text-white font-serif text-2xl md:text-3xl uppercase tracking-widest mb-8">Schließe diese Seite, wenn...</h3>
-          <ul className="space-y-6">
-            <li className="flex gap-4 items-start">
-              <X size={20} className="text-white/30 shrink-0 mt-0.5" />
-              <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">...du nur ein weiteres Buch zum Durchblättern suchst, um dich für 10 Minuten gut zu fühlen.</p>
-            </li>
-            <li className="flex gap-4 items-start">
-              <X size={20} className="text-white/30 shrink-0 mt-0.5" />
-              <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">...du Ausreden liebst und nicht bereit bist, deinem eigenen Ego ins Gesicht zu sehen.</p>
-            </li>
-            <li className="flex gap-4 items-start">
-              <X size={20} className="text-white/30 shrink-0 mt-0.5" />
-              <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">...du glaubst, es gäbe einen magischen Trick ohne ehrliche Arbeit an dir selbst.</p>
-            </li>
-          </ul>
-        </FadeIn>
-
-        <FadeIn className="order-1 md:order-2">
-          <h2 className="text-white font-serif text-5xl md:text-6xl tracking-tighter uppercase mb-8 leading-[0.9]">
-            Nicht für <br/><span className="text-white/30 italic">Jeden.</span>
+        <FadeIn className="text-center mb-20">
+          <h2 className="text-white font-serif text-5xl md:text-7xl tracking-tighter uppercase mb-6 leading-[0.9]">
+            Schließe diese Seite, <br/><span className="text-white/30 italic">Wenn Du...</span>
           </h2>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-8">
-            Dieses Buch ist kein Trostpflaster. Es ist ein Skalpell. Wir schneiden die Illusionen weg, die dich seit Jahren daran hindern, der Muslim zu sein, der du sein könntest.
-          </p>
-          <div className="flex items-center gap-4 text-white">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">Bist du bereit?</span>
-          </div>
+          <p className="text-white/50 text-sm md:text-base font-light uppercase tracking-[0.2em]">Dieses System ist nicht für jeden.</p>
         </FadeIn>
 
+        <div className="grid md:grid-cols-3 gap-6">
+          
+          {/* Card 1: Dopamin / Kurze Motivation */}
+          <FadeIn delay={0.1}>
+            <div className="bg-[#080808] border border-white/10 p-8 rounded-sm h-full flex flex-col items-center text-center group hover:border-white/20 transition-colors">
+              <div className="h-32 w-full mb-6 relative flex items-end justify-center overflow-hidden">
+                <motion.svg viewBox="0 0 100 100" className="w-full h-full stroke-white/20 group-hover:stroke-red-500 transition-colors duration-700" fill="none" strokeWidth="2">
+                  <motion.path 
+                    d="M 0 100 Q 20 80 40 20 T 60 90 T 100 95" 
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: [0, 1, 1, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </motion.svg>
+              </div>
+              <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Nur den Kick suchst</h3>
+              <p className="text-white/50 text-sm font-light leading-relaxed">
+                ...du nur ein weiteres Buch zum Durchblättern willst, um dir für 10 Minuten ein gutes Gewissen einzureden, bevor du aufgibst.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Card 2: Ego / Ausreden */}
+          <FadeIn delay={0.2}>
+            <div className="bg-[#080808] border border-white/10 p-8 rounded-sm h-full flex flex-col items-center text-center group hover:border-white/20 transition-colors">
+              <div className="h-32 w-full mb-6 relative flex items-center justify-center">
+                <motion.div 
+                  animate={{ scale: [1, 1.5, 0.8, 1], opacity: [0.5, 1, 0.2, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute w-16 h-16 rounded-full border border-white/40 group-hover:bg-white/10 transition-colors"
+                />
+                <motion.div 
+                  animate={{ width: ["100%", "40%", "100%"] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute h-full border-l border-r border-white/20"
+                />
+              </div>
+              <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Ausreden liebst</h3>
+              <p className="text-white/50 text-sm font-light leading-relaxed">
+                ...du nicht bereit bist, deinem eigenen Ego ins Gesicht zu sehen und lieber dem "stressigen Alltag" die Schuld gibst.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Card 3: Magischer Trick */}
+          <FadeIn delay={0.3}>
+            <div className="bg-[#080808] border border-white/10 p-8 rounded-sm h-full flex flex-col items-center text-center group hover:border-white/20 transition-colors">
+              <div className="h-32 w-full mb-6 relative flex items-center justify-center">
+                <motion.div 
+                  animate={{ rotate: [0, 90, 180, 270, 360], opacity: [1, 0, 1, 0, 1], scale: [1, 2, 0, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "circIn" }}
+                  className="w-12 h-12 flex items-center justify-center text-white/50 group-hover:text-white"
+                >
+                  <Zap size={32} />
+                </motion.div>
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+              </div>
+              <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">An Magie glaubst</h3>
+              <p className="text-white/50 text-sm font-light leading-relaxed">
+                ...du denkst, es gäbe einen magischen Trick oder Shortcut ohne ehrliche, harte Arbeit an dir selbst.
+              </p>
+            </div>
+          </FadeIn>
+
+        </div>
       </div>
     </section>
   );
@@ -416,16 +501,13 @@ const Author = () => {
         
         <FadeIn className="w-full md:w-5/12 flex justify-center">
           <div className="relative w-64 h-64 md:w-80 md:h-80 shrink-0 group">
-            {/* Rotierender, edler Ring im Hintergrund */}
             <motion.div 
               animate={{ rotate: 360 }} 
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute -inset-6 border border-white/20 rounded-full border-dashed opacity-50 group-hover:opacity-100 transition-opacity duration-700"
             />
-            {/* Sanftes Glühen */}
             <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full" />
             
-            {/* Das eigentliche, kreisförmige & schwebende Bild */}
             <motion.div 
               animate={{ y: [0, -12, 0] }} 
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -460,7 +542,7 @@ const Author = () => {
   );
 };
 
-// PSYCHOLOGISCHER HOOK: Das lächerliche Angebot (Value Anchoring)
+// PSYCHOLOGISCHER HOOK: Extreme Conversion Copy
 const Pricing = () => {
   return (
     <section id="checkout" className="py-40 px-6 bg-[#040404] relative border-t border-white/5 flex flex-col items-center justify-center min-h-screen">
@@ -469,20 +551,23 @@ const Pricing = () => {
       <FadeIn className="w-full max-w-5xl relative z-10">
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-white font-serif text-5xl md:text-7xl lg:text-[100px] tracking-tighter uppercase mb-8 leading-[0.85]">
-            Der Filter <br/><span className="text-white/30 italic">Deines Egos</span>
+            Der Ultimative <br/><span className="text-white/30 italic">Filter</span>
           </h2>
-          <p className="text-white/60 font-light text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
-            14,99€. Das ist der Preis für eine Pizza. Wenn du nicht bereit bist, diesen Betrag in dein Fundament als Muslim zu investieren, dann schließe diese Seite jetzt. <strong className="text-white">Wenn doch: Willkommen im System.</strong>
-          </p>
+          {/* Harte Psychologische Copy */}
+          <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-sm max-w-3xl mx-auto backdrop-blur-md">
+            <p className="text-white/80 font-light text-base md:text-lg leading-relaxed">
+              Dein Ego sucht genau in diesem Moment nach einer Ausrede, diese Seite zu schließen. Es will den einfachen Weg. 
+              <strong className="text-white font-normal block mt-4 text-xl">14,99€ ist der Preis für eine Pizza.</strong> 
+              <span className="block mt-2 text-white/50 text-sm">Du gibst dieses Geld in den nächsten 48 Stunden sowieso für kurzfristiges Dopamin aus. Investiere es hier in ein Fundament, das bleibt. Triff eine bewusste Entscheidung.</span>
+            </p>
+          </div>
         </div>
 
-        {/* Die "Black Titanium Card" */}
         <div className="relative p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent rounded-sm overflow-hidden group shadow-[0_40px_100px_rgba(0,0,0,1)] hover:shadow-[0_40px_120px_rgba(255,255,255,0.03)] transition-all duration-1000">
           <div className="bg-[#020202] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 relative">
             
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none" />
 
-            {/* Linke Seite: Bullets */}
             <div className="flex-1 text-center md:text-left relative z-10 w-full">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 bg-white/5 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold text-white/80 mb-8">
                 <Zap size={12} className="text-white" /> Sofortiger Digital-Zugang
@@ -506,21 +591,31 @@ const Pricing = () => {
               </ul>
             </div>
 
-            {/* Rechte Seite: Brutal Pricing */}
+            {/* Brutal Pricing */}
             <div className="w-full lg:w-[400px] shrink-0 bg-[#060606] border border-white/10 p-10 md:p-12 rounded-sm relative z-10 flex flex-col items-center">
               <p className="text-white/40 text-[10px] uppercase tracking-[0.4em] mb-6 font-bold">Einmalige Investition</p>
               
-              <div className="flex items-end gap-4 mb-10">
+              <div className="flex items-end gap-4 mb-8">
                 <span className="text-white font-serif text-7xl md:text-8xl tracking-tighter leading-none">14<span className="text-5xl md:text-6xl text-white/40">,99€</span></span>
                 <span className="text-white/20 font-serif text-2xl md:text-3xl line-through decoration-white/20 pb-2 md:pb-3">25,00€</span>
               </div>
               
-              <SolidButton href={CHECKOUT_URL} className="w-full py-6 text-[13px]">
-                System jetzt sichern
+              <SolidButton href={CHECKOUT_URL} className="w-full py-6 text-[13px] mb-6">
+                Entscheidung treffen
               </SolidButton>
               
-              <div className="mt-8 flex flex-col items-center gap-3 text-white/30 text-[9px] uppercase tracking-[0.2em]">
-                <span className="flex items-center gap-2"><Lock size={12} /> Sicherer Checkout über Payhip</span>
+              {/* Trust & Urgency Trigger */}
+              <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex items-center gap-1.5 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-white/80 text-white/80" />)}
+                </div>
+                <span className="text-white/60 text-[10px] uppercase tracking-[0.1em] font-medium text-center">
+                  Heute entscheiden. Morgen ein anderer Mensch sein.
+                </span>
+                <div className="w-full h-[1px] bg-white/5 my-2" />
+                <span className="flex items-center gap-2 text-white/30 text-[9px] uppercase tracking-[0.2em]">
+                  <Lock size={12} /> SSL-Gesicherter Checkout
+                </span>
               </div>
             </div>
 
@@ -634,11 +729,11 @@ export default function App() {
       
       {/* Minimalistische Navbar */}
       <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-8 pointer-events-none">
-        <div className="text-white font-serif tracking-[0.2em] uppercase text-xs md:text-sm">
+        <div className="text-white font-serif tracking-[0.2em] uppercase text-xs md:text-sm drop-shadow-md">
           Der Standhafte Muslim
         </div>
         <div className="pointer-events-auto">
-          <a href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] transition-colors flex items-center gap-2">
+          <a href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] transition-colors flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full border border-white/5 backdrop-blur-sm">
             Zum E-Book <ArrowRight size={12} />
           </a>
         </div>
