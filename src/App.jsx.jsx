@@ -9,8 +9,9 @@ import {
 // Dein Payhip Checkout URL
 const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
-// Dein Profilbild (Füge hier den direkten Link zu deinem Bild ein)
-const PROFILE_IMAGE_URL = "/profile.jpg";
+// Dein Profilbild (Direkter Link zu GitHub)
+// WICHTIG: Achte darauf, dass "Shahecom" und "website" genau deinen GitHub-Namen entsprechen!
+const PROFILE_IMAGE_URL = "https://raw.githubusercontent.com/Shahecom/website/main/public/profile.jpg";
 
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
