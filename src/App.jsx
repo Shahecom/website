@@ -10,8 +10,8 @@ import {
 const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
 // Dein Profilbild 
-// Da dein Computer automatisch .png anhängt, nutzen wir jetzt einfach genau diesen Namen!
-const PROFILE_IMAGE_URL = "/profile.jpg.png";
+// Wir nutzen jetzt den direkten, unzerstörbaren Web-Link zu deinem Bild auf GitHub!
+const PROFILE_IMAGE_URL = "https://raw.githubusercontent.com/Shahecom/website/main/public/profile.jpg";
 
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
