@@ -9,6 +9,9 @@ import {
 // Dein Payhip Checkout URL
 const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
+// Dein Profilbild (Füge hier den direkten Link zu deinem Bild ein)
+const PROFILE_IMAGE_URL = "/profile.jpg";
+
 // --- Easing für den "Expensive Feel" ---
 const premiumEase = [0.16, 1, 0.3, 1];
 
@@ -564,15 +567,15 @@ const ProductPreviewCompact = () => {
               
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="text-white text-4xl sm:text-5xl font-serif tracking-tighter whitespace-nowrap">12<span className="text-2xl sm:text-3xl text-white/40">,99€</span></div>
-                  <div className="text-white/20 text-sm sm:text-base line-through decoration-white/10 decoration-1 tracking-wider mt-1 sm:mt-2 whitespace-nowrap">19,99€</div>
+                  <div className="text-white text-4xl sm:text-5xl font-serif tracking-tighter whitespace-nowrap">14<span className="text-2xl sm:text-3xl text-white/40">,99€</span></div>
+                  <div className="text-white/20 text-sm sm:text-base line-through decoration-white/10 decoration-1 tracking-wider mt-1 sm:mt-2 whitespace-nowrap">25,00€</div>
                 </div>
                 <MagneticButton 
                   href={CHECKOUT_URL}
                   target="_blank"
                   className="w-full md:w-auto bg-white text-black px-8 py-4 font-black uppercase tracking-[0.2em] text-[10px] rounded-sm transition-all shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] whitespace-nowrap"
                 >
-                  JETZT FÜR 12,99€ SICHERN
+                  JETZT FÜR 14,99€ SICHERN
                 </MagneticButton>
               </div>
             </div>
@@ -731,6 +734,57 @@ const PreviewSection = () => {
   );
 };
 
+// --- NEUER BEREICH: ABOUT ME ---
+const AboutMeSection = () => {
+  return (
+    <section className="py-40 px-6 relative z-10 border-t border-white/5 bg-[#030303] overflow-hidden">
+      {/* Subtiler Glow im Hintergrund */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.015),_transparent_60%)] pointer-events-none" />
+      
+      <div className="max-w-[1200px] mx-auto relative z-10 flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+        
+        {/* Bild */}
+        <FadeIn className="md:w-5/12 flex justify-center w-full">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group bg-[#050505]">
+             
+             {/* HIER WIRD DEIN BILD GELADEN */}
+             <img 
+               src={PROFILE_IMAGE_URL} 
+               alt="Usamah Sulaiman Shah" 
+               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+             />
+             
+             {/* Overlay, das das Bild etwas abdunkelt, damit es edel zum Hintergrund passt */}
+             <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent opacity-90 pointer-events-none" />
+          </div>
+        </FadeIn>
+        
+        {/* Text Inhalt */}
+        <FadeIn delay={0.2} className="md:w-7/12 flex flex-col items-center md:items-start text-center md:text-left">
+          <span className="text-white/20 font-serif text-xl italic mb-6 block">06 / Der Autor</span>
+          <h2 className="text-white font-serif text-4xl md:text-6xl uppercase tracking-tighter mb-8">
+            Wer spricht <br/> <span className="text-white/30">hier?</span>
+          </h2>
+          
+          <p className="text-white/60 text-base md:text-lg font-light leading-relaxed mb-6 max-w-xl">
+            Viele von euch kennen mich durch Instagram, TikTok oder andere Plattformen. Jeden Tag besprechen wir dort die Dinge, die uns wirklich zurückhalten: Mangelnde Disziplin, schwache Routinen und ein Iman, der oft nur eine Wunschvorstellung bleibt.
+          </p>
+          
+          <p className="text-white/60 text-base md:text-lg font-light leading-relaxed mb-10 max-w-xl">
+            Mein Name ist <strong className="text-white font-medium">Usamah Sulaiman Shah</strong>. Dieses E-Book ist keine Ansammlung von netten Zitaten. Es ist das exakte, kompromisslose Praxis-System, mit dem du aufhörst, dir Ausreden zu erzählen, und anfängst, echte, islamische Standhaftigkeit in deinem modernen Alltag zu leben.
+          </p>
+          
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-[1px] bg-white/20" />
+            <span className="text-white/40 text-[10px] uppercase tracking-[0.3em] font-medium">Von der Theorie in die Praxis</span>
+          </div>
+        </FadeIn>
+
+      </div>
+    </section>
+  );
+};
+
 const PricingSection = () => {
   return (
     <section id="pricing" className="py-52 px-6 relative z-10 border-t border-white/5 bg-[#010101] flex flex-col items-center overflow-hidden">
@@ -738,7 +792,7 @@ const PricingSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] md:w-[70vw] md:h-[70vw] max-w-[1000px] max-h-[1000px] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03),_transparent_60%)] pointer-events-none" />
 
       <FadeIn className="text-center w-full max-w-[1200px] relative z-10">
-        <span className="text-white/20 font-serif text-xl italic mb-6 block">06 / Die Entscheidung</span>
+        <span className="text-white/20 font-serif text-xl italic mb-6 block">07 / Die Entscheidung</span>
         <h2 className="text-white font-serif text-6xl md:text-8xl uppercase tracking-tighter mb-24 leading-[0.85]">
           Hol dir <br/> <span className="text-white/30 italic">Das E-Book</span>
         </h2>
@@ -778,8 +832,8 @@ const PricingSection = () => {
                 {/* Pricing / CTA */}
                 <div className="w-full xl:w-auto flex flex-col items-start xl:items-end justify-center xl:pl-12 xl:border-l border-white/10 py-4 shrink-0">
                   <div className="flex items-end gap-3 sm:gap-4 mb-8 lg:mb-10">
-                    <div className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter leading-none whitespace-nowrap">12<span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white/40">,99€</span></div>
-                    <div className="text-white/20 text-lg sm:text-xl font-serif line-through decoration-white/20 decoration-1 tracking-widest pb-1 sm:pb-2 whitespace-nowrap">19,99€</div>
+                    <div className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter leading-none whitespace-nowrap">14<span className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white/40">,99€</span></div>
+                    <div className="text-white/20 text-lg sm:text-xl font-serif line-through decoration-white/20 decoration-1 tracking-widest pb-1 sm:pb-2 whitespace-nowrap">25,00€</div>
                   </div>
                   
                   <div className="w-full">
@@ -788,7 +842,7 @@ const PricingSection = () => {
                       target="_blank"
                       className="w-full lg:w-[280px] bg-white text-black py-6 font-black uppercase tracking-[0.2em] text-[11px] rounded-sm transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)] whitespace-nowrap"
                     >
-                      JETZT FÜR 12,99€ SICHERN
+                      JETZT FÜR 14,99€ SICHERN
                     </MagneticButton>
                     <div className="mt-6 flex items-center justify-center xl:justify-end gap-3 text-white/40 text-[9px] uppercase tracking-[0.25em] font-medium">
                       <Lock size={12} /> Sicherer Checkout
@@ -832,7 +886,7 @@ const FAQ = () => {
     <section className="py-40 px-6 relative z-10 border-t border-white/5 bg-[#040404]">
       <div className="max-w-3xl mx-auto">
         <FadeIn className="flex flex-col mb-16 text-left">
-            <span className="text-white/20 font-serif text-xl italic mb-6 block">07 / Klarheit</span>
+            <span className="text-white/20 font-serif text-xl italic mb-6 block">08 / Klarheit</span>
             <h2 className="text-white font-serif text-4xl md:text-5xl uppercase tracking-tighter">Keine Fragen <br/><span className="text-white/30">mehr offen</span></h2>
         </FadeIn>
         
@@ -919,6 +973,7 @@ export default function App() {
             <Testimonials />
             <FeaturesSection />
             <PreviewSection />
+            <AboutMeSection /> 
             <PricingSection />
             <FAQ />
             
