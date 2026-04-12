@@ -100,27 +100,28 @@ const EBookMockup = ({ floating = true }) => {
           {[...Array(30)].map((_, i) => <div key={i} className="w-full h-[1px] bg-black/5" />)}
         </div>
 
-        {/* Front Cover */}
-        <div className="absolute inset-0 bg-[#030303] border border-white/10 shadow-[30px_30px_60px_rgba(0,0,0,0.95),inset_1px_1px_0_rgba(255,255,255,0.15)] rounded-r-md flex flex-col justify-between p-8 md:p-12 overflow-hidden z-10 group-hover:border-[#E5C07B]/30 transition-colors duration-500">
+        {/* Front Cover - Padding angepasst für Mobile */}
+        <div className="absolute inset-0 bg-[#030303] border border-white/10 shadow-[30px_30px_60px_rgba(0,0,0,0.95),inset_1px_1px_0_rgba(255,255,255,0.15)] rounded-r-md flex flex-col justify-between p-6 md:p-12 overflow-hidden z-10 group-hover:border-[#E5C07B]/30 transition-colors duration-500">
           
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-[#E5C07B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
           
           <div className="relative z-10">
             <p className="text-[#E5C07B] text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-bold mb-4 md:mb-6">Das Premium E-Book</p>
+            {/* Schriftgrößen für Mobile optimiert, damit nichts überlappt */}
             <h4 className="font-serif tracking-tighter uppercase leading-[1.05] font-black flex flex-col text-white">
-              <span className="text-3xl md:text-4xl text-white/50 mb-1">Der</span>
-              <span className="text-4xl md:text-5xl mb-1 drop-shadow-lg">Standhafte</span>
-              <span className="text-5xl md:text-6xl text-[#E5C07B] drop-shadow-[0_0_15px_rgba(229,192,123,0.3)]">Muslim</span>
+              <span className="text-2xl md:text-4xl text-white/50 mb-1">Der</span>
+              <span className="text-[28px] md:text-5xl mb-1 drop-shadow-lg leading-none">Standhafte</span>
+              <span className="text-4xl md:text-6xl text-[#E5C07B] drop-shadow-[0_0_15px_rgba(229,192,123,0.3)] leading-none mt-1">Muslim</span>
             </h4>
           </div>
           
-          <div className="relative z-10 flex items-end justify-between border-t border-white/10 pt-6">
+          <div className="relative z-10 flex items-end justify-between border-t border-white/10 pt-4 md:pt-6">
             <div className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-widest leading-relaxed">
               30-Tage<br/>Praxis<br/>System
             </div>
-            <div className="w-12 h-12 md:w-14 md:h-14 border border-[#E5C07B]/30 flex items-center justify-center bg-[#E5C07B]/10 backdrop-blur-md rounded-sm shadow-[0_0_20px_rgba(229,192,123,0.1)]">
-              <BookOpen size={24} className="text-[#E5C07B]" />
+            <div className="w-10 h-10 md:w-14 md:h-14 border border-[#E5C07B]/30 flex items-center justify-center bg-[#E5C07B]/10 backdrop-blur-md rounded-sm shadow-[0_0_20px_rgba(229,192,123,0.1)]">
+              <BookOpen size={20} className="text-[#E5C07B] md:w-6 md:h-6" />
             </div>
           </div>
         </div>
@@ -193,7 +194,8 @@ const LiveSalesPopup = () => {
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ duration: 0.5, ease: ultraSmooth }}
-          className="fixed bottom-6 left-6 z-[90] bg-[#0a0a0a]/90 backdrop-blur-md border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.8)] p-4 rounded-sm flex items-center gap-4 pr-12 hidden md:flex max-w-[320px]"
+          // Tailwind-Klassen angepasst: Entferntes "hidden md:flex", Breite für Mobile angepasst
+          className="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:w-auto md:max-w-[320px] md:bottom-6 md:left-6 z-[90] bg-[#0a0a0a]/95 backdrop-blur-md border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.8)] p-3 md:p-4 rounded-sm flex items-center gap-3 md:gap-4 md:pr-12"
         >
           <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
             <Check size={18} className="text-emerald-500" />
