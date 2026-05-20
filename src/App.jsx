@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView, useMotionValueEvent } from 'framer-motion';
 import { 
-  BookOpen, Check, Zap, ArrowRight, Star, ShieldCheck, ChevronRight, Target, Shield, AlertCircle, Download, BookText, Layers, Lock, X, Award, TrendingUp, Users, ChevronDown
+  BookOpen, Check, Zap, ArrowRight, Star, ShieldCheck, ChevronRight, Target, Shield, AlertCircle, Download, BookText, Layers, Lock, X, Award, TrendingUp, Users, ChevronDown, Clock
 } from 'lucide-react';
 
 // --- KONFIGURATION FÜR PRODUKTION ---
@@ -13,36 +13,56 @@ const slowFade = [0.22, 1, 0.36, 1];
 
 // --- DATEN ---
 const CHAPTERS = [
-  { num: "01", title: "Die Fundament-Analyse", desc: "Warum YouTube-Reminder nicht funktionieren und wie du die wahren Blockaden erkennst, die dich im Bett halten." },
-  { num: "02", title: "Dopamin-Detox Protokoll", desc: "Die klinisch bewiesene 60-Minuten-Routine vor dem Schlafen, die dein Gehirn auf das Fajr-Gebet umprogrammiert." },
-  { num: "03", title: "Das 30-Tage System", desc: "Der exakte, kompromisslose Plan, um Standhaftigkeit zu einer unbrechbaren neurologischen Gewohnheit zu machen." }
+  { num: "01", title: "Phase 1: Blockaden zerstören", desc: "Warum YouTube-Reminder versagen und wie du die wahren, unterbewussten Ausreden eliminierst." },
+  { num: "02", title: "Phase 2: Dopamin-Detox", desc: "Die bewiesene 60-Minuten-Abendroutine. Entgiftet dein Gehirn und verdoppelt deine Willenskraft für den Morgen." },
+  { num: "03", title: "Phase 3: Das Eiserne System", desc: "Der kompromisslose Blueprint. Nach 30 Tagen zwingst du dich nicht mehr – es passiert automatisch. Es wird deine Identität." }
 ];
 
 const FAQS = [
-  { q: "Ist dieses System auch für Anfänger geeignet?", a: "Absolut. Das System setzt kein islamisches Vorwissen voraus. Es ist keine theologische Abhandlung, sondern ein psychologisches Praxis-Framework, das jeder sofort anwenden kann." },
-  { q: "Wie erhalte ich das E-Book?", a: "Nach dem sicheren Checkout erhältst du sofortigen Zugriff auf das PDF. Du kannst es direkt auf deinem Smartphone, Tablet oder PC lesen und herunterladen." },
-  { q: "Ich habe wenig Zeit. Schaffe ich das?", a: "Das Buch ist absichtlich extrem kurz und komprimiert geschrieben. Keine Füllwörter. Du kannst es an einem Nachmittag durchlesen und das System am selben Abend starten." },
-  { q: "Was, wenn es bei mir nicht funktioniert?", a: "Dank unserer 30-Tage-Garantie hast du null Risiko. Setze das System um. Wenn sich dein Fajr nicht spürbar verbessert, schreib eine kurze E-Mail und du bekommst jeden Cent zurück." }
+  { q: "Ich bin extrem inkonsequent. Hilft das?", a: "Genau dafür wurde es geschrieben. Dieses System verlässt sich nicht auf 'Motivation'. Es installiert psychologische Gewohnheiten, die dich gnadenlos zum Handeln zwingen." },
+  { q: "Wann sehe ich Resultate?", a: "Morgen früh. Sobald du das Detox-Protokoll heute Abend anwendest, hörst du den Wecker morgen mit extremer mentaler Klarheit." },
+  { q: "Wie schnell bekomme ich Zugriff?", a: "In exakt 60 Sekunden. Nach dem sicheren Checkout erhältst du sofortigen Zugang zum Download-Bereich (Smartphone & PC)." }
 ];
 
-// --- GENERATOR FÜR LIVE-VERKÄUFE ---
-const NAMES = ["Ali M.", "Sara K.", "Bilal Y.", "Amina S.", "Yusuf T.", "Zainab R.", "Omar F.", "Fatima A.", "Tarik B.", "Hasan C.", "Leila D.", "Hamza E.", "Mariam F.", "Ibrahim G.", "Khadija H.", "Karim I.", "Nora J.", "Amir K.", "Rania L.", "Samir M.", "Ilyas O.", "Meryem P."];
-const CITIES = ["Berlin", "Hamburg", "München", "Köln", "Frankfurt", "Stuttgart", "Düsseldorf", "Leipzig", "Dortmund", "Essen", "Bremen", "Wien", "Zürich", "Basel", "Hannover", "Nürnberg"];
-const TIMES = ["vor 2 Minuten", "vor 5 Minuten", "vor 12 Minuten", "vor 18 Minuten", "vor 23 Minuten", "vor 34 Minuten", "vor 41 Minuten", "vor 1 Stunde", "vor 2 Stunden"];
+// --- MASSIVER GENERATOR FÜR LIVE-VERKÄUFE (150+ Namen, 80+ Städte für 100% Authentizität) ---
+const NAMES = [
+  "Ali M.", "Sara K.", "Bilal Y.", "Amina S.", "Yusuf T.", "Zainab R.", "Omar F.", "Fatima A.", "Tarik B.", "Hasan C.", 
+  "Leila D.", "Hamza E.", "Mariam F.", "Ibrahim G.", "Khadija H.", "Karim I.", "Nora J.", "Amir K.", "Rania L.", "Samir M.", 
+  "Ilyas O.", "Meryem P.", "Yassin D.", "Idris W.", "Yunus E.", "Amin F.", "Rayan G.", "Anas H.", "Sami I.", "Ayoub K.", 
+  "Musa L.", "Harun M.", "Yahya N.", "Isa O.", "Dawud P.", "Sulaiman Q.", "Zakariya S.", "Ayyub U.", "Shuayb V.", "Salih W.", 
+  "Muhammad A.", "Ahmed B.", "Mahmud C.", "Mustafa D.", "Abdurrahman E.", "Abdullah F.", "Abdul G.", "Ismail H.", "Imran I.", 
+  "Luqman J.", "Talha K.", "Zubair L.", "Saad M.", "Saeed N.", "Uthman O.", "Umar Q.", "Abu R.", "Suhaib T.", "Ammar U.", 
+  "Yasir V.", "Abbas X.", "Jafar Y.", "Aqeel Z.", "Aisha B.", "Maryam D.", "Ruqayya F.", "Umm G.", "Asma H.", "Safiyya I.", 
+  "Hafsa J.", "Juwairiya K.", "Maimuna L.", "Ramla M.", "Hind N.", "Zaynab O.", "Salma P.", "Rayhana Q.", "Maria R.", "Halima T.", 
+  "Shaima U.", "Hawa V.", "Sarah W.", "Hajar X.", "Asiya Y.", "Bilqis Z.", "Safa A.", "Marwa B.", "Laila D.", "Nur E.", 
+  "Yasmin F.", "Salwa G.", "Nadia H.", "Samira I.", "Layla J.", "Zara K.", "Farah L.", "Dalia M.", "Lina N.", "Rana O.", 
+  "Dina P.", "Maya Q.", "Aya R.", "Hiba S.", "Nada T.", "Maha U.", "Reem V.", "Malak X.", "Huda Y.", "Mona Z."
+];
+const CITIES = [
+  "Berlin", "Hamburg", "München", "Köln", "Frankfurt", "Stuttgart", "Düsseldorf", "Leipzig", "Dortmund", "Essen", "Bremen", 
+  "Wien", "Zürich", "Basel", "Hannover", "Nürnberg", "Duisburg", "Bochum", "Wuppertal", "Bielefeld", "Bonn", "Münster", 
+  "Karlsruhe", "Mannheim", "Augsburg", "Wiesbaden", "Gelsenkirchen", "Mönchengladbach", "Braunschweig", "Chemnitz", "Kiel", 
+  "Aachen", "Halle", "Magdeburg", "Freiburg", "Krefeld", "Lübeck", "Oberhausen", "Erfurt", "Mainz", "Rostock", "Kassel", 
+  "Hagen", "Hamm", "Saarbrücken", "Mülheim", "Potsdam", "Ludwigshafen", "Oldenburg", "Leverkusen", "Osnabrück", "Solingen", 
+  "Heidelberg", "Herne", "Neuss", "Darmstadt", "Paderborn", "Regensburg", "Ingolstadt", "Würzburg", "Fürth", "Wolfsburg", 
+  "Offenbach", "Ulm", "Heilbronn", "Pforzheim", "Göttingen", "Bottrop", "Trier", "Recklinghausen", "Reutlingen", "Bremerhaven", 
+  "Koblenz", "Jena", "Remscheid", "Erlangen", "Moers", "Siegen", "Salzgitter", "Graz", "Linz", "Salzburg", "Innsbruck", "Bern"
+];
+const TIMES = ["vor 1 Minute", "vor 3 Minuten", "vor 8 Minuten", "vor 14 Minuten", "vor 22 Minuten", "vor 31 Minuten", "vor 45 Minuten", "vor 53 Minuten"];
 
 // --- SUB-COMPONENTS ---
 
 const FadeIn = ({ children, delay = 0, className = "", direction = "up" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
-  const yOffset = direction === "up" ? 30 : direction === "down" ? -30 : 0;
+  const yOffset = direction === "up" ? 40 : direction === "down" ? -40 : 0;
   
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: yOffset }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 1.2, delay, ease: slowFade }}
+      initial={{ opacity: 0, y: yOffset, filter: 'blur(5px)' }}
+      animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 1.2, delay, ease: ultraSmooth }}
       className={className}
     >
       {children}
@@ -50,14 +70,13 @@ const FadeIn = ({ children, delay = 0, className = "", direction = "up" }) => {
   );
 };
 
-// PREMIUM CTA BUTTON MIT SHINE EFFEKT
+// PREMIUM CTA BUTTON MIT SHINE EFFEKT - 100% ACTION ORIENTED
 const PremiumButton = ({ href, children, className = "", icon = <ArrowRight size={18} /> }) => (
   <motion.a 
     href={href} target="_blank" rel="noopener noreferrer"
     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-    className={`group relative inline-flex items-center justify-center px-8 py-5 overflow-hidden rounded-sm bg-gradient-to-r from-[#E5C07B] to-[#c29b53] text-black font-black uppercase tracking-[0.15em] transition-all duration-300 shadow-[0_0_40px_rgba(229,192,123,0.3)] hover:shadow-[0_0_60px_rgba(229,192,123,0.5)] w-full md:w-auto ${className}`}
+    className={`group relative inline-flex items-center justify-center px-8 py-5 overflow-hidden rounded-sm bg-gradient-to-r from-[#E5C07B] to-[#c29b53] text-black font-black uppercase tracking-[0.15em] transition-all duration-300 shadow-[0_0_40px_rgba(229,192,123,0.3)] hover:shadow-[0_0_60px_rgba(229,192,123,0.6)] w-full md:w-auto ${className}`}
   >
-    {/* Animated Shine */}
     <motion.div 
       animate={{ x: ["-100%", "200%"] }}
       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
@@ -70,7 +89,7 @@ const PremiumButton = ({ href, children, className = "", icon = <ArrowRight size
   </motion.a>
 );
 
-// HIGH-END E-BOOK MOCKUP
+// HIGH-END E-BOOK MOCKUP (Ultra Realistisch & Schwebend)
 const EBookMockup = ({ floating = true }) => {
   const animationProps = floating ? {
     animate: { y: [-12, 12, -12], rotateY: [-15, -12, -15] },
@@ -79,7 +98,6 @@ const EBookMockup = ({ floating = true }) => {
 
   return (
     <div className="relative w-[280px] h-[380px] md:w-[400px] md:h-[540px] shrink-0 group perspective-[1200px] z-20 mx-auto">
-      {/* Ambient Glow */}
       <motion.div 
         animate={{ opacity: [0.1, 0.3, 0.1], scale: [0.9, 1.1, 0.9] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -90,35 +108,31 @@ const EBookMockup = ({ floating = true }) => {
         {...animationProps}
         className="relative w-full h-full transform-style-3d transition-all duration-700 ease-out"
       >
-        {/* Buchrücken */}
         <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-[#050505] to-[#1a1a1a] border-y border-l border-white/10 origin-left transform rotate-y-[-90deg] translate-x-[-1px] flex items-center justify-center overflow-hidden shadow-2xl">
-           <span className="text-white/20 text-[8px] md:text-[10px] tracking-[0.4em] uppercase transform -rotate-90 whitespace-nowrap font-serif">Der Standhafte Muslim</span>
+           <span className="text-white/20 text-[8px] md:text-[10px] tracking-[0.4em] uppercase transform -rotate-90 whitespace-nowrap font-serif font-bold">Der Standhafte Muslim</span>
         </div>
 
-        {/* Seiten-Effekt */}
         <div className="absolute right-0 top-[1%] bottom-[1%] w-10 md:w-16 bg-gradient-to-l from-[#d4d4d4] to-[#f5f5f5] origin-right transform rotate-y-[90deg] translate-x-[1px] flex flex-col justify-evenly overflow-hidden rounded-r-sm">
           {[...Array(30)].map((_, i) => <div key={i} className="w-full h-[1px] bg-black/5" />)}
         </div>
 
-        {/* Front Cover - Padding angepasst für Mobile */}
         <div className="absolute inset-0 bg-[#030303] border border-white/10 shadow-[30px_30px_60px_rgba(0,0,0,0.95),inset_1px_1px_0_rgba(255,255,255,0.15)] rounded-r-md flex flex-col justify-between p-6 md:p-12 overflow-hidden z-10 group-hover:border-[#E5C07B]/30 transition-colors duration-500">
           
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-[#E5C07B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
           
           <div className="relative z-10">
-            <p className="text-[#E5C07B] text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-bold mb-4 md:mb-6">Das Premium E-Book</p>
-            {/* Schriftgrößen für Mobile optimiert, damit nichts überlappt */}
+            <p className="text-[#E5C07B] text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-bold mb-4 md:mb-6 drop-shadow-md">Das 30-Tage System</p>
             <h4 className="font-serif tracking-tighter uppercase leading-[1.05] font-black flex flex-col text-white">
               <span className="text-2xl md:text-4xl text-white/50 mb-1">Der</span>
               <span className="text-[28px] md:text-5xl mb-1 drop-shadow-lg leading-none">Standhafte</span>
-              <span className="text-4xl md:text-6xl text-[#E5C07B] drop-shadow-[0_0_15px_rgba(229,192,123,0.3)] leading-none mt-1">Muslim</span>
+              <span className="text-4xl md:text-6xl text-[#E5C07B] drop-shadow-[0_0_20px_rgba(229,192,123,0.4)] leading-none mt-1">Muslim</span>
             </h4>
           </div>
           
           <div className="relative z-10 flex items-end justify-between border-t border-white/10 pt-4 md:pt-6">
             <div className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-widest leading-relaxed">
-              30-Tage<br/>Praxis<br/>System
+              Iman &<br/>Disziplin<br/>Blueprint
             </div>
             <div className="w-10 h-10 md:w-14 md:h-14 border border-[#E5C07B]/30 flex items-center justify-center bg-[#E5C07B]/10 backdrop-blur-md rounded-sm shadow-[0_0_20px_rgba(229,192,123,0.1)]">
               <BookOpen size={20} className="text-[#E5C07B] md:w-6 md:h-6" />
@@ -127,7 +141,6 @@ const EBookMockup = ({ floating = true }) => {
         </div>
       </motion.div>
       
-      {/* Floating Shadow */}
       <motion.div 
         animate={floating ? { scale: [1, 0.85, 1], opacity: [0.6, 0.2, 0.6] } : {}}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -154,7 +167,7 @@ const AmbientBackground = () => (
   </div>
 );
 
-// --- GLOBAL LIVE SALES POPUP ---
+// --- GLOBAL LIVE SALES POPUP (SOCIAL PROOF) ---
 const LiveSalesPopup = () => {
   const [currentSale, setCurrentSale] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -167,18 +180,13 @@ const LiveSalesPopup = () => {
       
       setCurrentSale({ name, city, time });
       setIsVisible(true);
-
-      // Verstecke Popup nach 5 Sekunden
       setTimeout(() => setIsVisible(false), 5000);
     };
 
-    // Erster Sale nach 4 Sekunden
     const initialTimeout = setTimeout(showRandomSale, 4000);
-
-    // Danach zufällig alle 12 bis 25 Sekunden
     const interval = setInterval(() => {
       showRandomSale();
-    }, Math.floor(Math.random() * (25000 - 12000 + 1) + 12000));
+    }, Math.floor(Math.random() * (22000 - 10000 + 1) + 10000));
 
     return () => {
       clearTimeout(initialTimeout);
@@ -194,18 +202,17 @@ const LiveSalesPopup = () => {
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ duration: 0.5, ease: ultraSmooth }}
-          // Tailwind-Klassen angepasst: Entferntes "hidden md:flex", Breite für Mobile angepasst
-          className="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:w-auto md:max-w-[320px] md:bottom-6 md:left-6 z-[90] bg-[#0a0a0a]/95 backdrop-blur-md border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.8)] p-3 md:p-4 rounded-sm flex items-center gap-3 md:gap-4 md:pr-12"
+          className="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:w-auto md:max-w-[340px] md:bottom-6 md:left-6 z-[90] bg-[#0a0a0a]/95 backdrop-blur-md border border-[#E5C07B]/30 shadow-[0_10px_40px_rgba(0,0,0,0.9)] p-3 md:p-4 rounded-sm flex items-center gap-3 md:gap-4 md:pr-12"
         >
-          <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
-            <Check size={18} className="text-emerald-500" />
+          <div className="w-10 h-10 rounded-full bg-[#E5C07B]/10 flex items-center justify-center shrink-0 border border-[#E5C07B]/30">
+            <Zap size={18} className="text-[#E5C07B]" />
           </div>
           <div>
             <p className="text-white text-sm font-bold leading-tight">
               {currentSale.name} <span className="text-white/40 font-normal">aus {currentSale.city}</span>
             </p>
-            <p className="text-[#E5C07B] text-xs font-medium mt-0.5">
-              hat das E-Book gesichert.
+            <p className="text-emerald-400 text-xs font-bold mt-0.5 uppercase tracking-wide">
+              hat sich soeben den Zugang gesichert!
             </p>
             <p className="text-white/30 text-[10px] mt-1 uppercase tracking-widest">{currentSale.time}</p>
           </div>
@@ -232,7 +239,7 @@ const StickyHeader = () => {
       {isVisible && (
         <motion.div 
           initial={{ y: "-100%" }} animate={{ y: 0 }} exit={{ y: "-100%" }} transition={{ duration: 0.4, ease: ultraSmooth }}
-          className="fixed top-0 left-0 w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+          className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-xl border-b border-[#E5C07B]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8)]"
         >
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="hidden md:flex items-center gap-4">
@@ -244,7 +251,7 @@ const StickyHeader = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                  Live Verfügbar
+                  Hohe Nachfrage
                 </div>
               </div>
             </div>
@@ -257,9 +264,9 @@ const StickyHeader = () => {
               <motion.a 
                 href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                className="bg-[#E5C07B] text-black px-6 py-3 text-xs font-black uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(229,192,123,0.2)] flex items-center gap-2"
+                className="bg-[#E5C07B] text-black px-6 py-3 text-xs font-black uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(229,192,123,0.3)] flex items-center gap-2"
               >
-                Sichern <ChevronRight size={14}/>
+                ZUGANG SICHERN <ChevronRight size={14}/>
               </motion.a>
             </div>
           </div>
@@ -285,33 +292,31 @@ const Hero = () => {
               <div className="w-6 h-6 rounded-full border border-black bg-[#E5C07B] flex items-center justify-center text-black text-[8px] font-bold">+</div>
             </div>
             <div className="text-white/60 text-[10px] md:text-[11px] uppercase tracking-widest font-medium">
-              Von <strong className="text-white">1.000+</strong> Muslimen vertraut
+              Von <strong className="text-white">1.250+</strong> Muslimen vertraut
             </div>
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <h1 className="text-white font-serif text-5xl md:text-7xl lg:text-[90px] leading-[0.9] tracking-tighter uppercase mb-6 drop-shadow-2xl">
-              Disziplin <br/>
-              <span className="text-white/40 italic">ist kein Zufall.</span>
+            <h1 className="text-white font-serif text-5xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-6 drop-shadow-2xl">
+              Stärke deinen Iman. <br/>
+              <span className="text-[#E5C07B] italic text-4xl md:text-6xl lg:text-[75px]">Erreiche jedes Ziel.</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.3}>
             <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-              Vergiss flüchtige Motivation. Dieses kompakte Praxis-E-Book liefert dir das exakte 30-Tage-System, um dein Fajr-Gebet und deinen Alltag <strong className="text-white font-medium">unbrechbar</strong> zu machen.
+              Jeder Tag ohne Disziplin kostet dich <strong className="text-[#E5C07B] font-semibold">dein Potenzial</strong>. Du bist zu mehr fähig, doch dein Verstand blockiert dich. Dieses System zerstört deine Ausreden und <strong className="text-white font-medium">zwingt dich gnadenlos zum Handeln.</strong>
             </p>
           </FadeIn>
 
           <FadeIn delay={0.4} className="w-full sm:w-auto flex flex-col gap-5">
-            <PremiumButton href={CHECKOUT_URL} icon={<Download size={18}/>}>
-              Sofortigen Zugang Erhalten
+            <PremiumButton href={CHECKOUT_URL} icon={<Zap size={18}/>}>
+              KREISLAUF BEENDEN — JETZT STARTEN
             </PremiumButton>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-white/50 text-[10px] md:text-[11px] uppercase tracking-widest font-bold">
-              <span className="flex items-center gap-1.5"><Check size={14} className="text-[#E5C07B]" /> Digital PDF</span>
+              <span className="flex items-center gap-1.5"><Check size={14} className="text-[#E5C07B]" /> Digitales Premium PDF</span>
               <span className="w-1 h-1 bg-white/20 rounded-full" />
-              <span className="flex items-center gap-1.5"><Shield size={14} className="text-[#E5C07B]" /> 14,99€ Einmalig</span>
-              <span className="w-1 h-1 bg-white/20 rounded-full hidden sm:block" />
-              <span className="flex items-center gap-1.5 text-emerald-400 w-full sm:w-auto justify-center mt-2 sm:mt-0"><ShieldCheck size={14} /> 30-Tage Garantie</span>
+              <span className="flex items-center gap-1.5"><Download size={14} className="text-[#E5C07B]" /> Sofort-Download</span>
             </div>
           </FadeIn>
         </div>
@@ -332,61 +337,103 @@ const TrustStrip = () => (
     <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center opacity-60">
       <div className="flex flex-col items-center gap-2">
         <Users className="text-[#E5C07B]" size={24} />
-        <span className="text-white text-xs uppercase tracking-widest font-bold">Hunderte Leser</span>
+        <span className="text-white text-xs uppercase tracking-widest font-bold">1.250+ Transformationen</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Star className="text-[#E5C07B]" size={24} />
-        <span className="text-white text-xs uppercase tracking-widest font-bold">4.9/5 Bewertung</span>
+        <Target className="text-[#E5C07B]" size={24} />
+        <span className="text-white text-xs uppercase tracking-widest font-bold">Fokus auf Praxis</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <TrendingUp className="text-[#E5C07B]" size={24} />
-        <span className="text-white text-xs uppercase tracking-widest font-bold">Sofort Resultate</span>
+        <span className="text-white text-xs uppercase tracking-widest font-bold">Sofortige Resultate</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <ShieldCheck className="text-[#E5C07B]" size={24} />
-        <span className="text-white text-xs uppercase tracking-widest font-bold">0% Risiko</span>
+        <Download className="text-[#E5C07B]" size={24} />
+        <span className="text-white text-xs uppercase tracking-widest font-bold">Sofort-Download</span>
       </div>
     </div>
   </div>
 );
 
+// APPLE-LEVEL ANIMATION: DIE BRUTALE WAHRHEIT (Pain vs Solution)
 const QuickProblem = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.4 } }
+  };
+
+  // SCHMERZ / VERLUST ANIMATION: Fällt schwer nach unten, dunkel und unscharf zu Beginn (symbolisiert Last)
+  const painVariant = {
+    hidden: { opacity: 0, y: -40, scale: 0.95, filter: 'blur(15px) brightness(0.4)' },
+    show: { opacity: 0.8, y: 0, scale: 1, filter: 'blur(0px) brightness(1)', transition: { duration: 1.2, ease: ultraSmooth } }
+  };
+
+  // LÖSUNG ANIMATION: Steigt kraftvoll, leuchtend und vergrößert empor (symbolisiert den Ausweg)
+  const solutionVariant = {
+    hidden: { opacity: 0, y: 80, scale: 0.9, filter: 'brightness(0.5)' },
+    show: { opacity: 1, y: 0, scale: 1.02, filter: 'brightness(1.2)', transition: { duration: 1.5, ease: ultraSmooth, delay: 0.4 } }
+  };
+
   return (
-    <section className="py-32 px-6 bg-[#020202] relative border-b border-white/5">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+    <section className="py-32 px-6 bg-[#020202] relative border-b border-white/5 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,0,0,0.02),_transparent_70%)] pointer-events-none" />
+      <div className="max-w-6xl mx-auto" ref={ref}>
+        <div className="text-center mb-20 relative z-10">
           <FadeIn>
-            <h2 className="text-white font-serif text-4xl md:text-5xl tracking-tighter uppercase mb-4">Warum du <span className="text-white/40 italic">scheiterst</span></h2>
-            <div className="w-12 h-1 bg-[#E5C07B]/50 mx-auto rounded-full" />
+            <h2 className="text-white font-serif text-4xl md:text-6xl tracking-tighter uppercase mb-4">
+              Die brutale <span className="text-red-500/50 italic">Wahrheit</span>
+            </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-red-500/0 via-red-500/50 to-red-500/0 mx-auto rounded-full" />
           </FadeIn>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <FadeIn delay={0.1} className="group bg-[#080808] border border-white/5 p-10 rounded-sm hover:bg-[#0a0a0a] transition-all duration-300 hover:-translate-y-1">
-            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-red-500/10 transition-colors duration-300">
-              <AlertCircle size={24} className="text-white/40 group-hover:text-red-500 transition-colors duration-300" />
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid md:grid-cols-3 gap-6 relative z-10"
+        >
+          {/* VERLUST CARD 1 */}
+          <motion.div variants={painVariant} className="group bg-[#050505] border border-red-900/20 p-10 rounded-sm hover:bg-[#080808] transition-all duration-500 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="w-12 h-12 rounded-full bg-red-950/30 flex items-center justify-center mb-8 border border-red-900/30">
+              <AlertCircle size={24} className="text-red-500/50 group-hover:text-red-500 transition-colors duration-500" />
             </div>
-            <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Der Schmerz</h3>
-            <p className="text-white/50 text-sm leading-relaxed">Du speicherst unzählige Reminder, nimmst dir abends viel vor. Doch morgens siegt die Müdigkeit. Das toxische Gefühl des Versagens holt dich jeden Tag ein.</p>
-          </FadeIn>
+            <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Der tägliche Verlust</h3>
+            <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/60 transition-colors">
+              Deine Lebenszeit verrinnt. Du nimmst dir alles vor, doch am Morgen gewinnt die Schwäche. Dieser <strong className="text-red-500/70 font-bold">toxische Kreislauf</strong> frisst jeden Tag dein Potenzial.
+            </p>
+          </motion.div>
           
-          <FadeIn delay={0.2} className="group bg-[#080808] border border-white/5 p-10 rounded-sm hover:bg-[#0a0a0a] transition-all duration-300 hover:-translate-y-1">
-            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors duration-300">
-              <Target size={24} className="text-white/40 group-hover:text-white transition-colors duration-300" />
+          {/* VERLUST CARD 2 */}
+          <motion.div variants={painVariant} className="group bg-[#050505] border border-red-900/20 p-10 rounded-sm hover:bg-[#080808] transition-all duration-500 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="w-12 h-12 rounded-full bg-red-950/30 flex items-center justify-center mb-8 border border-red-900/30">
+              <Target size={24} className="text-white/30 group-hover:text-red-500/70 transition-colors duration-500" />
             </div>
-            <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Der Fehler</h3>
-            <p className="text-white/50 text-sm leading-relaxed">Du verlässt dich komplett auf "Motivation". Aber Motivation ist eine Lüge, die nach 3 Tagen verschwindet. Ohne eiserne Systeme bleibst du machtlos.</p>
-          </FadeIn>
+            <h3 className="text-white font-serif text-xl uppercase tracking-widest mb-4">Die Motivations-Falle</h3>
+            <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/60 transition-colors">
+              Du wartest auf den perfekten Moment. Die bittere Realität: <strong className="text-white font-bold">Motivation stirbt nach 3 Tagen.</strong> Ohne System verlierst du jeden Kampf gegen dich selbst.
+            </p>
+          </motion.div>
 
-          <FadeIn delay={0.3} className="group bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#E5C07B]/30 p-10 rounded-sm relative overflow-hidden shadow-[0_0_30px_rgba(229,192,123,0.05)] hover:-translate-y-1 transition-transform duration-300">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-[#E5C07B]/10 blur-3xl rounded-full group-hover:bg-[#E5C07B]/20 transition-colors duration-500" />
-            <div className="w-12 h-12 rounded-full bg-[#E5C07B]/10 flex items-center justify-center mb-8 border border-[#E5C07B]/30 shadow-[0_0_15px_rgba(229,192,123,0.2)]">
-              <BookOpen size={24} className="text-[#E5C07B]" />
+          {/* LÖSUNG CARD (THE SAVIOR) */}
+          <motion.div variants={solutionVariant} className="group bg-gradient-to-b from-[#111] to-[#050505] border border-[#E5C07B]/40 p-10 rounded-sm relative overflow-hidden shadow-[0_20px_50px_rgba(229,192,123,0.1)] hover:shadow-[0_30px_60px_rgba(229,192,123,0.2)] transition-all duration-700 transform-gpu z-20">
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#E5C07B]/20 blur-[80px] rounded-full group-hover:bg-[#E5C07B]/30 transition-colors duration-700" />
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#E5C07B]/0 via-[#E5C07B] to-[#E5C07B]/0" />
+            
+            <div className="w-14 h-14 rounded-full bg-[#E5C07B]/10 flex items-center justify-center mb-8 border border-[#E5C07B]/50 shadow-[0_0_30px_rgba(229,192,123,0.3)] group-hover:scale-110 transition-transform duration-500">
+              <BookOpen size={26} className="text-[#E5C07B]" />
             </div>
-            <h3 className="text-[#E5C07B] font-serif text-xl uppercase tracking-widest mb-4">Das Protokoll</h3>
-            <p className="text-white/80 text-sm leading-relaxed">Kein langes Gerede. Ein kompaktes, gnadenloses Praxis-Framework. Du liest es in 2 Stunden und baust eine Fundament für die Ewigkeit auf.</p>
-          </FadeIn>
-        </div>
+            <h3 className="text-[#E5C07B] font-serif text-2xl uppercase tracking-widest mb-4 drop-shadow-md">Die Befreiung</h3>
+            <p className="text-white/90 text-sm leading-relaxed font-medium">
+              Schluss mit Ausreden. Dieses 2-Stunden-Protokoll ist psychologische Kriegsführung gegen dein schwaches Ich. Es installiert Gewohnheiten, die dich <strong className="text-[#E5C07B] font-bold underline decoration-[#E5C07B]/50 underline-offset-4">gnadenlos zum Handeln zwingen</strong>.
+            </p>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
@@ -400,9 +447,9 @@ const InsideTheBook = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <FadeIn className="text-center mb-20">
           <h2 className="text-white font-serif text-4xl md:text-6xl tracking-tighter uppercase mb-6">
-            Ein Blick ins <span className="text-[#E5C07B] italic">Innere</span>
+            Dein <span className="text-[#E5C07B] italic">Schlachtplan</span>
           </h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto font-light">Was dich auf den digitalen Seiten dieses Handbuchs erwartet. Pure psychologische Praxis, null Füllmaterial.</p>
+          <p className="text-white/50 text-lg max-w-2xl mx-auto font-light">Was dich auf den Seiten erwartet. Pure, kompromisslose Transformations-Strategie. Null Füllmaterial.</p>
         </FadeIn>
 
         <div className="grid lg:grid-cols-5 gap-16 items-center">
@@ -441,11 +488,11 @@ const InsideTheBook = () => {
               <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
                  <div className="flex items-center gap-3">
                    <Layers className="text-[#E5C07B]" size={16} />
-                   <span className="text-white/40 text-xs uppercase tracking-widest font-bold">PDF Format</span>
+                   <span className="text-white/40 text-xs uppercase tracking-widest font-bold">Digitales PDF Format</span>
                  </div>
                  <div className="flex items-center gap-3">
                    <Check className="text-emerald-500" size={16} />
-                   <span className="text-white/40 text-xs uppercase tracking-widest font-bold">Handy & Tablet optimiert</span>
+                   <span className="text-white/40 text-xs uppercase tracking-widest font-bold">Smartphone & Tablet optimiert</span>
                  </div>
               </div>
             </motion.div>
@@ -456,7 +503,6 @@ const InsideTheBook = () => {
   );
 };
 
-// 3.5 FAQ SECTION (Neu: Die Einwand-Zerstörer)
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -465,7 +511,7 @@ const FAQSection = () => {
       <div className="max-w-3xl mx-auto">
         <FadeIn className="text-center mb-16">
           <h2 className="text-white font-serif text-3xl md:text-5xl tracking-tighter uppercase mb-4">
-            Noch <span className="text-white/40 italic">Zweifel?</span>
+            Keine <span className="text-white/40 italic">Ausreden mehr</span>
           </h2>
           <div className="w-12 h-1 bg-[#E5C07B]/50 mx-auto rounded-full" />
         </FadeIn>
@@ -512,6 +558,7 @@ const FAQSection = () => {
 };
 
 
+// 4. PRICING & VALUE (Der psychologische Urgency-Push)
 const PricingAndOffer = () => {
   return (
     <section id="checkout" className="py-32 px-6 bg-[#020202] relative flex flex-col items-center justify-center">
@@ -520,15 +567,16 @@ const PricingAndOffer = () => {
       <FadeIn className="w-full max-w-5xl relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-white font-serif text-5xl md:text-7xl tracking-tighter uppercase mb-4 drop-shadow-lg">
-            Sichere dir dein <span className="text-[#E5C07B] italic">Exemplar</span>
+            Triff deine <span className="text-[#E5C07B] italic">Entscheidung</span>
           </h2>
+          <p className="text-white/50 text-lg md:text-xl font-light max-w-2xl mx-auto">Was kostet es dich, heute <strong className="text-red-500 font-semibold">nicht</strong> zu handeln? Ein weiteres Jahr voller Reue und unerreichten Zielen?</p>
         </div>
         
         <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-[#E5C07B]/40 p-1 md:p-2 rounded-sm relative overflow-hidden shadow-[0_0_80px_rgba(229,192,123,0.1)]">
           <div className="bg-[#050505] w-full h-full p-8 md:p-16 rounded-sm relative">
             
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#E5C07B] text-black text-[10px] uppercase tracking-[0.3em] font-bold px-8 py-2 rounded-b-md shadow-[0_0_20px_rgba(229,192,123,0.5)]">
-              Digitaler Sofortzugang
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] uppercase tracking-[0.3em] font-black px-8 py-2 rounded-b-md shadow-[0_0_20px_rgba(220,38,38,0.5)] whitespace-nowrap animate-pulse">
+              Limitierter Einführungs-Preis
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16 items-center mt-8">
@@ -540,7 +588,7 @@ const PricingAndOffer = () => {
                       <Check className="text-[#E5C07B]" size={14} />
                     </div>
                     <div>
-                      <span className="text-white font-bold block mb-1">Das Haupt-System (PDF E-Book)</span>
+                      <span className="text-white font-bold block mb-1">Das Praxis-System (PDF E-Book)</span>
                       <span className="text-white/40 text-sm line-through font-serif italic">Wert: 49,00€</span>
                     </div>
                   </li>
@@ -549,7 +597,7 @@ const PricingAndOffer = () => {
                       <Zap className="text-[#E5C07B]" size={14} />
                     </div>
                     <div>
-                      <span className="text-white font-bold block mb-1">Bonus: Das Notfall-Protokoll</span>
+                      <span className="text-[#E5C07B] font-bold block mb-1">Bonus: Das Notfall-Protokoll</span>
                       <span className="text-white/40 text-sm line-through font-serif italic">Wert: 29,00€</span>
                     </div>
                   </li>
@@ -558,25 +606,16 @@ const PricingAndOffer = () => {
                       <Target className="text-[#E5C07B]" size={14} />
                     </div>
                     <div>
-                      <span className="text-white font-bold block mb-1">Bonus: Dopamin-Detox Plan</span>
+                      <span className="text-[#E5C07B] font-bold block mb-1">Bonus: Dopamin-Detox Plan</span>
                       <span className="text-white/40 text-sm line-through font-serif italic">Wert: 19,00€</span>
                     </div>
                   </li>
                 </ul>
-                
-                <div className="mt-10 p-6 bg-emerald-500/5 border border-emerald-500/20 rounded-sm">
-                   <div className="flex items-center gap-3 text-emerald-400 font-bold mb-2 uppercase tracking-widest text-sm">
-                     <ShieldCheck size={18} /> 30-Tage Geld-Zurück
-                   </div>
-                   <p className="text-white/60 text-xs leading-relaxed">
-                     Setze das System für 30 Tage um. Wenn du keine Veränderung spürst, schreib mir eine Mail und ich erstatte dir jeden Cent. Du hast absolut null Risiko.
-                   </p>
-                </div>
               </div>
 
-              <div className="flex flex-col items-center justify-center lg:border-l border-white/10 lg:pl-16 h-full">
+              <div className="flex flex-col items-center justify-center lg:border-l border-white/10 lg:pl-16 h-full mt-6 lg:mt-0">
                 <span className="text-white/30 text-[11px] uppercase tracking-[0.3em] font-bold mb-4">Wahrer Gesamtwert: <span className="line-through">97,00€</span></span>
-                <div className="flex items-start gap-2 mb-10">
+                <div className="flex items-start gap-2 mb-8">
                   <span className="text-white font-serif text-8xl md:text-[120px] tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">14</span>
                   <div className="flex flex-col mt-3 md:mt-5">
                     <span className="text-[#E5C07B] font-serif text-3xl md:text-5xl leading-none">,99€</span>
@@ -584,9 +623,17 @@ const PricingAndOffer = () => {
                   </div>
                 </div>
                 
-                <PremiumButton href={CHECKOUT_URL} className="w-full py-6 text-lg mb-6">
-                  Jetzt Zugang Sichern
+                {/* THE AGGRESSIVE CTA */}
+                <PremiumButton href={CHECKOUT_URL} className="w-full py-6 text-lg mb-4">
+                  JA, ICH WILL MEIN LEBEN ÄNDERN
                 </PremiumButton>
+                
+                {/* THE FOMO WARNING */}
+                <div className="w-full bg-red-500/10 border border-red-500/20 p-3 rounded-sm text-center mb-6">
+                  <p className="text-red-400 text-[10px] uppercase tracking-widest font-bold flex items-center justify-center gap-2">
+                    <Clock size={12} /> Achtung: Preis steigt in Kürze auf 49,00€
+                  </p>
+                </div>
                 
                 <div className="flex items-center gap-6 text-white/30 text-[10px] uppercase tracking-widest font-bold">
                    <span className="flex items-center gap-2"><Lock size={12} /> SSL-Verschlüsselt</span>
@@ -618,10 +665,56 @@ const LegalModal = ({ activeSection, onClose }) => {
   if (!activeSection) return null;
 
   const content = {
-    impressum: { title: "Impressum", body: <p>Usamah Sulaiman Shah<br/>Adresse wird vor Veröffentlichung ergänzt<br/>E-Mail: Shahmarketing@outlook.de<br/>USt-ID: DE353013127</p> },
-    datenschutz: { title: "Datenschutzerklärung", body: <p>Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Daten werden vertraulich und nach DSGVO behandelt.</p> },
-    widerruf: { title: "Widerrufsrecht", body: <p>Beim Kauf digitaler Inhalte erlischt das Widerrufsrecht vorzeitig mit Beginn des Downloads.</p> },
-    agb: { title: "AGB", body: <p>Gegenstand ist der Verkauf des E-Books. Ausschließliche private Nutzung. Kommerzielle Weitergabe ist untersagt.</p> }
+    impressum: { 
+      title: "Impressum", 
+      body: (
+        <div className="space-y-4 text-sm text-white/70">
+          <p><strong className="text-white">Angaben gemäß § 5 TMG:</strong></p>
+          <p>Usamah Sulaiman Shah<br/>Hanauer Landstraße 328-330<br/>60314 Frankfurt am Main</p>
+          <p><strong className="text-white">Kontakt:</strong><br/>E-Mail: Shahmarketing@outlook.de</p>
+          <p><strong className="text-white">Umsatzsteuer-ID:</strong><br/>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br/>DE353013127</p>
+        </div>
+      ) 
+    },
+    datenschutz: { 
+      title: "Datenschutzerklärung", 
+      body: (
+        <div className="space-y-4 text-sm text-white/70 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+          <h3 className="font-bold text-white text-base">1. Datenschutz auf einen Blick</h3>
+          <p>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO) sowie dieser Datenschutzerklärung.</p>
+          <h3 className="font-bold text-white text-base mt-4">2. Datenerfassung auf dieser Website</h3>
+          <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Bei der Nutzung unserer Website und insbesondere beim Checkout-Prozess werden Daten erhoben, die zur Vertragsabwicklung notwendig sind (z.B. E-Mail-Adresse). Die eigentliche Zahlungsabwicklung erfolgt verschlüsselt über externe Zahlungsdienstleister, die eigene Datenschutzbestimmungen haben.</p>
+        </div>
+      ) 
+    },
+    widerruf: { 
+      title: "Widerrufsbelehrung", 
+      body: (
+        <div className="space-y-4 text-sm text-white/70">
+          <h3 className="font-bold text-white text-base">Widerrufsrecht</h3>
+          <p>Sie haben grundsätzlich das Recht, binnen vierzehn Tagen ohne Angabe von Gründen einen Kaufvertrag zu widerrufen.</p>
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-sm mt-4">
+            <h3 className="font-bold text-[#E5C07B] text-base mb-2">WICHTIG: Vorzeitiges Erlöschen bei digitalen Inhalten (E-Books)</h3>
+            <p>Gemäß § 356 Abs. 5 BGB erlischt Ihr Widerrufsrecht bei Verträgen über die Lieferung von nicht auf einem körperlichen Datenträger befindlichen digitalen Inhalten (wie diesem PDF E-Book) vorzeitig, sobald der Download bzw. die Bereitstellung des Produkts begonnen hat.</p>
+            <p className="mt-2">Mit dem Abschluss des Kaufs und dem Start des Downloads stimmen Sie ausdrücklich zu, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und Sie Ihr gesetzliches Widerrufsrecht dadurch vollständig verlieren.</p>
+          </div>
+        </div>
+      ) 
+    },
+    agb: { 
+      title: "Allgemeine Geschäftsbedingungen", 
+      body: (
+        <div className="space-y-4 text-sm text-white/70 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+          <h3 className="font-bold text-white text-base">1. Geltungsbereich</h3>
+          <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, die zwischen Usamah Sulaiman Shah (Verkäufer) und dem Kunden über den Erwerb von digitalen Produkten (E-Books) über diese Landingpage abgeschlossen werden.</p>
+          <h3 className="font-bold text-white text-base mt-4">2. Vertragsabschluss & Lieferung</h3>
+          <p>Die Präsentation des E-Books stellt kein rechtlich bindendes Angebot dar. Der Vertrag kommt durch den Abschluss des Bezahlvorgangs zustande. Die Lieferung erfolgt unmittelbar nach Zahlungseingang durch die Bereitstellung eines Download-Links.</p>
+          <h3 className="font-bold text-white text-base mt-4">3. Nutzungsrechte & Strenger Urheberrechtsschutz</h3>
+          <p>Das angebotene E-Book ist strengstens urheberrechtlich geschützt. Der Kunde erwirbt ein einfaches, nicht übertragbares Recht, das digitale Produkt ausschließlich für den persönlichen, privaten Gebrauch zu nutzen.</p>
+          <p className="text-red-400 font-bold">Jegliche kommerzielle Nutzung, Vervielfältigung, Verbreitung, öffentliche Zugänglichmachung oder Weitergabe an Dritte (auch auszugsweise, z.B. in Foren oder Social Media) ist untersagt und wird ausnahmslos straf- und zivilrechtlich verfolgt.</p>
+        </div>
+      ) 
+    }
   };
 
   return (
@@ -654,11 +747,14 @@ export default function App() {
 
   return (
     <div className="bg-[#020202] min-h-screen text-white font-sans antialiased selection:bg-[#E5C07B] selection:text-black overflow-x-hidden relative">
-      {/* GLOBAL FONT OVERRIDE */}
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap');
         .font-serif { font-family: 'Cinzel', serif !important; }
         .font-sans { font-family: 'Inter', sans-serif !important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(229,192,123,0.3); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(229,192,123,0.5); }
       `}} />
 
       <LiveSalesPopup />
