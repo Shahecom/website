@@ -519,7 +519,7 @@ const AboutAuthor = () => {
                 <div className="absolute inset-0 bg-[#E5C07B]/20 blur-3xl rounded-full group-hover:bg-[#E5C07B]/30 transition-colors duration-700" />
                 <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border border-[#E5C07B]/20 bg-gradient-to-br from-[#111] to-[#050505] p-2 overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(229,192,123,0.1)]">
                    <div className="w-full h-full rounded-full bg-[#030303] border border-white/5 flex flex-col items-center justify-center">
-                     <img src="/profile.jpg" alt="Profilbild" className="w-full h-full rounded-full object-cover" />
+                     <span className="text-[#E5C07B] font-serif text-6xl md:text-8xl drop-shadow-md">U</span>
                    </div>
                 </div>
               </div>
