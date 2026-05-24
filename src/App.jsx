@@ -258,8 +258,8 @@ const StickyHeader = () => {
             
             <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto">
               <div className="text-right">
-                <span className="text-white/40 line-through text-[10px] uppercase tracking-widest mr-2">49,00€</span>
-                <span className="text-white font-serif text-xl font-bold">14,99€</span>
+                <span className="text-white/40 line-through text-[10px] uppercase tracking-widest mr-2">147,00€</span>
+                <span className="text-white font-serif text-xl font-bold">49,00€</span>
               </div>
               <motion.a 
                 href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer"
@@ -503,6 +503,62 @@ const InsideTheBook = () => {
   );
 };
 
+// 3.4 ÜBER MICH (Der Autor / Trust-Builder)
+const AboutAuthor = () => {
+  return (
+    <section className="py-32 px-6 bg-[#020202] relative border-b border-white/5 overflow-hidden">
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[#E5C07B]/5 blur-[150px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+          
+          {/* Visual / Profil Platzhalter */}
+          <div className="md:col-span-4 flex justify-center md:justify-start">
+            <FadeIn direction="up">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-[#E5C07B]/20 blur-3xl rounded-full group-hover:bg-[#E5C07B]/30 transition-colors duration-700" />
+                <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border border-[#E5C07B]/20 bg-gradient-to-br from-[#111] to-[#050505] p-2 overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(229,192,123,0.1)]">
+                   <div className="w-full h-full rounded-full bg-[#030303] border border-white/5 flex flex-col items-center justify-center">
+                     <span className="text-[#E5C07B] font-serif text-6xl md:text-8xl drop-shadow-md">U</span>
+                   </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Copywriting / Story */}
+          <div className="md:col-span-8 text-center md:text-left">
+            <FadeIn delay={0.2}>
+              <h2 className="text-white font-serif text-3xl md:text-5xl tracking-tighter uppercase mb-8">
+                Wer spricht <span className="text-[#E5C07B] italic">hier zu dir?</span>
+              </h2>
+              <div className="space-y-6 text-white/60 text-sm md:text-base leading-relaxed font-light">
+                <p>
+                  Mein Name ist <strong className="text-white font-medium">Usamah Sulaiman Shah</strong>. Bevor dieses System entstand, war ich in einer toxischen Endlosschleife gefangen – genau wie du.
+                </p>
+                <p>
+                  Ich hatte gewaltige Ziele für meine Dunya und Akhira. Ich war hochmotiviert, schaute täglich islamische Reminder, nahm mir nachts vor, ab morgen alles zu ändern. <strong className="text-red-400 font-medium">Doch als es darauf ankam, Taten sprechen zu lassen, brach ich immer wieder ein.</strong> Ich verlor den Kampf gegen meine eigenen Schwächen. Der tägliche Stillstand und das ständige Brechen meiner eigenen Versprechen haben mich innerlich aufgefressen. Ich wusste, ich lebe weit unter meinem wahren Potenzial als Muslim.
+                </p>
+                <p>
+                  Nach Jahren des Schmerzes und der Frustration habe ich die harte Wahrheit akzeptiert: <strong className="text-[#E5C07B] font-medium">Motivation ist eine Lüge.</strong> Wer sich auf schwankende Gefühle verlässt, wird immer verlieren. Standhaftigkeit (Istiqama) ist kein Gefühl – es ist eine psychologische Programmierung.
+                </p>
+                <p>
+                  Dieses E-Book ist keine nette Theorie. Es ist mein eigener, kompromissloser Blueprint. Das exakte Werkzeug, das mein Leben aus dem Stillstand gerissen hat und dich gnadenlos zu eiserner Disziplin zwingen wird.
+                </p>
+              </div>
+              <div className="mt-10 flex items-center justify-center md:justify-start gap-4">
+                <div className="h-[1px] w-12 bg-[#E5C07B]/50" />
+                <span className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">Autor & System-Entwickler</span>
+              </div>
+            </FadeIn>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -589,7 +645,7 @@ const PricingAndOffer = () => {
                     </div>
                     <div>
                       <span className="text-white font-bold block mb-1">Das Praxis-System (PDF E-Book)</span>
-                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 49,00€</span>
+                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 79,00€</span>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -598,7 +654,7 @@ const PricingAndOffer = () => {
                     </div>
                     <div>
                       <span className="text-[#E5C07B] font-bold block mb-1">Bonus: Das Notfall-Protokoll</span>
-                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 29,00€</span>
+                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 39,00€</span>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -607,18 +663,18 @@ const PricingAndOffer = () => {
                     </div>
                     <div>
                       <span className="text-[#E5C07B] font-bold block mb-1">Bonus: Dopamin-Detox Plan</span>
-                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 19,00€</span>
+                      <span className="text-white/40 text-sm line-through font-serif italic">Wert: 29,00€</span>
                     </div>
                   </li>
                 </ul>
               </div>
 
               <div className="flex flex-col items-center justify-center lg:border-l border-white/10 lg:pl-16 h-full mt-6 lg:mt-0">
-                <span className="text-white/30 text-[11px] uppercase tracking-[0.3em] font-bold mb-4">Wahrer Gesamtwert: <span className="line-through">97,00€</span></span>
+                <span className="text-white/30 text-[11px] uppercase tracking-[0.3em] font-bold mb-4">Wahrer Gesamtwert: <span className="line-through">147,00€</span></span>
                 <div className="flex items-start gap-2 mb-8">
-                  <span className="text-white font-serif text-8xl md:text-[120px] tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">14</span>
+                  <span className="text-white font-serif text-8xl md:text-[120px] tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">49</span>
                   <div className="flex flex-col mt-3 md:mt-5">
-                    <span className="text-[#E5C07B] font-serif text-3xl md:text-5xl leading-none">,99€</span>
+                    <span className="text-[#E5C07B] font-serif text-3xl md:text-5xl leading-none">,00€</span>
                     <span className="text-white/30 text-[10px] uppercase tracking-widest mt-2">Einmalige Zahlung</span>
                   </div>
                 </div>
@@ -631,7 +687,7 @@ const PricingAndOffer = () => {
                 {/* THE FOMO WARNING */}
                 <div className="w-full bg-red-500/10 border border-red-500/20 p-3 rounded-sm text-center mb-6">
                   <p className="text-red-400 text-[10px] uppercase tracking-widest font-bold flex items-center justify-center gap-2">
-                    <Clock size={12} /> Achtung: Preis steigt in Kürze auf 49,00€
+                    <Clock size={12} /> Achtung: Preis steigt in Kürze auf 147,00€
                   </p>
                 </div>
                 
@@ -774,6 +830,7 @@ export default function App() {
         <TrustStrip />
         <QuickProblem />
         <InsideTheBook />
+        <AboutAuthor />
         <FAQSection />
         <PricingAndOffer />
         
