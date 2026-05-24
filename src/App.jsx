@@ -474,7 +474,7 @@ const InsideTheBook = () => {
           <FadeIn delay={0.4} className="lg:col-span-2 hidden lg:flex justify-center relative perspective-1000">
             <div className="absolute inset-0 bg-[#E5C07B]/10 blur-[80px] rounded-full" />
             <motion.div 
-              whileHover={{ rotateY: 0, rotateX: 0, scale: 1.05 }}
+   AboutAuthor           whileHover={{ rotateY: 0, rotateX: 0, scale: 1.05 }}
               className="w-[85%] aspect-[3/4] bg-gradient-to-br from-[#111] to-[#050505] border border-white/10 rounded-md shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative p-10 flex flex-col justify-between transform rotate-y-[-10deg] rotate-x-[5deg] transition-all duration-500"
             >
               <div className="space-y-5">
@@ -497,62 +497,6 @@ const InsideTheBook = () => {
               </div>
             </motion.div>
           </FadeIn>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// 3.4 ÜBER MICH (Der Autor / Trust-Builder)
-const AboutAuthor = () => {
-  return (
-    <section className="py-32 px-6 bg-[#020202] relative border-b border-white/5 overflow-hidden">
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[#E5C07B]/5 blur-[150px] rounded-full pointer-events-none" />
-      
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
-          
-          {/* Visual / Profil Platzhalter */}
-          <div className="md:col-span-4 flex justify-center md:justify-start">
-            <FadeIn direction="up">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-[#E5C07B]/20 blur-3xl rounded-full group-hover:bg-[#E5C07B]/30 transition-colors duration-700" />
-                <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border border-[#E5C07B]/20 bg-gradient-to-br from-[#111] to-[#050505] p-2 overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(229,192,123,0.1)]">
-                   <div className="w-full h-full rounded-full bg-[#030303] border border-white/5 flex flex-col items-center justify-center">
-                     <span className="text-[#E5C07B] font-serif text-6xl md:text-8xl drop-shadow-md">U</span>
-                   </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Copywriting / Story */}
-          <div className="md:col-span-8 text-center md:text-left">
-            <FadeIn delay={0.2}>
-              <h2 className="text-white font-serif text-3xl md:text-5xl tracking-tighter uppercase mb-8">
-                Wer spricht <span className="text-[#E5C07B] italic">hier zu dir?</span>
-              </h2>
-              <div className="space-y-6 text-white/60 text-sm md:text-base leading-relaxed font-light">
-                <p>
-                  Mein Name ist <strong className="text-white font-medium">Usamah Sulaiman Shah</strong>. Bevor dieses System entstand, war ich in einer toxischen Endlosschleife gefangen – genau wie du.
-                </p>
-                <p>
-                  Ich hatte gewaltige Ziele für meine Dunya und Akhira. Ich war hochmotiviert, schaute täglich islamische Reminder, nahm mir nachts vor, ab morgen alles zu ändern. <strong className="text-red-400 font-medium">Doch als es darauf ankam, Taten sprechen zu lassen, brach ich immer wieder ein.</strong> Ich verlor den Kampf gegen meine eigenen Schwächen. Der tägliche Stillstand und das ständige Brechen meiner eigenen Versprechen haben mich innerlich aufgefressen. Ich wusste, ich lebe weit unter meinem wahren Potenzial als Muslim.
-                </p>
-                <p>
-                  Nach Jahren des Schmerzes und der Frustration habe ich die harte Wahrheit akzeptiert: <strong className="text-[#E5C07B] font-medium">Motivation ist eine Lüge.</strong> Wer sich auf schwankende Gefühle verlässt, wird immer verlieren. Standhaftigkeit (Istiqama) ist kein Gefühl – es ist eine psychologische Programmierung.
-                </p>
-                <p>
-                  Dieses E-Book ist keine nette Theorie. Es ist mein eigener, kompromissloser Blueprint. Das exakte Werkzeug, das mein Leben aus dem Stillstand gerissen hat und dich gnadenlos zu eiserner Disziplin zwingen wird.
-                </p>
-              </div>
-              <div className="mt-10 flex items-center justify-center md:justify-start gap-4">
-                <div className="h-[1px] w-12 bg-[#E5C07B]/50" />
-                <span className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">Autor & System-Entwickler</span>
-              </div>
-            </FadeIn>
-          </div>
-
         </div>
       </div>
     </section>
@@ -830,7 +774,7 @@ export default function App() {
         <TrustStrip />
         <QuickProblem />
         <InsideTheBook />
-        <AboutAuthor />
+
         <FAQSection />
         <PricingAndOffer />
         
