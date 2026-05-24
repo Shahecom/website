@@ -474,7 +474,7 @@ const InsideTheBook = () => {
           <FadeIn delay={0.4} className="lg:col-span-2 hidden lg:flex justify-center relative perspective-1000">
             <div className="absolute inset-0 bg-[#E5C07B]/10 blur-[80px] rounded-full" />
             <motion.div 
-   AboutAuthor           whileHover={{ rotateY: 0, rotateX: 0, scale: 1.05 }}
+            whileHover={{ rotateY: 0, rotateX: 0, scale: 1.05 }}
               className="w-[85%] aspect-[3/4] bg-gradient-to-br from-[#111] to-[#050505] border border-white/10 rounded-md shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative p-10 flex flex-col justify-between transform rotate-y-[-10deg] rotate-x-[5deg] transition-all duration-500"
             >
               <div className="space-y-5">
