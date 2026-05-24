@@ -23,7 +23,7 @@ const FAQS = [
   { q: "Wann sehe ich Resultate?", a: "Morgen früh. Sobald du das Detox-Protokoll heute Abend anwendest, hörst du den Wecker morgen mit extremer mentaler Klarheit." },
   { q: "Wie schnell bekomme ich Zugriff?", a: "In exakt 60 Sekunden. Nach dem sicheren Checkout erhältst du sofortigen Zugang zum Download-Bereich (Smartphone & PC)." }
 ];
-h
+
 // --- MASSIVER GENERATOR FÜR LIVE-VERKÄUFE (150+ Namen, 80+ Städte für 100% Authentizität) ---
 const NAMES = [
   "Ali M.", "Sara K.", "Bilal Y.", "Amina S.", "Yusuf T.", "Zainab R.", "Omar F.", "Fatima A.", "Tarik B.", "Hasan C.", 
