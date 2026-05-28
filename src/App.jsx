@@ -258,8 +258,8 @@ const StickyHeader = () => {
             
             <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto">
               <div className="text-right">
-                <span className="text-white/40 line-through text-[10px] uppercase tracking-widest mr-2">147,00€</span>
-                <span className="text-white font-serif text-xl font-bold">49,00€</span>
+                <span className="text-white/40 line-through text-[10px] uppercase tracking-widest mr-2">39,99€</span>
+                <span className="text-white font-serif text-xl font-bold">24,99€</span>
               </div>
               <motion.a 
                 href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer"
@@ -614,11 +614,11 @@ const PricingAndOffer = () => {
               </div>
 
               <div className="flex flex-col items-center justify-center lg:border-l border-white/10 lg:pl-16 h-full mt-6 lg:mt-0">
-                <span className="text-white/30 text-[11px] uppercase tracking-[0.3em] font-bold mb-4">Wahrer Gesamtwert: <span className="line-through">147,00€</span></span>
+                <span className="text-white/30 text-[11px] uppercase tracking-[0.3em] font-bold mb-4">Wahrer Gesamtwert: <span className="line-through">39,99€</span></span>
                 <div className="flex items-start gap-2 mb-8">
-                  <span className="text-white font-serif text-8xl md:text-[120px] tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">49</span>
+                  <span className="text-white font-serif text-8xl md:text-[120px] tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">24</span>
                   <div className="flex flex-col mt-3 md:mt-5">
-                    <span className="text-[#E5C07B] font-serif text-3xl md:text-5xl leading-none">,00€</span>
+                    <span className="text-[#E5C07B] font-serif text-3xl md:text-5xl leading-none">,99€</span>
                     <span className="text-white/30 text-[10px] uppercase tracking-widest mt-2">Einmalige Zahlung</span>
                   </div>
                 </div>
@@ -631,7 +631,7 @@ const PricingAndOffer = () => {
                 {/* THE FOMO WARNING */}
                 <div className="w-full bg-red-500/10 border border-red-500/20 p-3 rounded-sm text-center mb-6">
                   <p className="text-red-400 text-[10px] uppercase tracking-widest font-bold flex items-center justify-center gap-2">
-                    <Clock size={12} /> Achtung: Preis steigt in Kürze auf 147,00€
+                    <Clock size={12} /> Achtung: Preis steigt in Kürze auf 39,99€
                   </p>
                 </div>
                 
