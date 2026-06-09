@@ -1,13 +1,1112 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Der standhafte Muslim</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-black">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Der Standhafte Muslim — Das 30-Tage-System für unzerstörbare Disziplin</title>
+<meta name="description" content="Du weißt, was zu tun ist. Du tust es nicht. Das 30-Tage-System, das deine Ausreden eliminiert und Disziplin zu deiner Identität macht. Sofort-Download als PDF." />
+<meta name="theme-color" content="#030302" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E5C07B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20'/%3E%3C/svg%3E" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Der Standhafte Muslim — Das 30-Tage-System für unzerstörbare Disziplin" />
+<meta property="og:description" content="Stärke deinen Iman. Erreiche jedes Ziel. Das 30-Tage-System als PDF, Sofort-Download." />
+<meta property="og:locale" content="de_DE" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#E5C07B; --gold-light:#f6e2b8; --gold-dark:#b8924e; --bg:#030302; --bg2:#070605; --bg3:#0c0a08;
+    --line:rgba(255,255,255,.07); --gold-line:rgba(229,192,123,.32);
+    --display:'Clash Display','Space Grotesk',sans-serif;
+    --body:'Space Grotesk',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{-webkit-tap-highlight-color:transparent;background:var(--bg);color:#fff;font-family:var(--body);font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--gold);color:#000}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  a{text-decoration:none;color:inherit}
+  section{position:relative}
+
+  /* ---------- Scroll-Fortschritt ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+    background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));
+    box-shadow:0 0 14px rgba(229,192,123,.7)}
+
+  /* ---------- Cursor-Glow (Desktop) ---------- */
+  #cursorGlow{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(229,192,123,.16),transparent 65%);
+    pointer-events:none;z-index:1;transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;transition:opacity .6s}
+  @media(pointer:coarse){#cursorGlow{display:none}}
+
+  /* ---------- Gold-Schimmer Text ---------- */
+  .shimmer{background:linear-gradient(100deg,var(--gold-dark) 20%,#fff7e0 42%,var(--gold) 58%,var(--gold-dark) 80%);
+    background-size:240% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmertxt 4.5s linear infinite}
+  @keyframes shimmertxt{0%{background-position:120% 0}100%{background-position:-130% 0}}
+
+  /* ---------- Scroll-Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(48px) scale(.985);filter:blur(8px);
+    transition:opacity 1.15s cubic-bezier(.16,1,.3,1),transform 1.15s cubic-bezier(.16,1,.3,1),filter 1.15s cubic-bezier(.16,1,.3,1)}
+  .reveal.visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+  /* Wort-für-Wort Aufgang im Hero */
+  .w{display:inline-block;opacity:0;transform:translateY(60px) rotate(2deg);filter:blur(8px);
+    animation:wordup 1.1s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes wordup{to{opacity:1;transform:translateY(0) rotate(0);filter:blur(0)}}
+
+  /* ---------- Buttons ---------- */
+  .btn{touch-action:manipulation;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:13px;
+    padding:23px 46px;background:linear-gradient(95deg,var(--gold-light),var(--gold) 35%,var(--gold-dark));color:#000;
+    font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.01em;border-radius:60px;
+    transition:transform .25s;overflow:hidden;cursor:pointer;will-change:transform;
+    animation:btnpulse 2.8s ease-in-out infinite}
+  @keyframes btnpulse{0%,100%{box-shadow:0 0 28px rgba(229,192,123,.28),0 14px 30px rgba(0,0,0,.5)}50%{box-shadow:0 0 70px rgba(229,192,123,.55),0 14px 30px rgba(0,0,0,.5)}}
+  .btn:active{transform:scale(.97)}
+  .btn .shine{position:absolute;top:0;left:-60%;width:50%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-15deg);animation:shine 3.8s ease-in-out infinite}
+  @keyframes shine{0%,55%{left:-60%}80%,100%{left:160%}}
+  .btn .arr{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;
+    background:rgba(0,0,0,.85);color:var(--gold);transition:transform .3s}
+  .btn:hover .arr{transform:translateX(5px) rotate(-45deg)}
+
+  .microtrust{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:center;
+    color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  .microtrust span{display:inline-flex;align-items:center;gap:8px}
+  .microtrust svg{color:var(--gold)}
+
+  /* ---------- Sticky Bars ---------- */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,3,2,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(229,192,123,.2);transform:translateY(-110%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  #topbar.show{transform:translateY(0)}
+  #topbar .inner{max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  #topbar .brand{display:flex;align-items:center;gap:14px}
+  #topbar .brand b{display:block;font-family:var(--display);font-weight:600;font-size:16px}
+  #topbar .brand small{display:block;color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:3px}
+  #topbar .right{display:flex;align-items:center;gap:18px}
+  #topbar .old{color:rgba(255,255,255,.35);text-decoration:line-through;font-size:12px}
+  #topbar .now{font-family:var(--display);font-weight:700;font-size:22px}
+  #topbar .mini-btn{background:var(--gold);color:#000;padding:13px 26px;font-family:var(--display);font-weight:700;font-size:14px;
+    border-radius:60px;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 0 20px rgba(229,192,123,.3);transition:transform .2s}
+  #topbar .mini-btn:hover{transform:scale(1.06)}
+  @media(max-width:768px){#topbar{display:none}}
+
+  #bottombar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(3,3,2,.95);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+    border-top:1px solid rgba(229,192,123,.35);padding:12px 16px;display:none;align-items:center;gap:14px;
+    transform:translateY(110%);transition:transform .45s cubic-bezier(.16,1,.3,1);box-shadow:0 -10px 40px rgba(0,0,0,.9)}
+  #bottombar.show{transform:translateY(0)}
+  #bottombar{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+  #bottombar .price .old{display:block;color:rgba(255,255,255,.35);text-decoration:line-through;font-size:11px}
+  #bottombar .price .now{display:block;font-family:var(--display);font-weight:700;font-size:24px;line-height:1.05}
+  #bottombar .go{flex:1;background:linear-gradient(95deg,var(--gold-light),var(--gold) 35%,var(--gold-dark));color:#000;text-align:center;
+    padding:17px 10px;font-family:var(--display);font-weight:700;font-size:15px;border-radius:60px;
+    box-shadow:0 0 20px rgba(229,192,123,.4)}
+  @media(max-width:768px){#bottombar{display:flex}}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:97vh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden}
+  .glow{position:absolute;border-radius:50%;filter:blur(150px);pointer-events:none;mix-blend-mode:screen}
+  .glow.g1{top:-12%;left:-12%;width:50vw;height:50vw;background:var(--gold);opacity:.12;animation:drift1 20s linear infinite}
+  .glow.g2{bottom:-12%;right:-12%;width:38vw;height:38vw;background:#ffd9a0;opacity:.06;animation:drift2 25s linear infinite}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,-50px) scale(1.08)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,50px) scale(1.1)}}
+  .grain{position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:2;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:3}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-copy{order:2}.hero-book{order:1}}
+
+  .avatars{display:flex;align-items:center}
+  .avatars i{width:24px;height:24px;border-radius:50%;background:#15110b;border:1.5px solid #030302;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:10px;font-style:normal;margin-left:-8px}
+  .avatars i:first-child{margin-left:0}
+  .avatars i.more{background:var(--gold);color:#000;font-weight:800}
+  .badge#proofBadge{text-transform:none;letter-spacing:.04em;font-size:13px;color:rgba(255,255,255,.75)}
+  .badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold-line);background:rgba(229,192,123,.07);
+    padding:12px 22px;border-radius:60px;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:34px}
+  .badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:dotpulse 1.8s ease-in-out infinite}
+  @keyframes dotpulse{0%,100%{box-shadow:0 0 0 0 rgba(229,192,123,.6)}50%{box-shadow:0 0 0 7px rgba(229,192,123,0)}}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,10vw,96px);line-height:1.0;
+    letter-spacing:-.03em;margin-bottom:30px;text-shadow:0 20px 60px rgba(0,0,0,.8)}
+  .hero-sub{color:rgba(255,255,255,.72);font-size:clamp(18px,2vw,22px);font-weight:500;line-height:1.6;max-width:560px;margin-bottom:44px}
+  @media(max-width:980px){.hero-sub{margin:0 auto 44px}}
+  .hero-sub .gold{color:var(--gold);font-weight:600}
+  .hero-cta{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  @media(max-width:980px){.hero-cta{align-items:center}}
+
+  /* ---------- 3D Buch ---------- */
+  .book-scene{perspective:1400px;display:flex;justify-content:center;position:relative}
+  .book-halo{position:absolute;inset:2%;background:radial-gradient(circle,var(--gold),transparent 65%);
+    filter:blur(70px);opacity:.22;animation:halo 6s ease-in-out infinite}
+  @keyframes halo{0%,100%{opacity:.13;transform:scale(.9) rotate(0deg)}50%{opacity:.32;transform:scale(1.12) rotate(8deg)}}
+  .book-rig{transform-style:preserve-3d;transition:transform .35s ease-out;will-change:transform}
+  .book{position:relative;width:300px;height:420px;transform-style:preserve-3d;animation:bookfloat 8s ease-in-out infinite}
+  @media(min-width:768px){.book{width:350px;height:490px}}
+  @keyframes bookfloat{
+    0%,100%{transform:rotateY(-22deg) rotateX(4deg) rotateZ(-1deg) translateY(-14px)}
+    25%{transform:rotateY(-14deg) rotateX(2deg) rotateZ(0deg) translateY(2px)}
+    50%{transform:rotateY(-8deg) rotateX(5deg) rotateZ(1deg) translateY(14px)}
+    75%{transform:rotateY(-16deg) rotateX(3deg) rotateZ(0deg) translateY(0px)}}
+  .book .spine{position:absolute;left:0;top:0;bottom:0;width:46px;background:linear-gradient(90deg,#070605,#1c1814);
+    border:1px solid rgba(255,255,255,.1);border-right:none;transform:rotateY(-90deg) translateX(-1px);transform-origin:left;
+    display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .book .spine span{font-family:var(--display);font-weight:600;color:rgba(255,255,255,.25);font-size:11px;
+    letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;transform:rotate(-90deg)}
+  .book .pages{position:absolute;right:0;top:1%;bottom:1%;width:58px;border-radius:0 3px 3px 0;
+    background:repeating-linear-gradient(180deg,#f2ede2 0 6px,#dcd5c4 6px 7px);
+    transform:rotateY(90deg) translateX(1px);transform-origin:right}
+  .book .cover{position:absolute;inset:0;background:linear-gradient(150deg,#0b0907,#030302 60%);
+    border:1px solid rgba(229,192,123,.25);border-radius:3px 8px 8px 3px;
+    box-shadow:30px 30px 60px rgba(0,0,0,.95),inset 1px 1px 0 rgba(255,255,255,.14);
+    padding:42px 36px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;z-index:2}
+  .book .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.10),transparent 55%)}
+  .book .cover::after{content:"";position:absolute;top:-30%;left:-80%;width:55%;height:160%;
+    background:linear-gradient(100deg,transparent,rgba(255,236,190,.18),transparent);
+    transform:skewX(-18deg);animation:coversweep 5.5s ease-in-out infinite}
+  @keyframes coversweep{0%,55%{left:-80%}85%,100%{left:170%}}
+  .book .cover .kicker{color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;margin-bottom:24px}
+  .book .cover .title{font-family:var(--display);font-weight:700;line-height:1.02;letter-spacing:-.01em}
+  .book .cover .title .t1{display:block;font-size:28px;color:rgba(255,255,255,.5)}
+  .book .cover .title .t2{display:block;font-size:40px}
+  .book .cover .title .t3{display:block;font-size:50px;color:var(--gold);text-shadow:0 0 26px rgba(229,192,123,.45);margin-top:4px}
+  .book .cover .foot{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid rgba(229,192,123,.2);padding-top:20px}
+  .book .cover .foot small{color:rgba(255,255,255,.45);font-size:10px;letter-spacing:.18em;text-transform:uppercase;line-height:1.8}
+  .book .cover .foot .seal{width:52px;height:52px;border:1px solid var(--gold-line);background:rgba(229,192,123,.1);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;animation:sealpulse 3s ease-in-out infinite}
+  @keyframes sealpulse{0%,100%{box-shadow:0 0 12px rgba(229,192,123,.1)}50%{box-shadow:0 0 32px rgba(229,192,123,.45)}}
+  .book-shadow{position:absolute;bottom:-58px;left:50%;width:78%;height:36px;background:#000;filter:blur(26px);
+    transform:translateX(-50%);opacity:.55;animation:shadowpulse 8s ease-in-out infinite}
+  @keyframes shadowpulse{0%,100%{transform:translateX(-50%) scale(1);opacity:.55}50%{transform:translateX(-50%) scale(.82);opacity:.25}}
+  .spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold);
+    box-shadow:0 0 12px 2px rgba(229,192,123,.7);opacity:0;pointer-events:none}
+  .spark.s1{top:12%;left:6%;animation:spark 6s ease-in-out infinite}
+  .spark.s2{top:24%;right:4%;width:4px;height:4px;animation:spark 7s ease-in-out 1.4s infinite}
+  .spark.s3{bottom:18%;left:12%;width:3px;height:3px;animation:spark 5.5s ease-in-out 2.6s infinite}
+  .spark.s4{bottom:30%;right:10%;animation:spark 6.5s ease-in-out 3.4s infinite}
+  .spark.s5{top:48%;left:-2%;width:4px;height:4px;animation:spark 7.5s ease-in-out 4.2s infinite}
+  @keyframes spark{0%,100%{opacity:0;transform:translateY(14px) scale(.5)}40%{opacity:.9;transform:translateY(-10px) scale(1.15)}70%{opacity:.3;transform:translateY(-26px) scale(.8)}}
+
+  /* ---------- Laufband ---------- */
+  .ticker{background:var(--bg2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);
+    overflow:hidden;padding:20px 0;position:relative;z-index:3}
+  .ticker .track{display:flex;width:max-content;animation:ticker 30s linear infinite;will-change:transform}
+  .ticker span{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.06em;text-transform:uppercase;
+    white-space:nowrap;padding:0 18px;color:transparent;-webkit-text-stroke:1px rgba(229,192,123,.55)}
+  .ticker span b{color:var(--gold);-webkit-text-stroke:0;font-weight:700;padding:0 18px}
+  @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ---------- Zahlen-Strip ---------- */
+  .stats{padding:84px 0;border-bottom:1px solid var(--line)}
+  .stats .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+  @media(max-width:768px){.stats .grid{grid-template-columns:1fr;gap:48px}}
+  .stat .n{font-family:var(--display);font-weight:700;font-size:clamp(64px,9vw,110px);line-height:1;
+    background:linear-gradient(180deg,#fff,rgba(255,255,255,.25));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .n em{font-style:normal;color:var(--gold);-webkit-text-fill-color:var(--gold)}
+  .stat p{color:rgba(255,255,255,.5);font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-top:14px}
+
+  /* ---------- Section Kopf ---------- */
+  .sec{padding:120px 0;border-bottom:1px solid var(--line)}
+  .sec-head{text-align:center;margin-bottom:70px}
+  .eyebrow{display:inline-block;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(36px,5.2vw,68px);letter-spacing:-.025em;margin-bottom:18px;line-height:1.04}
+  h2 .gold{color:var(--gold)}
+  .sec-sub{color:rgba(255,255,255,.55);font-size:19px;font-weight:500;max-width:600px;margin:0 auto;line-height:1.6}
+
+  /* ---------- Schmerz/Lösung Karten ---------- */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.cards3{grid-template-columns:1fr}}
+  .pl-card{background:linear-gradient(170deg,var(--bg3),var(--bg2) 70%);border:1px solid var(--line);border-radius:20px;
+    padding:40px;overflow:hidden;position:relative;transition:border-color .4s,box-shadow .4s;transform-style:preserve-3d;will-change:transform}
+  .pl-card:hover{border-color:rgba(229,192,123,.4);box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 40px rgba(229,192,123,.08)}
+  .pl-card .label{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    padding:8px 16px;border-radius:60px;margin-bottom:22px;background:rgba(127,29,29,.22);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+  .pl-card h3{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-.01em;margin-bottom:24px}
+  .pl-card .sol{border-top:1px solid var(--line);padding-top:22px;display:flex;gap:13px;align-items:flex-start}
+  .pl-card .sol .ic{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:rgba(229,192,123,.12);
+    border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+  .pl-card .sol p{color:rgba(255,255,255,.78);font-size:16px;font-weight:500;line-height:1.6}
+  .pl-card .sol p b{color:var(--gold);font-weight:600}
+
+  /* ---------- Schlachtplan ---------- */
+  .phase{display:flex;gap:26px;background:linear-gradient(120deg,var(--bg3),var(--bg2));border:1px solid var(--line);
+    border-radius:20px;padding:34px;margin-bottom:18px;position:relative;
+    transition:border-color .35s,transform .35s,box-shadow .35s;overflow:hidden}
+  .phase::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold-light),var(--gold-dark));
+    transform:scaleY(0);transition:transform .4s;transform-origin:top}
+  .phase:hover{border-color:rgba(229,192,123,.35);transform:translateX(8px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .phase:hover::before{transform:scaleY(1)}
+  .phase .num{font-family:var(--display);font-weight:700;font-size:26px;color:rgba(229,192,123,.5);
+    width:60px;height:60px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(229,192,123,.06);border:1px solid var(--line);border-radius:16px;transition:color .35s,border-color .35s,background .35s}
+  .phase:hover .num{color:#000;background:var(--gold);border-color:var(--gold)}
+  .phase h4{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.01em;margin-bottom:10px}
+  .phase .pain-line{color:rgba(248,113,113,.85);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+  .phase .sol-line{color:rgba(255,255,255,.72);font-size:16px;font-weight:500;line-height:1.6}
+  .phase .sol-line b{color:var(--gold);font-weight:600}
+
+  /* ---------- Transformation (Vorher/Nachher-Slider) ---------- */
+  .ba{max-width:980px;margin:0 auto;user-select:none;-webkit-user-select:none}
+  .ba-stage{position:relative;height:500px;border-radius:26px;overflow:hidden;border:1px solid var(--gold-line);
+    box-shadow:0 40px 90px rgba(0,0,0,.7);cursor:ew-resize;touch-action:none}
+  @media(max-width:768px){.ba-stage{height:460px}}
+  .ba-side{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .ba-after{background:radial-gradient(110% 90% at 70% 30%,#241a0c,#0a0703 55%,#050302)}
+  .ba-rays{position:absolute;inset:-25%;pointer-events:none;animation:spin 50s linear infinite;
+    background:conic-gradient(from 0deg at 50% 50%,transparent 0 8%,rgba(229,192,123,.07) 10%,transparent 14%,
+    transparent 24%,rgba(229,192,123,.05) 27%,transparent 31%,transparent 44%,rgba(229,192,123,.07) 48%,transparent 52%,
+    transparent 64%,rgba(229,192,123,.05) 67%,transparent 71%,transparent 84%,rgba(229,192,123,.06) 88%,transparent 92%)}
+  .ba-before{background:linear-gradient(170deg,#0b0d12,#06070b 60%,#040508);will-change:clip-path}
+  .ba-before::after{content:"";position:absolute;inset:-40px 0;pointer-events:none;
+    background:repeating-linear-gradient(100deg,transparent 0 16px,rgba(140,160,190,.06) 16px 17px);
+    animation:rainmove 1.4s linear infinite}
+  @keyframes rainmove{0%{transform:translateY(-34px)}100%{transform:translateY(34px)}}
+  .ba-fig{position:relative;width:150px}
+  @media(max-width:768px){.ba-fig{width:118px}}
+  .ba-fig svg{width:100%;height:auto;display:block}
+  .ba-before .ba-fig{color:#3c4250;opacity:.85;animation:todayflicker 4s ease-in-out infinite}
+  @keyframes todayflicker{0%,100%{opacity:.85}50%{opacity:.5}}
+  .ba-after .ba-fig{color:var(--gold);filter:drop-shadow(0 0 28px rgba(229,192,123,.55))}
+  .ba-after .ba-fig::after{content:"";position:absolute;inset:-35%;pointer-events:none;
+    background:radial-gradient(circle,rgba(229,192,123,.22),transparent 60%);animation:halo 5s ease-in-out infinite}
+  .ba-pill{position:absolute;top:22px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    padding:9px 18px;border-radius:60px;z-index:3;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .ba-pill.p1{left:22px;background:rgba(10,12,18,.8);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12)}
+  .ba-pill.p30{right:22px;background:rgba(229,192,123,.16);color:var(--gold);border:1px solid var(--gold-line)}
+  .ba-chips{position:absolute;bottom:30px;display:flex;flex-direction:column;gap:9px;z-index:2}
+  .ba-before .ba-chips{left:22px;align-items:flex-start}
+  .ba-after .ba-chips{right:22px;align-items:flex-end}
+  .ba-chip{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;padding:9px 15px;border-radius:60px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .ba-before .ba-chip{background:rgba(8,10,14,.78);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
+  .ba-after .ba-chip{background:rgba(20,16,8,.78);border:1px solid var(--gold-line);color:rgba(255,255,255,.88)}
+  .ba-chip .x{color:#ef4444;font-weight:800}
+  .ba-chip .ok{color:#10b981;font-weight:800}
+  .ba-bar{position:absolute;bottom:0;left:0;right:0;height:7px;background:rgba(255,255,255,.05)}
+  .ba-bar i{display:block;height:100%}
+  .ba-before .ba-bar i{width:14%;background:#ef4444}
+  .ba-after .ba-bar i{width:100%;background:linear-gradient(90deg,#E5C07B,#34d399 60%,#10b981);box-shadow:0 0 16px rgba(52,211,153,.6)}
+  .ba-handle{position:absolute;top:0;bottom:0;width:2px;left:50%;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,transparent,var(--gold) 16%,var(--gold) 84%,transparent);
+    filter:drop-shadow(0 0 10px rgba(229,192,123,.8))}
+  .ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(95deg,var(--gold-light),var(--gold) 40%,var(--gold-dark));color:#000;
+    display:flex;align-items:center;justify-content:center;gap:2px;font-weight:900;font-size:16px;
+    box-shadow:0 0 38px rgba(229,192,123,.7),0 10px 26px rgba(0,0,0,.6);animation:btnpulse 2.6s ease-in-out infinite}
+  .ba-hint{text-align:center;color:rgba(255,255,255,.4);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-top:22px}
+  .ba-quote{text-align:center;font-family:var(--display);font-weight:600;font-size:clamp(21px,2.8vw,30px);margin-top:42px;color:rgba(255,255,255,.88)}
+  .ba-quote .gold{color:var(--gold)}
+
+  /* ---------- Autor ---------- */
+  .author{display:grid;grid-template-columns:2fr 3fr;gap:70px;align-items:center}
+  @media(max-width:900px){.author{grid-template-columns:1fr;text-align:center}}
+  .orbit{position:relative;width:340px;height:340px;justify-self:center;display:flex;align-items:center;justify-content:center}
+  @media(max-width:480px){.orbit{width:290px;height:290px}}
+  .orbit .haze{position:absolute;inset:-12%;background:radial-gradient(circle,var(--gold),transparent 65%);filter:blur(55px);opacity:.2;animation:halo 7s ease-in-out infinite}
+  .orbit .ring-spin{position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 0deg,transparent 0 40%,var(--gold) 50%,transparent 60% 100%);
+    animation:spin 5s linear infinite;
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px))}
+  .orbit .ring-spin.r2{inset:16px;animation:spinrev 8s linear infinite;opacity:.55;
+    background:conic-gradient(from 180deg,transparent 0 55%,#fff7e0 65%,transparent 75% 100%)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes spinrev{to{transform:rotate(-360deg)}}
+  .orbit .ring-dash{position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(229,192,123,.3);animation:spinrev 30s linear infinite}
+  .orbit .dot-rig{position:absolute;inset:0;animation:spin 5s linear infinite}
+  .orbit .dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold);
+    box-shadow:0 0 14px 3px rgba(229,192,123,.6);top:50%;left:50%;margin:-4.5px;transform:translateY(-170px)}
+  @media(max-width:480px){.orbit .dot{transform:translateY(-145px)}}
+  .orbit img{position:relative;width:78%;height:78%;object-fit:cover;border-radius:50%;
+    border:3px solid rgba(229,192,123,.5);box-shadow:0 20px 60px rgba(0,0,0,.85);z-index:2;
+    animation:portraitfloat 6s ease-in-out infinite}
+  @keyframes portraitfloat{0%,100%{transform:translateY(-6px)}50%{transform:translateY(8px)}}
+  .orbit .tag{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;
+    padding:11px 26px;font-family:var(--display);font-weight:700;font-size:14px;border-radius:60px;
+    white-space:nowrap;box-shadow:0 0 30px rgba(229,192,123,.45);z-index:3}
+  .author-copy p{color:rgba(255,255,255,.65);font-size:18px;font-weight:500;line-height:1.7;margin-bottom:20px}
+  .author-copy b{color:#fff;font-weight:700}
+  .author-copy .gold{color:var(--gold);font-weight:600}
+  .socialproof{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+  @media(max-width:900px){.socialproof{justify-content:center}}
+  .socialproof a{transition:transform .3s,background .3s}
+  .socialproof a:hover{transform:translateY(-3px);background:rgba(229,192,123,.16)}
+  .socialproof span,.socialproof a{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--gold-line);
+    background:rgba(229,192,123,.06);padding:12px 20px;border-radius:60px;color:var(--gold);
+    font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .faq{touch-action:manipulation;border:1px solid var(--line);background:var(--bg2);border-radius:18px;overflow:hidden;cursor:pointer;transition:border-color .3s,background .3s}
+  .faq:hover{border-color:rgba(229,192,123,.25)}
+  .faq.open{border-color:var(--gold-line);background:var(--bg3)}
+  .faq .q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:25px 30px;
+    font-size:17px;font-weight:600;line-height:1.45}
+  .faq.open .q{color:var(--gold)}
+  .faq .q .chev{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);transition:transform .35s,color .35s,border-color .35s}
+  .faq.open .q .chev{transform:rotate(180deg);color:var(--gold);border-color:var(--gold-line)}
+  .faq .a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq .a div{padding:20px 30px 28px;color:rgba(255,255,255,.6);font-size:15.5px;font-weight:500;line-height:1.75;border-top:1px solid var(--line)}
+
+  /* ---------- CHECKOUT ---------- */
+  .checkout-frame{position:relative;border-radius:26px;padding:1.5px;overflow:hidden}
+  .checkout-frame::before{content:"";position:absolute;inset:-150%;
+    background:conic-gradient(from 0deg,transparent 0 70%,var(--gold) 82%,#fff7e0 86%,var(--gold) 90%,transparent 100%);
+    animation:spin 6s linear infinite}
+  .checkout-inner{position:relative;background:linear-gradient(170deg,#0b0907,#040302 65%);border-radius:25px;padding:64px 56px;z-index:1}
+  @media(max-width:768px){.checkout-inner{padding:48px 24px}}
+  .checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  @media(max-width:900px){.checkout-grid{grid-template-columns:1fr;gap:44px}}
+
+  .order h3,.payside h3{font-family:var(--display);font-weight:700;font-size:26px;margin-bottom:28px;display:flex;align-items:center;gap:13px}
+  .order h3 .step,.payside h3 .step{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#000;
+    font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .order-item{display:flex;gap:18px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .order-item .thumb{width:54px;height:74px;flex-shrink:0;border-radius:4px 8px 8px 4px;background:linear-gradient(150deg,#13100c,#030302);
+    border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;color:var(--gold);
+    box-shadow:6px 6px 16px rgba(0,0,0,.6)}
+  .order-item b{display:block;font-size:16px;font-weight:700;margin-bottom:5px}
+  .order-item small{color:rgba(255,255,255,.45);font-size:13.5px;font-weight:500;line-height:1.55}
+  .order-item .bonus{display:inline-block;background:rgba(229,192,123,.12);color:var(--gold);border:1px solid var(--gold-line);
+    font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:60px;padding:4px 12px;margin-bottom:8px}
+  .totals{border-top:1px solid var(--line);margin-top:22px;padding-top:22px}
+  .totals .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:15px;font-weight:500;color:rgba(255,255,255,.55)}
+  .totals .row s{color:rgba(255,255,255,.35)}
+  .totals .row.save b{color:var(--gold)}
+  .totals .row.total{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;border-top:1px solid var(--line);padding-top:18px;margin-top:6px}
+  .totals .row.total .sum{font-size:34px;color:var(--gold)}
+
+  .paysteps{display:flex;flex-direction:column;gap:0;margin-bottom:30px}
+  .paystep{display:flex;gap:16px;align-items:flex-start;position:relative;padding-bottom:22px}
+  .paystep::before{content:"";position:absolute;left:16px;top:36px;bottom:0;width:1px;background:var(--line)}
+  .paystep:last-child::before{display:none}
+  .paystep .pn{width:33px;height:33px;border-radius:50%;flex-shrink:0;border:1px solid var(--gold-line);
+    background:rgba(229,192,123,.08);color:var(--gold);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .paystep b{display:block;font-size:15.5px;font-weight:700;margin-top:5px}
+  .paystep small{color:rgba(255,255,255,.45);font-size:13px;font-weight:500}
+  .paybadges{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px;justify-content:center}
+  .paybadges span{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:8px;
+    padding:9px 16px;font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.65)}
+  .securemeta{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:center;color:rgba(255,255,255,.35);
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
+  .securemeta span{display:inline-flex;align-items:center;gap:8px}
+
+  .countdown{display:flex;align-items:flex-start;gap:12px;margin:26px 0 10px;justify-content:center}
+  .cd-unit{display:flex;flex-direction:column;align-items:center}
+  .cd-unit b{font-family:var(--display);font-weight:700;font-size:27px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+    border-radius:12px;padding:10px 13px;min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
+  .cd-unit small{color:rgba(255,255,255,.3);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+  .cd-sep{font-family:var(--display);font-size:24px;color:rgba(229,192,123,.45);margin-top:10px}
+  .deadline-note{color:rgba(248,113,113,.9);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:8px}
+
+  /* ---------- Zwei Wege ---------- */
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:60px;text-align:left}
+  @media(max-width:768px){.paths{grid-template-columns:1fr}}
+  .path{padding:44px;border-radius:22px;transition:transform .4s,box-shadow .4s}
+  .path:hover{transform:translateY(-8px)}
+  .path.a{background:var(--bg2);border:1px solid var(--line);opacity:.6}
+  .path.b{background:linear-gradient(170deg,#16120c,#070605);border:1px solid rgba(229,192,123,.5);box-shadow:0 20px 60px rgba(229,192,123,.12)}
+  .path.b:hover{box-shadow:0 30px 80px rgba(229,192,123,.2)}
+  .path .letter{font-family:var(--display);font-weight:700;font-size:54px;display:block;margin-bottom:16px}
+  .path.a .letter{color:rgba(255,255,255,.25)}
+  .path.b .letter{color:var(--gold)}
+  .path h3{font-family:var(--display);font-weight:700;font-size:25px;margin-bottom:14px;letter-spacing:-.01em}
+  .path.a h3{color:rgba(255,255,255,.6)}
+  .path.b h3{color:var(--gold)}
+  .path p{font-size:15.5px;font-weight:500;line-height:1.7}
+  .path.a p{color:rgba(255,255,255,.4)}
+  .path.b p{color:rgba(255,255,255,.75)}
+
+  /* ---------- Footer ---------- */
+  footer{background:#000;border-top:1px solid var(--line);padding:100px 24px 140px;text-align:center;overflow:hidden}
+  footer .big{font-family:var(--display);font-weight:700;font-size:clamp(24px,6.6vw,86px);letter-spacing:-.02em;line-height:1;
+    background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.02));-webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:50px;white-space:nowrap}
+  footer .legal{display:flex;flex-wrap:wrap;justify-content:center;gap:22px 44px;margin-bottom:40px}
+  footer .legal a{color:rgba(255,255,255,.3);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;transition:color .3s}
+  footer .legal a:hover{color:var(--gold)}
+  footer .copy{color:rgba(255,255,255,.2);font-size:10px;letter-spacing:.16em;text-transform:uppercase;line-height:2}
+
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="cursorGlow"></div>
+<div class="grain"></div>
+
+<!-- ======================= STICKY TOP BAR (Desktop) ======================= -->
+<div id="topbar">
+  <div class="inner">
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5C07B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+      <div><b>Der Standhafte Muslim</b><small>Limitierter Einführungspreis</small></div>
+    </div>
+    <div class="right">
+      <div><span class="old">39,99€</span> &nbsp;<span class="now">24,99€</span></div>
+      <a class="mini-btn" href="#checkout">Zum Checkout
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= STICKY BOTTOM BAR (Mobile) ======================= -->
+<div id="bottombar">
+  <div class="price"><span class="old">39,99€</span><span class="now">24,99€</span></div>
+  <a class="go" href="#checkout">Zum Checkout</a>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="badge" id="defaultBadge"><span class="pulse"></span>Das 30-Tage Disziplin-System</div>
+        <div class="badge" id="proofBadge" hidden>
+          <span class="avatars"><i>★</i><i>★</i><i>★</i><i>★</i><i class="more">+</i></span>
+          <span>Von <b id="readerNum" style="color:#fff"></b> Lesern vertraut</span>
+        </div>
+        <h1>
+          <span class="w" style="animation-delay:.1s">Stärke</span>
+          <span class="w" style="animation-delay:.18s">deinen</span>
+          <span class="w" style="animation-delay:.26s">Iman.</span><br />
+          <span class="w shimmer" style="animation-delay:.5s">Erreiche</span>
+          <span class="w shimmer" style="animation-delay:.58s">jedes</span>
+          <span class="w shimmer" style="animation-delay:.66s">Ziel.</span>
+        </h1>
+        <p class="hero-sub reveal d2">
+          Du weißt, was zu tun ist. Du tust es nicht. Das Problem ist nicht dein Wille, sondern dein fehlendes System.
+          <span class="gold">Hol dir das 30-Tage-Protokoll, das heute Abend beginnt.</span>
+        </p>
+        <div class="hero-cta reveal d3">
+          <a class="btn magnetic" href="#checkout">
+            <span class="shine"></span>
+            Jetzt starten für 24,99€
+            <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <div class="microtrust">
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sofort-Download</span>
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Einmalzahlung</span>
+            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Alle Geräte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-book reveal d1">
+        <div class="book-scene" id="bookScene">
+          <div class="book-halo"></div>
+          <div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div><div class="spark s4"></div><div class="spark s5"></div>
+          <div class="book-rig" id="bookRig">
+            <div class="book">
+              <div class="spine"><span>Der Standhafte Muslim</span></div>
+              <div class="pages"></div>
+              <div class="cover">
+                <div>
+                  <p class="kicker">Das 30-Tage System</p>
+                  <div class="title">
+                    <span class="t1">Der</span>
+                    <span class="t2">Standhafte</span>
+                    <span class="t3">Muslim</span>
+                  </div>
+                </div>
+                <div class="foot">
+                  <small>Iman &amp;<br />Disziplin<br />Blueprint</small>
+                  <div class="seal">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5C07B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="book-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LAUFBAND ======================= -->
+<div class="ticker">
+  <div class="track" id="tickerTrack">
+    <span>Disziplin <b>✦</b> Fokus <b>✦</b> Iman <b>✦</b> Klarheit <b>✦</b> Routine <b>✦</b> Standhaftigkeit <b>✦</b></span>
+  </div>
+</div>
+
+<!-- ======================= ZAHLEN ======================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat reveal"><div class="n"><span class="count" data-to="3">0</span><em></em></div><p>Phasen</p></div>
+      <div class="stat reveal d1"><div class="n"><span class="count" data-to="30">0</span><em></em></div><p>Tage</p></div>
+      <div class="stat reveal d2"><div class="n"><span class="count" data-to="1">0</span><em></em></div><p>Entscheidung</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SCHMERZ / LÖSUNG ======================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ohne Umwege</span>
+      <h2>Dein Schmerz. <span class="gold">Deine Lösung.</span></h2>
+      <p class="sec-sub">Drei Probleme, die du kennst. Drei Lösungen, die du bekommst.</p>
+    </div>
+    <div class="cards3">
+      <div class="pl-card tilt reveal">
+        <span class="label">Schmerz</span>
+        <h3>Fajr verschlafen. Wieder.</h3>
+        <div class="sol">
+          <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          <p><b>Die Lösung:</b> Das Abendprotokoll. Du stehst auf, ohne mit dir selbst zu verhandeln.</p>
+        </div>
+      </div>
+      <div class="pl-card tilt reveal d1">
+        <span class="label">Schmerz</span>
+        <h3>Scrollen bis 1 Uhr nachts.</h3>
+        <div class="sol">
+          <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          <p><b>Die Lösung:</b> Der Dopamin-Detox. 60 Minuten, die den Kreislauf brechen.</p>
+        </div>
+      </div>
+      <div class="pl-card tilt reveal d2">
+        <span class="label">Schmerz</span>
+        <h3>Vorsätze halten 3 Tage.</h3>
+        <div class="sol">
+          <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          <p><b>Die Lösung:</b> Das Eiserne System. 30 Tage Struktur statt Motivation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SCHLACHTPLAN ======================= -->
+<section class="sec" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Das System</span>
+      <h2>Dein <span class="gold">Schlachtplan</span></h2>
+      <p class="sec-sub">Drei Phasen. Ein Ziel. Null Füllmaterial.</p>
+    </div>
+    <div style="max-width:820px;margin:0 auto">
+      <div class="phase reveal">
+        <div class="num">01</div>
+        <div>
+          <h4>Blockaden zerstören</h4>
+          <p class="pain-line">Schmerz: Deine Ausreden steuern dich.</p>
+          <p class="sol-line"><b>Lösung:</b> Du findest den Mechanismus, der dich sabotiert. Und schaltest ihn ab.</p>
+        </div>
+      </div>
+      <div class="phase reveal d1">
+        <div class="num">02</div>
+        <div>
+          <h4>Dopamin-Detox</h4>
+          <p class="pain-line">Schmerz: Dein Gehirn ist süchtig nach Ablenkung.</p>
+          <p class="sol-line"><b>Lösung:</b> Das 60-Minuten-Abendprotokoll. Klarer Kopf am Abend, klarer Start am Morgen.</p>
+        </div>
+      </div>
+      <div class="phase reveal d2">
+        <div class="num">03</div>
+        <div>
+          <h4>Das Eiserne System</h4>
+          <p class="pain-line">Schmerz: Du zwingst dich jeden Tag aufs Neue.</p>
+          <p class="sol-line"><b>Lösung:</b> Nach 30 Tagen passiert es automatisch. Disziplin wird deine Identität.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRANSFORMATION ======================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Die Transformation</span>
+      <h2>Sieh, wer du <span class="gold">in 30 Tagen</span> bist.</h2>
+      <p class="sec-sub">Zieh den goldenen Regler und spüre den Unterschied.</p>
+    </div>
+
+    <div class="ba reveal d1">
+      <div class="ba-stage" id="baStage">
+
+        <div class="ba-side ba-after">
+          <div class="ba-rays"></div>
+          <div class="spark s1"></div><div class="spark s2"></div><div class="spark s4"></div>
+          <div class="ba-fig">
+            <svg viewBox="0 0 110 230" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="55" cy="218" rx="36" ry="7" opacity=".35"/>
+              <circle cx="55" cy="26" r="16"/>
+              <rect x="36" y="44" width="38" height="72" rx="19"/>
+              <rect x="33" y="46" width="13" height="58" rx="6.5" transform="rotate(150 39.5 52)"/>
+              <rect x="64" y="46" width="13" height="58" rx="6.5" transform="rotate(-150 70.5 52)"/>
+              <rect x="38" y="112" width="15" height="92" rx="7.5" transform="rotate(5 45.5 116)"/>
+              <rect x="57" y="112" width="15" height="92" rx="7.5" transform="rotate(-5 64.5 116)"/>
+            </svg>
+          </div>
+          <span class="ba-pill p30">Tag 30</span>
+          <div class="ba-chips">
+            <span class="ba-chip"><span class="ok">✓</span>Fajr gebetet, jeden Tag</span>
+            <span class="ba-chip"><span class="ok">✓</span>Handy aus, Kopf klar</span>
+            <span class="ba-chip"><span class="ok">✓</span>Disziplin ist Identität</span>
+          </div>
+          <div class="ba-bar"><i></i></div>
+        </div>
+
+        <div class="ba-side ba-before" id="baBefore">
+          <div class="ba-fig">
+            <svg viewBox="0 0 110 230" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="52" cy="218" rx="34" ry="7" opacity=".3"/>
+              <circle cx="42" cy="40" r="15"/>
+              <rect x="32" y="54" width="38" height="68" rx="19" transform="rotate(10 51 88)"/>
+              <rect x="22" y="62" width="13" height="56" rx="6.5" transform="rotate(16 28.5 65)"/>
+              <rect x="58" y="64" width="13" height="56" rx="6.5" transform="rotate(10 64.5 67)"/>
+              <rect x="36" y="120" width="15" height="84" rx="7.5" transform="rotate(4 43.5 124)"/>
+              <rect x="55" y="120" width="15" height="84" rx="7.5" transform="rotate(-3 62.5 124)"/>
+            </svg>
+          </div>
+          <span class="ba-pill p1">Tag 1</span>
+          <div class="ba-chips">
+            <span class="ba-chip"><span class="x">✗</span>Fajr verschlafen</span>
+            <span class="ba-chip"><span class="x">✗</span>Scrollt bis 1 Uhr nachts</span>
+            <span class="ba-chip"><span class="x">✗</span>Vorsätze halten 3 Tage</span>
+          </div>
+          <div class="ba-bar"><i></i></div>
+        </div>
+
+        <div class="ba-handle" id="baHandle">
+          <div class="ba-knob">‹›</div>
+        </div>
+
+      </div>
+      <p class="ba-hint">◂ Ziehen &amp; den Unterschied spüren ▸</p>
+      <p class="ba-quote">Der Unterschied bist nicht du. <span class="gold">Es ist dein System.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= AUTOR ======================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="author">
+      <div class="orbit reveal">
+        <div class="haze"></div>
+        <div class="ring-dash"></div>
+        <div class="ring-spin"></div>
+        <div class="ring-spin r2"></div>
+        <div class="dot-rig"><div class="dot"></div></div>
+        <img src="/profile.jpg" alt="Usamah Sulaiman Shah, Autor von Der Standhafte Muslim" />
+        <div class="tag">Der Autor</div>
+      </div>
+      <div class="author-copy">
+        <span class="eyebrow reveal">Wer schreibt hier</span>
+        <h2 class="reveal d1" style="margin-bottom:26px">Ich war genau da, <span class="gold">wo du jetzt bist.</span></h2>
+        <p class="reveal d2">Ich bin <b>Usamah Sulaiman Shah</b>. Viele kennen mich von meinem <b>Instagram</b> und <b>TikTok</b> Account.</p>
+        <p class="reveal d2">Große Vorsätze am Abend. Niederlagen am Morgen. Ich kenne diesen Kreislauf, weil ich selbst drin war. Rausgeholt hat mich kein Motivationsvideo, sondern <span class="gold">ein System</span>.</p>
+        <p class="reveal d3">Genau dieses System steht in diesem Buch. Schritt für Schritt, ab heute Abend.</p>
+        <div class="socialproof reveal d3">
+          <a href="https://www.instagram.com/usamahsulaimanshah/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>Instagram</a>
+          <a href="https://www.tiktok.com/@usamahsulaimanshah1?lang=de-DE" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>TikTok</a>
+          <span id="followerBadge" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><b id="followerNum" style="color:#fff"></b>&nbsp;Follower</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section class="sec" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Bevor du fragst</span>
+      <h2>Keine offenen <span class="gold">Fragen</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq reveal"><div class="q">Ich habe schon Bücher gelesen. Warum sollte das anders sein?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Weil das hier kein Buch zum Lesen ist, sondern ein Protokoll zum Ausführen. Konkrete Anweisungen für heute Abend, morgen früh und die nächsten 30 Tage. Null Füllmaterial.</div></div></div>
+      <div class="faq reveal"><div class="q">Ich bin extrem inkonsequent. Hilft das trotzdem?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Genau dafür wurde es geschrieben. Das System verlässt sich nicht auf Motivation oder Willenskraft. Es installiert Strukturen, die unabhängig von deiner Tagesform funktionieren.</div></div></div>
+      <div class="faq reveal"><div class="q">Wie viel Zeit brauche ich pro Tag?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Das Abendprotokoll am ersten Abend dauert etwa 60 Minuten. Danach folgst du kurzen, klaren täglichen Schritten. Du holst dir die Zeit zurück, die dir das Scrollen jeden Tag stiehlt.</div></div></div>
+      <div class="faq reveal"><div class="q">Wann sehe ich erste Resultate?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Die erste spürbare Veränderung kommt oft schon am Morgen nach dem ersten Abendprotokoll. Die eigentliche Transformation passiert über die 30 Tage, wenn du konsequent umsetzt.</div></div></div>
+      <div class="faq reveal"><div class="q">Wie bekomme ich das Buch?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Direkt nach dem Checkout bekommst du den Download-Link für das PDF. In unter 60 Sekunden, auf Smartphone, Tablet und PC.</div></div></div>
+      <div class="faq reveal"><div class="q">Für wen ist das Buch NICHTS?<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="a"><div>Für jeden, der nur konsumieren will. Wenn du nach dem fünften Motivationsvideo das sechste suchst, statt zu handeln, bringt dir auch dieses System nichts. Es ist für Menschen, die ab heute Abend wirklich umsetzen.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CHECKOUT ======================= -->
+<section class="sec" id="checkout">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Dein Checkpoint</span>
+      <h2>Sicherer <span class="gold">Checkout</span></h2>
+      <p class="sec-sub">Ein Klick. Sichere Zahlung. Sofort auf deinem Handy.</p>
+    </div>
+
+    <div class="checkout-frame reveal d1">
+      <div class="checkout-inner">
+        <div class="checkout-grid">
+
+          <div class="order">
+            <h3><span class="step">1</span>Deine Bestellung</h3>
+            <div class="order-item">
+              <div class="thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+              <div><b>Der Standhafte Muslim</b><small>Das komplette 30-Tage-System als PDF E-Book. Drei Phasen, vom ersten Abend bis Tag 30.</small></div>
+            </div>
+            <div class="order-item">
+              <div class="thumb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+              <div><span class="bonus">Bonus</span><b>Das Notfall-Protokoll</b><small>Dein Plan für die Tage, an denen alles in dir „Aufgeben" schreit.</small></div>
+            </div>
+            <div class="order-item">
+              <div class="thumb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+              <div><span class="bonus">Bonus</span><b>Der Dopamin-Detox-Plan</b><small>Das 60-Minuten-Abendprotokoll für sofortige Klarheit.</small></div>
+            </div>
+            <div class="totals">
+              <div class="row"><span>Regulärer Preis</span><s>39,99€</s></div>
+              <div class="row save"><span>Du sparst heute</span><b>15,00€</b></div>
+              <div class="row total"><span>Heute</span><span class="sum">24,99€</span></div>
+            </div>
+          </div>
+
+          <div class="payside">
+            <h3><span class="step">2</span>Sicher bezahlen</h3>
+            <div class="paysteps">
+              <div class="paystep"><span class="pn">→</span><div><b>Klicke auf den Button</b><small>Du landest direkt im verschlüsselten Checkout.</small></div></div>
+              <div class="paystep"><span class="pn">€</span><div><b>Zahle mit PayPal oder Karte</b><small>Abwicklung über unseren sicheren Zahlungspartner.</small></div></div>
+              <div class="paystep"><span class="pn">✓</span><div><b>Sofort-Download</b><small>Das System ist in unter 60 Sekunden auf deinem Handy.</small></div></div>
+            </div>
+
+            <a class="btn magnetic" data-checkout style="width:100%" href="#">
+              <span class="shine"></span>
+              Jetzt sicher bezahlen
+              <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </a>
+
+            <div class="countdown" id="countdown" hidden>
+              <div class="cd-unit"><b id="cd-d">00</b><small>Tage</small></div><span class="cd-sep">:</span>
+              <div class="cd-unit"><b id="cd-h">00</b><small>Std</small></div><span class="cd-sep">:</span>
+              <div class="cd-unit"><b id="cd-m">00</b><small>Min</small></div><span class="cd-sep">:</span>
+              <div class="cd-unit"><b id="cd-s">00</b><small>Sek</small></div>
+            </div>
+            <div class="deadline-note" id="deadline-note" hidden>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Danach steigt der Preis auf 39,99€
+            </div>
+
+            <div class="paybadges">
+              <span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Apple&nbsp;Pay</span>
+            </div>
+            <div class="securemeta">
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL-Verschlüsselt</span>
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Direkt-Download</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ZWEI WEGE ======================= -->
+<section class="sec center" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Der Moment der Wahrheit</span>
+      <h2>Zwei Wege <span class="gold">liegen vor dir</span></h2>
+    </div>
+    <div class="paths">
+      <div class="path a reveal">
+        <span class="letter">A</span>
+        <h3>Du schließt diese Seite</h3>
+        <p>Morgen läuft alles wie immer. Snooze. Scrollen. Schuldgefühl. In einem Jahr stehst du am selben Punkt, nur ein Jahr älter.</p>
+      </div>
+      <div class="path b reveal d1">
+        <span class="letter">B</span>
+        <h3>Du startest heute Abend</h3>
+        <p>In 60 Sekunden ist das System auf deinem Handy. Heute Abend führst du das erste Protokoll aus. In 30 Tagen erkennst du dich selbst nicht wieder.</p>
+      </div>
+    </div>
+    <div class="reveal d2" style="display:flex;flex-direction:column;align-items:center;gap:22px">
+      <a class="btn magnetic" href="#checkout">
+        <span class="shine"></span>
+        Ich wähle Weg B
+        <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </a>
+      <div class="microtrust"><span>Sofortiger Zugang</span><span>Einmalzahlung</span><span>Kein Abo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="big">Der Standhafte Muslim</div>
+  <div class="legal">
+    <a href="#" data-legal="impressum">Impressum</a><a href="#" data-legal="datenschutz">Datenschutz</a><a href="#" data-legal="widerruf">Widerruf</a><a href="#" data-legal="agb">AGB</a>
+  </div>
+  <div class="copy">
+    © <span id="year"></span> Usamah Sulaiman Shah. Alle Rechte vorbehalten.<br />
+    <span style="font-size:8px;color:rgba(255,255,255,.1)">Keine Meta/Facebook Endorsement. Diese Seite ist nicht Teil der Facebook-Website oder Facebook Inc.</span>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // KONFIGURATION
+  // ============================================================
+  // Zahlungslink: aktuell Payhip. Für Stripe einfach hier den
+  // Stripe Payment Link eintragen, alle Kauf-Buttons nutzen ihn automatisch.
+  const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
+
+  // Countdown nur verwenden, wenn der Preis an diesem Datum WIRKLICH steigt
+  // (sonst irreführende Werbung / Abmahnrisiko). Auf null setzen zum Ausblenden.
+  const OFFER_DEADLINE = "2026-06-30T23:59:59";
+
+  // Sozialer Beweis: NUR ECHTE Zahlen eintragen (erfundene Käufer- oder
+  // Followerzahlen sind irreführende Werbung, UWG / EU-Omnibus-Richtlinie).
+  // null = Element bleibt unsichtbar.
+  const READER_COUNT = "1.500+";  // Käuferzahl laut Betreiber (muss den echten Verkäufen entsprechen)
+  const FOLLOWER_COUNT = null;   // echte Follower gesamt, z.B. "20.000+"
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  if (READER_COUNT) {
+    document.getElementById("defaultBadge").hidden = true;
+    document.getElementById("proofBadge").hidden = false;
+    document.getElementById("readerNum").textContent = READER_COUNT;
+  }
+  if (FOLLOWER_COUNT) {
+    document.getElementById("followerBadge").hidden = false;
+    document.getElementById("followerNum").textContent = FOLLOWER_COUNT;
+  }
+  document.querySelectorAll("[data-checkout]").forEach((a) => { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; });
+
+  // ---------- Laufband füllen ----------
+  const track = document.getElementById("tickerTrack");
+  track.innerHTML = track.innerHTML.repeat(8);
+
+  // ---------- Scroll-Reveal ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+  }, { rootMargin: "-8% 0px" });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // ---------- Zähler ----------
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const to = +e.target.dataset.to, t0 = performance.now();
+      const step = (t) => {
+        const p = Math.min(1, (t - t0) / 1300);
+        e.target.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { rootMargin: "-10% 0px" });
+  document.querySelectorAll(".count").forEach((el) => cio.observe(el));
+
+  // ---------- Scroll-Fortschritt + Sticky Bars ----------
+  const progress = document.getElementById("progress");
+  const topbar = document.getElementById("topbar");
+  const bottombar = document.getElementById("bottombar");
+  addEventListener("scroll", () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (scrollY / max) * 100 + "%";
+    const on = scrollY > 600;
+    topbar.classList.toggle("show", on);
+    bottombar.classList.toggle("show", on);
+  }, { passive: true });
+
+  // ---------- Cursor-Glow ----------
+  const glow = document.getElementById("cursorGlow");
+  if (matchMedia("(pointer:fine)").matches) {
+    let gx = 0, gy = 0, vx = 0, vy = 0;
+    addEventListener("mousemove", (e) => { gx = e.clientX; gy = e.clientY; glow.style.opacity = 1; }, { passive: true });
+    const loop = () => {
+      vx += (gx - vx) * 0.09; vy += (gy - vy) * 0.09;
+      glow.style.transform = `translate(${vx - 260}px,${vy - 260}px)`;
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  // ---------- Buch folgt der Maus ----------
+  const rig = document.getElementById("bookRig");
+  const scene = document.getElementById("bookScene");
+  if (matchMedia("(pointer:fine)").matches) {
+    addEventListener("mousemove", (e) => {
+      const r = scene.getBoundingClientRect();
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const dx = Math.max(-1, Math.min(1, (e.clientX - cx) / 600));
+      const dy = Math.max(-1, Math.min(1, (e.clientY - cy) / 600));
+      rig.style.transform = `rotateY(${dx * 10}deg) rotateX(${-dy * 8}deg)`;
+    }, { passive: true });
+  }
+
+  // ---------- 3D-Tilt auf Karten ----------
+  if (matchMedia("(pointer:fine)").matches) {
+    document.querySelectorAll(".tilt").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateY(${px * 8}deg) rotateX(${-py * 8}deg) translateY(-4px)`;
+      });
+      card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+    });
+  }
+
+  // ---------- Magnetische Buttons ----------
+  if (matchMedia("(pointer:fine)").matches) {
+    document.querySelectorAll(".magnetic").forEach((btn) => {
+      btn.addEventListener("mousemove", (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${dx * 0.12}px,${dy * 0.18}px) scale(1.03)`;
+      });
+      btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+    });
+  }
+
+  // ---------- FAQ ----------
+  document.querySelectorAll(".faq").forEach((faq) => {
+    faq.addEventListener("click", () => {
+      const a = faq.querySelector(".a");
+      const isOpen = faq.classList.contains("open");
+      document.querySelectorAll(".faq.open").forEach((o) => { o.classList.remove("open"); o.querySelector(".a").style.maxHeight = null; });
+      if (!isOpen) { faq.classList.add("open"); a.style.maxHeight = a.scrollHeight + "px"; }
+    });
+  });
+
+  // ---------- Countdown ----------
+  if (OFFER_DEADLINE) {
+    const target = new Date(OFFER_DEADLINE).getTime();
+    const box = document.getElementById("countdown");
+    const note = document.getElementById("deadline-note");
+    const pad = (n) => String(n).padStart(2, "0");
+    const tick = () => {
+      const r = target - Date.now();
+      if (r <= 0) { box.hidden = true; note.hidden = true; return; }
+      box.hidden = false; note.hidden = false;
+      document.getElementById("cd-d").textContent = pad(Math.floor(r / 86400000));
+      document.getElementById("cd-h").textContent = pad(Math.floor((r % 86400000) / 3600000));
+      document.getElementById("cd-m").textContent = pad(Math.floor((r % 3600000) / 60000));
+      document.getElementById("cd-s").textContent = pad(Math.floor((r % 60000) / 1000));
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ---------- Vorher/Nachher-Slider ----------
+  const baStage = document.getElementById("baStage");
+  if (baStage) {
+    const baBefore = document.getElementById("baBefore");
+    const baHandle = document.getElementById("baHandle");
+    let pos = 50, targetPos = 50, userActive = false;
+    const t0 = performance.now();
+    const renderBA = () => {
+      baBefore.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+      baHandle.style.left = pos + "%";
+    };
+    const loopBA = (t) => {
+      if (!userActive) targetPos = 50 + 32 * Math.sin((t - t0) / 2200);
+      pos += (targetPos - pos) * 0.08;
+      renderBA();
+      requestAnimationFrame(loopBA);
+    };
+    requestAnimationFrame(loopBA);
+    const setFromX = (x) => {
+      const r = baStage.getBoundingClientRect();
+      targetPos = Math.max(4, Math.min(96, ((x - r.left) / r.width) * 100));
+    };
+    baStage.addEventListener("pointerdown", (e) => {
+      userActive = true;
+      baStage.setPointerCapture(e.pointerId);
+      setFromX(e.clientX);
+    });
+    baStage.addEventListener("pointermove", (e) => { if (e.buttons) setFromX(e.clientX); });
+  }
+</script>
+
+<!-- ======================= RECHTSTEXTE MODAL ======================= -->
+<style>
+  #legalOverlay{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+    padding:20px;background:rgba(0,0,0,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  #legalOverlay.open{display:flex}
+  #legalCard{background:#0b0907;border:1px solid rgba(255,255,255,.12);border-radius:20px;
+    max-width:680px;width:100%;max-height:82vh;overflow-y:auto;padding:44px;position:relative;
+    box-shadow:0 40px 90px rgba(0,0,0,.9)}
+  #legalCard h2{font-family:var(--display);font-weight:700;font-size:26px;color:var(--gold);margin-bottom:24px}
+  #legalCard h3{font-size:16px;font-weight:700;color:#fff;margin:18px 0 8px}
+  #legalCard p{color:rgba(255,255,255,.65);font-size:14.5px;font-weight:500;line-height:1.75;margin-bottom:12px}
+  #legalCard .alert{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:18px;margin-top:14px}
+  #legalCard .alert h3{color:var(--gold);margin-top:0}
+  #legalCard .danger{color:#f87171;font-weight:700}
+  #legalClose{position:absolute;top:20px;right:20px;width:38px;height:38px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.5);
+    font-size:17px;cursor:pointer;transition:color .3s,border-color .3s}
+  #legalClose:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+</style>
+<div id="legalOverlay" role="dialog" aria-modal="true">
+  <div id="legalCard">
+    <button id="legalClose" aria-label="Schließen">✕</button>
+    <h2 id="legalTitle"></h2>
+    <div id="legalBody"></div>
+  </div>
+</div>
+<script>
+  const LEGAL = {
+    impressum: { title: "Impressum", body: `
+      <p><b style="color:#fff">Angaben gem&auml;&szlig; &sect; 5 TMG:</b></p>
+      <p>Usamah Sulaiman Shah<br/>Hanauer Landstra&szlig;e 328-330<br/>60314 Frankfurt am Main</p>
+      <p><b style="color:#fff">Kontakt:</b><br/>E-Mail: Shahmarketing@outlook.de</p>
+      <p><b style="color:#fff">Umsatzsteuer-ID:</b><br/>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27 a Umsatzsteuergesetz:<br/>DE353013127</p>` },
+    datenschutz: { title: "Datenschutzerkl\u00e4rung", body: `
+      <h3>1. Datenschutz auf einen Blick</h3>
+      <p>Wir nehmen den Schutz Ihrer pers&ouml;nlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO) sowie dieser Datenschutzerkl&auml;rung.</p>
+      <h3>2. Datenerfassung auf dieser Website</h3>
+      <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Bei der Nutzung unserer Website und insbesondere beim Checkout-Prozess werden Daten erhoben, die zur Vertragsabwicklung notwendig sind (z.B. E-Mail-Adresse). Die eigentliche Zahlungsabwicklung erfolgt verschl&uuml;sselt &uuml;ber externe Zahlungsdienstleister, die eigene Datenschutzbestimmungen haben.</p>` },
+    widerruf: { title: "Widerrufsbelehrung", body: `
+      <h3>Widerrufsrecht</h3>
+      <p>Sie haben grunds&auml;tzlich das Recht, binnen vierzehn Tagen ohne Angabe von Gr&uuml;nden einen Kaufvertrag zu widerrufen.</p>
+      <div class="alert">
+        <h3>WICHTIG: Vorzeitiges Erl&ouml;schen bei digitalen Inhalten (E-Books)</h3>
+        <p>Gem&auml;&szlig; &sect; 356 Abs. 5 BGB erlischt Ihr Widerrufsrecht bei Vertr&auml;gen &uuml;ber die Lieferung von nicht auf einem k&ouml;rperlichen Datentr&auml;ger befindlichen digitalen Inhalten (wie diesem PDF E-Book) vorzeitig, sobald der Download bzw. die Bereitstellung des Produkts begonnen hat.</p>
+        <p>Mit dem Abschluss des Kaufs und dem Start des Downloads stimmen Sie ausdr&uuml;cklich zu, dass mit der Ausf&uuml;hrung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird und Sie Ihr gesetzliches Widerrufsrecht dadurch vollst&auml;ndig verlieren.</p>
+      </div>` },
+    agb: { title: "Allgemeine Gesch\u00e4ftsbedingungen", body: `
+      <h3>1. Geltungsbereich</h3>
+      <p>Diese Allgemeinen Gesch&auml;ftsbedingungen (AGB) gelten f&uuml;r alle Vertr&auml;ge, die zwischen Usamah Sulaiman Shah (Verk&auml;ufer) und dem Kunden &uuml;ber den Erwerb von digitalen Produkten (E-Books) &uuml;ber diese Landingpage abgeschlossen werden.</p>
+      <h3>2. Vertragsabschluss &amp; Lieferung</h3>
+      <p>Die Pr&auml;sentation des E-Books stellt kein rechtlich bindendes Angebot dar. Der Vertrag kommt durch den Abschluss des Bezahlvorgangs zustande. Die Lieferung erfolgt unmittelbar nach Zahlungseingang durch die Bereitstellung eines Download-Links.</p>
+      <h3>3. Nutzungsrechte &amp; Strenger Urheberrechtsschutz</h3>
+      <p>Das angebotene E-Book ist strengstens urheberrechtlich gesch&uuml;tzt. Der Kunde erwirbt ein einfaches, nicht &uuml;bertragbares Recht, das digitale Produkt ausschlie&szlig;lich f&uuml;r den pers&ouml;nlichen, privaten Gebrauch zu nutzen.</p>
+      <p class="danger">Jegliche kommerzielle Nutzung, Vervielf&auml;ltigung, Verbreitung, &ouml;ffentliche Zug&auml;nglichmachung oder Weitergabe an Dritte (auch auszugsweise, z.B. in Foren oder Social Media) ist untersagt und wird ausnahmslos straf- und zivilrechtlich verfolgt.</p>` }
+  };
+  const overlay = document.getElementById("legalOverlay");
+  const openLegal = (key) => {
+    const item = LEGAL[key]; if (!item) return;
+    document.getElementById("legalTitle").textContent = item.title;
+    document.getElementById("legalBody").innerHTML = item.body;
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+  const closeLegal = () => { overlay.classList.remove("open"); document.body.style.overflow = ""; };
+  document.querySelectorAll("[data-legal]").forEach((a) => {
+    a.addEventListener("click", (e) => { e.preventDefault(); openLegal(a.dataset.legal); });
+  });
+  document.getElementById("legalClose").addEventListener("click", closeLegal);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeLegal(); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape") closeLegal(); });
+</script>
+</body>
 </html>
