@@ -121,6 +121,12 @@
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:3}
   @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-copy{order:2}.hero-book{order:1}}
 
+  .avatars{display:flex;align-items:center}
+  .avatars i{width:24px;height:24px;border-radius:50%;background:#15110b;border:1.5px solid #030302;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:10px;font-style:normal;margin-left:-8px}
+  .avatars i:first-child{margin-left:0}
+  .avatars i.more{background:var(--gold);color:#000;font-weight:800}
+  .badge#proofBadge{text-transform:none;letter-spacing:.04em;font-size:13px;color:rgba(255,255,255,.75)}
   .badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold-line);background:rgba(229,192,123,.07);
     padding:12px 22px;border-radius:60px;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:34px}
   .badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:dotpulse 1.8s ease-in-out infinite}
@@ -410,7 +416,11 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        <div class="badge"><span class="pulse"></span>Das 30-Tage Disziplin-System</div>
+        <div class="badge" id="defaultBadge"><span class="pulse"></span>Das 30-Tage Disziplin-System</div>
+        <div class="badge" id="proofBadge" hidden>
+          <span class="avatars"><i>★</i><i>★</i><i>★</i><i>★</i><i class="more">+</i></span>
+          <span>Von <b id="readerNum" style="color:#fff"></b> Lesern vertraut</span>
+        </div>
         <h1>
           <span class="w" style="animation-delay:.1s">Stärke</span>
           <span class="w" style="animation-delay:.18s">deinen</span>
@@ -584,6 +594,7 @@
         <div class="socialproof reveal d3">
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>Instagram</span>
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>TikTok</span>
+          <span id="followerBadge" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><b id="followerNum" style="color:#fff"></b>&nbsp;Follower</span>
         </div>
       </div>
     </div>
@@ -736,7 +747,23 @@
   // (sonst irreführende Werbung / Abmahnrisiko). Auf null setzen zum Ausblenden.
   const OFFER_DEADLINE = "2026-06-30T23:59:59";
 
+  // Sozialer Beweis: NUR ECHTE Zahlen eintragen (erfundene Käufer- oder
+  // Followerzahlen sind irreführende Werbung, UWG / EU-Omnibus-Richtlinie).
+  // null = Element bleibt unsichtbar.
+  const READER_COUNT = null;     // echte Käuferzahl aus Payhip, z.B. "120+"
+  const FOLLOWER_COUNT = null;   // echte Follower gesamt, z.B. "20.000+"
+
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  if (READER_COUNT) {
+    document.getElementById("defaultBadge").hidden = true;
+    document.getElementById("proofBadge").hidden = false;
+    document.getElementById("readerNum").textContent = READER_COUNT;
+  }
+  if (FOLLOWER_COUNT) {
+    document.getElementById("followerBadge").hidden = false;
+    document.getElementById("followerNum").textContent = FOLLOWER_COUNT;
+  }
   document.querySelectorAll("[data-checkout]").forEach((a) => { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; });
 
   // ---------- Laufband füllen ----------
