@@ -353,58 +353,6 @@
   .faq .a{max-height:0;overflow:hidden;transition:max-height .4s ease}
   .faq .a div{padding:20px 30px 28px;color:rgba(255,255,255,.6);font-size:15.5px;font-weight:500;line-height:1.75;border-top:1px solid var(--line)}
 
-  /* ---------- CHECKOUT ---------- */
-  .checkout-frame{position:relative;border-radius:26px;padding:1.5px;overflow:hidden}
-  .checkout-frame::before{content:"";position:absolute;inset:-150%;
-    background:conic-gradient(from 0deg,transparent 0 70%,var(--gold) 82%,#fff7e0 86%,var(--gold) 90%,transparent 100%);
-    animation:spin 6s linear infinite}
-  .checkout-inner{position:relative;background:linear-gradient(170deg,#0b0907,#040302 65%);border-radius:25px;padding:64px 56px;z-index:1}
-  @media(max-width:768px){.checkout-inner{padding:48px 24px}}
-  .checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-  @media(max-width:900px){.checkout-grid{grid-template-columns:1fr;gap:44px}}
-
-  .order h3,.payside h3{font-family:var(--display);font-weight:700;font-size:26px;margin-bottom:28px;display:flex;align-items:center;gap:13px}
-  .order h3 .step,.payside h3 .step{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#000;
-    font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .order-item{display:flex;gap:18px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
-  .order-item .thumb{width:54px;height:74px;flex-shrink:0;border-radius:4px 8px 8px 4px;background:linear-gradient(150deg,#13100c,#030302);
-    border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;color:var(--gold);
-    box-shadow:6px 6px 16px rgba(0,0,0,.6)}
-  .order-item b{display:block;font-size:16px;font-weight:700;margin-bottom:5px}
-  .order-item small{color:rgba(255,255,255,.45);font-size:13.5px;font-weight:500;line-height:1.55}
-  .order-item .bonus{display:inline-block;background:rgba(229,192,123,.12);color:var(--gold);border:1px solid var(--gold-line);
-    font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:60px;padding:4px 12px;margin-bottom:8px}
-  .totals{border-top:1px solid var(--line);margin-top:22px;padding-top:22px}
-  .totals .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:15px;font-weight:500;color:rgba(255,255,255,.55)}
-  .totals .row s{color:rgba(255,255,255,.35)}
-  .totals .row.save b{color:var(--gold)}
-  .totals .row.total{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;border-top:1px solid var(--line);padding-top:18px;margin-top:6px}
-  .totals .row.total .sum{font-size:34px;color:var(--gold)}
-
-  .paysteps{display:flex;flex-direction:column;gap:0;margin-bottom:30px}
-  .paystep{display:flex;gap:16px;align-items:flex-start;position:relative;padding-bottom:22px}
-  .paystep::before{content:"";position:absolute;left:16px;top:36px;bottom:0;width:1px;background:var(--line)}
-  .paystep:last-child::before{display:none}
-  .paystep .pn{width:33px;height:33px;border-radius:50%;flex-shrink:0;border:1px solid var(--gold-line);
-    background:rgba(229,192,123,.08);color:var(--gold);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
-  .paystep b{display:block;font-size:15.5px;font-weight:700;margin-top:5px}
-  .paystep small{color:rgba(255,255,255,.45);font-size:13px;font-weight:500}
-  .paybadges{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px;justify-content:center}
-  .paybadges span{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:8px;
-    padding:9px 16px;font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.65)}
-  .securemeta{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:center;color:rgba(255,255,255,.35);
-    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
-  .securemeta span{display:inline-flex;align-items:center;gap:8px}
-
-  .countdown{display:flex;align-items:flex-start;gap:12px;margin:26px 0 10px;justify-content:center}
-  .cd-unit{display:flex;flex-direction:column;align-items:center}
-  .cd-unit b{font-family:var(--display);font-weight:700;font-size:27px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-    border-radius:12px;padding:10px 13px;min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
-  .cd-unit small{color:rgba(255,255,255,.3);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
-  .cd-sep{font-family:var(--display);font-size:24px;color:rgba(229,192,123,.45);margin-top:10px}
-  .deadline-note{color:rgba(248,113,113,.9);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-    display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:8px}
-
   /* ---------- Zwei Wege ---------- */
   .paths{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:60px;text-align:left}
   @media(max-width:768px){.paths{grid-template-columns:1fr}}
@@ -451,7 +399,7 @@
     </div>
     <div class="right">
       <div><span class="old">39,99€</span> &nbsp;<span class="now">24,99€</span></div>
-      <a class="mini-btn" href="#checkout">Zum Checkout
+      <a class="mini-btn" href="#" data-checkout>Zugang sichern
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
@@ -461,7 +409,7 @@
 <!-- ======================= STICKY BOTTOM BAR (Mobile) ======================= -->
 <div id="bottombar">
   <div class="price"><span class="old">39,99€</span><span class="now">24,99€</span></div>
-  <a class="go" href="#checkout">Zum Checkout</a>
+  <a class="go" href="#" data-checkout>Jetzt Zugang sichern</a>
 </div>
 
 <!-- ======================= HERO ======================= -->
@@ -488,7 +436,7 @@
           <span class="gold">Hol dir das 30-Tage-Protokoll, das heute Abend beginnt.</span>
         </p>
         <div class="hero-cta reveal d3">
-          <a class="btn magnetic" href="#checkout">
+          <a class="btn magnetic" href="#" data-checkout>
             <span class="shine"></span>
             Jetzt starten für 24,99€
             <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
@@ -740,80 +688,6 @@
   </div>
 </section>
 
-<!-- ======================= CHECKOUT ======================= -->
-<section class="sec" id="checkout">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Dein Checkpoint</span>
-      <h2>Sicherer <span class="gold">Checkout</span></h2>
-      <p class="sec-sub">Ein Klick. Sichere Zahlung. Sofort auf deinem Handy.</p>
-    </div>
-
-    <div class="checkout-frame reveal d1">
-      <div class="checkout-inner">
-        <div class="checkout-grid">
-
-          <div class="order">
-            <h3><span class="step">1</span>Deine Bestellung</h3>
-            <div class="order-item">
-              <div class="thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
-              <div><b>Der Standhafte Muslim</b><small>Das komplette 30-Tage-System als PDF E-Book. Drei Phasen, vom ersten Abend bis Tag 30.</small></div>
-            </div>
-            <div class="order-item">
-              <div class="thumb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
-              <div><span class="bonus">Bonus</span><b>Das Notfall-Protokoll</b><small>Dein Plan für die Tage, an denen alles in dir „Aufgeben" schreit.</small></div>
-            </div>
-            <div class="order-item">
-              <div class="thumb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-              <div><span class="bonus">Bonus</span><b>Der Dopamin-Detox-Plan</b><small>Das 60-Minuten-Abendprotokoll für sofortige Klarheit.</small></div>
-            </div>
-            <div class="totals">
-              <div class="row"><span>Regulärer Preis</span><s>39,99€</s></div>
-              <div class="row save"><span>Du sparst heute</span><b>15,00€</b></div>
-              <div class="row total"><span>Heute</span><span class="sum">24,99€</span></div>
-            </div>
-          </div>
-
-          <div class="payside">
-            <h3><span class="step">2</span>Sicher bezahlen</h3>
-            <div class="paysteps">
-              <div class="paystep"><span class="pn">→</span><div><b>Klicke auf den Button</b><small>Du landest direkt im verschlüsselten Checkout.</small></div></div>
-              <div class="paystep"><span class="pn">€</span><div><b>Zahle mit PayPal oder Karte</b><small>Abwicklung über unseren sicheren Zahlungspartner.</small></div></div>
-              <div class="paystep"><span class="pn">✓</span><div><b>Sofort-Download</b><small>Das System ist in unter 60 Sekunden auf deinem Handy.</small></div></div>
-            </div>
-
-            <a class="btn magnetic" data-checkout style="width:100%" href="#">
-              <span class="shine"></span>
-              Jetzt sicher bezahlen
-              <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-            </a>
-
-            <div class="countdown" id="countdown" hidden>
-              <div class="cd-unit"><b id="cd-d">00</b><small>Tage</small></div><span class="cd-sep">:</span>
-              <div class="cd-unit"><b id="cd-h">00</b><small>Std</small></div><span class="cd-sep">:</span>
-              <div class="cd-unit"><b id="cd-m">00</b><small>Min</small></div><span class="cd-sep">:</span>
-              <div class="cd-unit"><b id="cd-s">00</b><small>Sek</small></div>
-            </div>
-            <div class="deadline-note" id="deadline-note" hidden>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Danach steigt der Preis auf 39,99€
-            </div>
-
-            <div class="paybadges">
-              <span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Apple&nbsp;Pay</span>
-            </div>
-            <div class="securemeta">
-              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL-Verschlüsselt</span>
-              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Direkt-Download</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ======================= ZWEI WEGE ======================= -->
 <section class="sec center" style="background:var(--bg2)">
   <div class="wrap">
@@ -834,9 +708,9 @@
       </div>
     </div>
     <div class="reveal d2" style="display:flex;flex-direction:column;align-items:center;gap:22px">
-      <a class="btn magnetic" href="#checkout">
+      <a class="btn magnetic" href="#" data-checkout>
         <span class="shine"></span>
-        Ich wähle Weg B
+        Ich wähle Weg B — 24,99€
         <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
       </a>
       <div class="microtrust"><span>Sofortiger Zugang</span><span>Einmalzahlung</span><span>Kein Abo</span></div>
@@ -864,9 +738,6 @@
   // Stripe Payment Link eintragen, alle Kauf-Buttons nutzen ihn automatisch.
   const CHECKOUT_URL = "https://payhip.com/b/sI9w2";
 
-  // Countdown nur verwenden, wenn der Preis an diesem Datum WIRKLICH steigt
-  // (sonst irreführende Werbung / Abmahnrisiko). Auf null setzen zum Ausblenden.
-  const OFFER_DEADLINE = "2026-06-30T23:59:59";
 
   // Sozialer Beweis: NUR ECHTE Zahlen eintragen (erfundene Käufer- oder
   // Followerzahlen sind irreführende Werbung, UWG / EU-Omnibus-Richtlinie).
@@ -987,24 +858,6 @@
     });
   });
 
-  // ---------- Countdown ----------
-  if (OFFER_DEADLINE) {
-    const target = new Date(OFFER_DEADLINE).getTime();
-    const box = document.getElementById("countdown");
-    const note = document.getElementById("deadline-note");
-    const pad = (n) => String(n).padStart(2, "0");
-    const tick = () => {
-      const r = target - Date.now();
-      if (r <= 0) { box.hidden = true; note.hidden = true; return; }
-      box.hidden = false; note.hidden = false;
-      document.getElementById("cd-d").textContent = pad(Math.floor(r / 86400000));
-      document.getElementById("cd-h").textContent = pad(Math.floor((r % 86400000) / 3600000));
-      document.getElementById("cd-m").textContent = pad(Math.floor((r % 3600000) / 60000));
-      document.getElementById("cd-s").textContent = pad(Math.floor((r % 60000) / 1000));
-    };
-    tick();
-    setInterval(tick, 1000);
-  }
 
   // ---------- Vorher/Nachher-Slider ----------
   const baStage = document.getElementById("baStage");
