@@ -249,49 +249,56 @@
   .phase .sol-line{color:rgba(255,255,255,.72);font-size:16px;font-weight:500;line-height:1.6}
   .phase .sol-line b{color:var(--gold);font-weight:600}
 
-  /* ---------- Transformation ---------- */
-  .tf{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:stretch;max-width:980px;margin:0 auto}
-  @media(max-width:900px){.tf{grid-template-columns:1fr;gap:28px}}
-  .tf-card{background:linear-gradient(170deg,var(--bg3),var(--bg2));border:1px solid var(--line);border-radius:24px;
-    padding:38px 34px;text-align:center;position:relative;overflow:hidden}
-  .tf-card.after{border-color:rgba(229,192,123,.45);box-shadow:0 24px 60px rgba(229,192,123,.10)}
-  .tf-card.after::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle,rgba(229,192,123,.13),transparent 60%);
-    animation:halo 6s ease-in-out infinite;pointer-events:none}
-  .tf-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
-    padding:8px 18px;border-radius:60px;margin-bottom:26px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid var(--line)}
-  .tf-card.after .tf-label{background:rgba(229,192,123,.12);color:var(--gold);border-color:var(--gold-line)}
-  .fig{position:relative;width:108px;margin:0 auto 26px}
-  .fig svg{display:block;width:100%;height:auto}
-  .fig .base{color:#3a3a3a}
-  .tf-card.today .fig{opacity:.7;animation:todayflicker 4s ease-in-out infinite}
-  @keyframes todayflicker{0%,100%{opacity:.7}50%{opacity:.42}}
-  .fig .over{position:absolute;inset:0;color:var(--gold);clip-path:inset(100% 0 0 0);
-    transition:clip-path 2.4s cubic-bezier(.16,1,.3,1) .5s;filter:drop-shadow(0 0 18px rgba(229,192,123,.55))}
-  .visible .fig .over{clip-path:inset(0 0 0 0)}
-  .tbar{height:10px;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:rgba(255,255,255,.04);margin:0 6px;position:relative}
-  .tbar i{display:block;height:100%;width:0;border-radius:99px}
-  .tf-card.today .tbar i{background:#ef4444;transition:width 1.6s ease .6s}
-  .visible .tf-card.today .tbar i{width:14%}
-  .tf-card.after .tbar i{background:linear-gradient(90deg,#E5C07B,#34d399 55%,#10b981);transition:width 2.4s cubic-bezier(.16,1,.3,1) .7s;
-    box-shadow:0 0 14px rgba(52,211,153,.5)}
-  .visible .tf-card.after .tbar i{width:100%}
-  .tf-card .cap{display:block;color:rgba(255,255,255,.35);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin:11px 0 26px}
-  .tf-card ul{list-style:none;text-align:left;display:flex;flex-direction:column;gap:13px;max-width:240px;margin:0 auto}
-  .tf-card li{display:flex;gap:11px;align-items:center;font-size:14.5px;font-weight:600;color:rgba(255,255,255,.5)}
-  .tf-card li .x{color:#ef4444;font-weight:800}
-  .tf-card.after li{color:rgba(255,255,255,.82)}
-  .tf-card li .ok{color:#10b981;font-weight:800}
-  .tf-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-width:170px}
-  .tf-days{font-family:var(--display);font-weight:700;font-size:64px;line-height:1;color:#fff;text-align:center}
-  .tf-days em{display:block;font-style:normal;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:8px}
-  .ttrack{position:relative;width:150px;height:6px;border-radius:99px;background:rgba(255,255,255,.07)}
-  .ttrack i{position:absolute;inset:0;width:0;border-radius:99px;
-    background:linear-gradient(90deg,#555,#E5C07B 55%,#10b981);transition:width 2.4s cubic-bezier(.16,1,.3,1) .5s}
-  .visible .ttrack i{width:100%}
-  .ttrack .runner{position:absolute;top:50%;left:0;width:14px;height:14px;border-radius:50%;background:#fff;
-    box-shadow:0 0 16px rgba(229,192,123,.9);transform:translate(-50%,-50%);transition:left 2.4s cubic-bezier(.16,1,.3,1) .5s}
-  .visible .ttrack .runner{left:100%}
-  .tf-mid p{color:rgba(255,255,255,.4);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  /* ---------- Transformation (Vorher/Nachher-Slider) ---------- */
+  .ba{max-width:980px;margin:0 auto;user-select:none;-webkit-user-select:none}
+  .ba-stage{position:relative;height:500px;border-radius:26px;overflow:hidden;border:1px solid var(--gold-line);
+    box-shadow:0 40px 90px rgba(0,0,0,.7);cursor:ew-resize;touch-action:none}
+  @media(max-width:768px){.ba-stage{height:460px}}
+  .ba-side{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .ba-after{background:radial-gradient(110% 90% at 70% 30%,#241a0c,#0a0703 55%,#050302)}
+  .ba-rays{position:absolute;inset:-25%;pointer-events:none;animation:spin 50s linear infinite;
+    background:conic-gradient(from 0deg at 50% 50%,transparent 0 8%,rgba(229,192,123,.07) 10%,transparent 14%,
+    transparent 24%,rgba(229,192,123,.05) 27%,transparent 31%,transparent 44%,rgba(229,192,123,.07) 48%,transparent 52%,
+    transparent 64%,rgba(229,192,123,.05) 67%,transparent 71%,transparent 84%,rgba(229,192,123,.06) 88%,transparent 92%)}
+  .ba-before{background:linear-gradient(170deg,#0b0d12,#06070b 60%,#040508);will-change:clip-path}
+  .ba-before::after{content:"";position:absolute;inset:-40px 0;pointer-events:none;
+    background:repeating-linear-gradient(100deg,transparent 0 16px,rgba(140,160,190,.06) 16px 17px);
+    animation:rainmove 1.4s linear infinite}
+  @keyframes rainmove{0%{transform:translateY(-34px)}100%{transform:translateY(34px)}}
+  .ba-fig{position:relative;width:150px}
+  @media(max-width:768px){.ba-fig{width:118px}}
+  .ba-fig svg{width:100%;height:auto;display:block}
+  .ba-before .ba-fig{color:#3c4250;opacity:.85;animation:todayflicker 4s ease-in-out infinite}
+  @keyframes todayflicker{0%,100%{opacity:.85}50%{opacity:.5}}
+  .ba-after .ba-fig{color:var(--gold);filter:drop-shadow(0 0 28px rgba(229,192,123,.55))}
+  .ba-after .ba-fig::after{content:"";position:absolute;inset:-35%;pointer-events:none;
+    background:radial-gradient(circle,rgba(229,192,123,.22),transparent 60%);animation:halo 5s ease-in-out infinite}
+  .ba-pill{position:absolute;top:22px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    padding:9px 18px;border-radius:60px;z-index:3;backdrop-filter:blur(6px)}
+  .ba-pill.p1{left:22px;background:rgba(10,12,18,.8);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12)}
+  .ba-pill.p30{right:22px;background:rgba(229,192,123,.16);color:var(--gold);border:1px solid var(--gold-line)}
+  .ba-chips{position:absolute;bottom:30px;display:flex;flex-direction:column;gap:9px;z-index:2}
+  .ba-before .ba-chips{left:22px;align-items:flex-start}
+  .ba-after .ba-chips{right:22px;align-items:flex-end}
+  .ba-chip{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;padding:9px 15px;border-radius:60px;backdrop-filter:blur(6px)}
+  .ba-before .ba-chip{background:rgba(8,10,14,.78);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
+  .ba-after .ba-chip{background:rgba(20,16,8,.78);border:1px solid var(--gold-line);color:rgba(255,255,255,.88)}
+  .ba-chip .x{color:#ef4444;font-weight:800}
+  .ba-chip .ok{color:#10b981;font-weight:800}
+  .ba-bar{position:absolute;bottom:0;left:0;right:0;height:7px;background:rgba(255,255,255,.05)}
+  .ba-bar i{display:block;height:100%}
+  .ba-before .ba-bar i{width:14%;background:#ef4444}
+  .ba-after .ba-bar i{width:100%;background:linear-gradient(90deg,#E5C07B,#34d399 60%,#10b981);box-shadow:0 0 16px rgba(52,211,153,.6)}
+  .ba-handle{position:absolute;top:0;bottom:0;width:2px;left:50%;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,transparent,var(--gold) 16%,var(--gold) 84%,transparent);
+    filter:drop-shadow(0 0 10px rgba(229,192,123,.8))}
+  .ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(95deg,var(--gold-light),var(--gold) 40%,var(--gold-dark));color:#000;
+    display:flex;align-items:center;justify-content:center;gap:2px;font-weight:900;font-size:16px;
+    box-shadow:0 0 38px rgba(229,192,123,.7),0 10px 26px rgba(0,0,0,.6);animation:btnpulse 2.6s ease-in-out infinite}
+  .ba-hint{text-align:center;color:rgba(255,255,255,.4);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-top:22px}
+  .ba-quote{text-align:center;font-family:var(--display);font-weight:600;font-size:clamp(21px,2.8vw,30px);margin-top:42px;color:rgba(255,255,255,.88)}
+  .ba-quote .gold{color:var(--gold)}
 
   /* ---------- Autor ---------- */
   .author{display:grid;grid-template-columns:2fr 3fr;gap:70px;align-items:center}
@@ -623,70 +630,64 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Die Transformation</span>
-      <h2>Von Tag 1 <span class="gold">zu Tag 30.</span></h2>
-      <p class="sec-sub">Dasselbe Du. Ein anderes System.</p>
+      <h2>Sieh, wer du <span class="gold">in 30 Tagen</span> bist.</h2>
+      <p class="sec-sub">Zieh den goldenen Regler und spüre den Unterschied.</p>
     </div>
-    <div class="tf reveal d1">
 
-      <div class="tf-card today">
-        <span class="tf-label">Heute</span>
-        <div class="fig">
-          <svg class="base" viewBox="0 0 100 210" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="26" r="17"/>
-            <rect x="29" y="48" width="42" height="76" rx="21"/>
-            <rect x="11" y="54" width="14" height="62" rx="7"/>
-            <rect x="75" y="54" width="14" height="62" rx="7"/>
-            <rect x="31" y="120" width="16" height="86" rx="8"/>
-            <rect x="53" y="120" width="16" height="86" rx="8"/>
-          </svg>
-        </div>
-        <div class="tbar"><i></i></div>
-        <span class="cap">Energie &amp; Disziplin</span>
-        <ul>
-          <li><span class="x">✗</span>Fajr verschlafen</li>
-          <li><span class="x">✗</span>Scrollt bis 1 Uhr nachts</li>
-          <li><span class="x">✗</span>Vorsätze halten 3 Tage</li>
-        </ul>
-      </div>
+    <div class="ba reveal d1">
+      <div class="ba-stage" id="baStage">
 
-      <div class="tf-mid">
-        <div class="tf-days"><span class="count" data-to="30">0</span><em>Tage</em></div>
-        <div class="ttrack"><i></i><span class="runner"></span></div>
-        <p>Mit dem System</p>
-      </div>
-
-      <div class="tf-card after">
-        <div class="spark s2"></div><div class="spark s4"></div>
-        <span class="tf-label">Tag 30</span>
-        <div class="fig">
-          <svg class="base" viewBox="0 0 100 210" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="26" r="17"/>
-            <rect x="29" y="48" width="42" height="76" rx="21"/>
-            <rect x="11" y="54" width="14" height="62" rx="7"/>
-            <rect x="75" y="54" width="14" height="62" rx="7"/>
-            <rect x="31" y="120" width="16" height="86" rx="8"/>
-            <rect x="53" y="120" width="16" height="86" rx="8"/>
-          </svg>
-          <div class="over">
-            <svg viewBox="0 0 100 210" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="26" r="17"/>
-              <rect x="29" y="48" width="42" height="76" rx="21"/>
-              <rect x="11" y="54" width="14" height="62" rx="7"/>
-              <rect x="75" y="54" width="14" height="62" rx="7"/>
-              <rect x="31" y="120" width="16" height="86" rx="8"/>
-              <rect x="53" y="120" width="16" height="86" rx="8"/>
+        <div class="ba-side ba-after">
+          <div class="ba-rays"></div>
+          <div class="spark s1"></div><div class="spark s2"></div><div class="spark s4"></div>
+          <div class="ba-fig">
+            <svg viewBox="0 0 110 230" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="55" cy="218" rx="36" ry="7" opacity=".35"/>
+              <circle cx="55" cy="26" r="16"/>
+              <rect x="36" y="44" width="38" height="72" rx="19"/>
+              <rect x="33" y="46" width="13" height="58" rx="6.5" transform="rotate(150 39.5 52)"/>
+              <rect x="64" y="46" width="13" height="58" rx="6.5" transform="rotate(-150 70.5 52)"/>
+              <rect x="38" y="112" width="15" height="92" rx="7.5" transform="rotate(5 45.5 116)"/>
+              <rect x="57" y="112" width="15" height="92" rx="7.5" transform="rotate(-5 64.5 116)"/>
             </svg>
           </div>
+          <span class="ba-pill p30">Tag 30</span>
+          <div class="ba-chips">
+            <span class="ba-chip"><span class="ok">✓</span>Fajr gebetet, jeden Tag</span>
+            <span class="ba-chip"><span class="ok">✓</span>Handy aus, Kopf klar</span>
+            <span class="ba-chip"><span class="ok">✓</span>Disziplin ist Identität</span>
+          </div>
+          <div class="ba-bar"><i></i></div>
         </div>
-        <div class="tbar"><i></i></div>
-        <span class="cap">Energie &amp; Disziplin</span>
-        <ul>
-          <li><span class="ok">✓</span>Fajr gebetet, jeden Tag</li>
-          <li><span class="ok">✓</span>Handy aus, Kopf klar</li>
-          <li><span class="ok">✓</span>Disziplin ist Identität</li>
-        </ul>
-      </div>
 
+        <div class="ba-side ba-before" id="baBefore">
+          <div class="ba-fig">
+            <svg viewBox="0 0 110 230" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="52" cy="218" rx="34" ry="7" opacity=".3"/>
+              <circle cx="42" cy="40" r="15"/>
+              <rect x="32" y="54" width="38" height="68" rx="19" transform="rotate(10 51 88)"/>
+              <rect x="22" y="62" width="13" height="56" rx="6.5" transform="rotate(16 28.5 65)"/>
+              <rect x="58" y="64" width="13" height="56" rx="6.5" transform="rotate(10 64.5 67)"/>
+              <rect x="36" y="120" width="15" height="84" rx="7.5" transform="rotate(4 43.5 124)"/>
+              <rect x="55" y="120" width="15" height="84" rx="7.5" transform="rotate(-3 62.5 124)"/>
+            </svg>
+          </div>
+          <span class="ba-pill p1">Tag 1</span>
+          <div class="ba-chips">
+            <span class="ba-chip"><span class="x">✗</span>Fajr verschlafen</span>
+            <span class="ba-chip"><span class="x">✗</span>Scrollt bis 1 Uhr nachts</span>
+            <span class="ba-chip"><span class="x">✗</span>Vorsätze halten 3 Tage</span>
+          </div>
+          <div class="ba-bar"><i></i></div>
+        </div>
+
+        <div class="ba-handle" id="baHandle">
+          <div class="ba-knob">‹›</div>
+        </div>
+
+      </div>
+      <p class="ba-hint">◂ Ziehen &amp; den Unterschied spüren ▸</p>
+      <p class="ba-quote">Der Unterschied bist nicht du. <span class="gold">Es ist dein System.</span></p>
     </div>
   </div>
 </section>
@@ -1002,6 +1003,36 @@
     };
     tick();
     setInterval(tick, 1000);
+  }
+
+  // ---------- Vorher/Nachher-Slider ----------
+  const baStage = document.getElementById("baStage");
+  if (baStage) {
+    const baBefore = document.getElementById("baBefore");
+    const baHandle = document.getElementById("baHandle");
+    let pos = 50, targetPos = 50, userActive = false;
+    const t0 = performance.now();
+    const renderBA = () => {
+      baBefore.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+      baHandle.style.left = pos + "%";
+    };
+    const loopBA = (t) => {
+      if (!userActive) targetPos = 50 + 32 * Math.sin((t - t0) / 2200);
+      pos += (targetPos - pos) * 0.08;
+      renderBA();
+      requestAnimationFrame(loopBA);
+    };
+    requestAnimationFrame(loopBA);
+    const setFromX = (x) => {
+      const r = baStage.getBoundingClientRect();
+      targetPos = Math.max(4, Math.min(96, ((x - r.left) / r.width) * 100));
+    };
+    baStage.addEventListener("pointerdown", (e) => {
+      userActive = true;
+      baStage.setPointerCapture(e.pointerId);
+      setFromX(e.clientX);
+    });
+    baStage.addEventListener("pointermove", (e) => { if (e.buttons) setFromX(e.clientX); });
   }
 </script>
 
